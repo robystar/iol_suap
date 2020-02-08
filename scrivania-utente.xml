@@ -22,10 +22,6 @@
 <p><span class="plominoFieldClass">istanze_da_protocollare</span></p>
 </fieldset>
 <fieldset class="scheduler-border">
-<legend class="scheduler-border">PRATICHE DA ASSEGNARE</legend> <span class="plominoFieldClass">istanze_da_assegnare</span>
-</fieldset>
-<hr>
-<fieldset class="scheduler-border">
 <legend class="scheduler-border">PRATICHE ASSEGNATE IN ISTRUTTORIA</legend> <span class="plominoFieldClass">istanze_assegnate</span>
 </fieldset>
 <fieldset class="scheduler-border">
@@ -383,75 +379,6 @@
 <member>
 <name>sourceview</name>
 <value><string>vista-istanze-archiviate</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>DYNAMICTABLE</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="istanze_da_assegnare" title="Istanze da assegnare" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">istanze_da_assegnare</id>
-          <FieldType type="Products.Archetypes.Field.StringField">DOCLINK</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">DOCLINKFieldSearch</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-tool=view-details']]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'alengthMenu': [[10, 25, 50, -1], [10, 25, 50, "All"]],
-'aaSorting': [[ 2, "asc" ]],
-'sPaginationType': 'full_numbers',
-'bLengthChange': true,
-'bProcessing': true,
-'bServerSide': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false,
-'IOL-SEARCH-TABLE':true, //Serve solo ad indicare la tabella target delle ricerche
-    
-'aoColumnDefs': [
-{
-    "mRender": function ( data, type, row ) {
-                             
-        return '&lt;a href="../'+data+'"&gt;&lt;i class="icon-search linkable" title="Apri la pratica"&gt;&lt;/i&gt;&lt;/a&gt;';                                                              
-    },
-   "bVisible":true,
-   "bSortable":false,
-   "aTargets": [0]
- 
-},
-{ "aTargets": [ 4 ], "bSortable": false }         
-                 
-]</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>labelcolumn</name>
-<value><string>identificativo</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>sourceview</name>
-<value><string>vista-istanze-da-assegnare</string></value>
 </member>
 </struct></value>
 <value><struct>

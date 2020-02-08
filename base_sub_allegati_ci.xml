@@ -95,7 +95,7 @@ data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
 data-plugin = "iolUploadFile" 
-data-plugin-options={"maxsize":"30","filetype":["jpg","png","pdf","p7m"]}
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
 data-description="Nel caso in cui la segnalazione non sia sottoscritta in forma digitale e in assenza di procura"
 ''']]></HTMLAttributesFormula>
           <params>

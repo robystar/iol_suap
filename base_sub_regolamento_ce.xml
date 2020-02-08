@@ -51,7 +51,7 @@
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['''data-dhw=base_sub_regolamento_ce''']]></HTMLAttributesFormula>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['''data-dhw=suap-base-regolamento-ce''']]></HTMLAttributesFormula>
           <params>
 <param>
 <value><array><data>

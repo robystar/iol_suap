@@ -1494,22 +1494,19 @@ return context.aq_parent.config_suap().get('suap_settings','0-suap-settings')
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=doc=None
+##parameters=doc
 ##title=
 ##
 from Products.CMFPlomino.PlominoUtils import StringToDate,DateToString,Now
 
-if isinstance(doc, basestring):
-    doc = context.getDocument(doc)
-
 ##settaggio dei tipo protocollo particolare:
-if doc.getItem('allegati_agricoli_opt'):
-    doc.setItem('protocollo_tipodocumento','COMMERCIOWEB1')
-    doc.setItem('protocollo_titolario','08-01')
+if context.getItem('allegati_agricoli_opt'):
+    context.setItem('protocollo_tipodocumento','COMMERCIOWEB1')
+    context.setItem('protocollo_titolario','08-01')
 
-if doc.getItem('farmacie_opt'):
-    doc.setItem('protocollo_tipodocumento','COMMERCIOWEB9')
-    doc.setItem('protocollo_titolario','10-03')
+if context.getItem('farmacie_opt'):
+    context.setItem('protocollo_tipodocumento','COMMERCIOWEB9')
+    context.setItem('protocollo_titolario','10-03')
 
 #Provo a protocollare:
 viewName = context.aq_parent.config_suap().get("wsprotocollo")

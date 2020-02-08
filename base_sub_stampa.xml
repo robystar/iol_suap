@@ -646,20 +646,6 @@ return destinatari]]></Formula>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
         </element>
-        <element id="rpd_value" title="rpd_value" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">rpd_value</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[rpd='''Studio Cavaggioni Scarl - E-Mail: scarl@studiocavaggioni.it Soggetto individuato quale referente per il titolare/responsabile Avv. Tarocco Anna Telefono: 045.7614844 E-mail: anna.tarocco@studiocavaggioni.it'''
-return context.getParentDatabase().resources.config().get('rpd',rpd)]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">TEXTFieldCell</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
       </elements>
     </element>
   </design>

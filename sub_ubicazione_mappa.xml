@@ -278,7 +278,7 @@ placeholder="Inserisci un indirizzo"
 <value><struct>
 <member>
 <name>selectionlistformula</name>
-<value><string>settings = context.resources.config_praticaweb()
+<value><string>settings = context.resources.config_suap()
 return settings.get('elenco_comuni',[])</string></value>
 </member>
 </struct></value>

@@ -43,7 +43,7 @@ else:
       <SearchView type="Products.Archetypes.Field.StringField"/>
       <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
       <Position type="Products.Archetypes.Field.IntegerField"/>
-      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[https://maps.google.com/maps/api/js?key=AIzaSyDCV1Q_j22PJjxqlnswzZ6i95mnwRFlqVg&libraries=drawing
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[https://maps.google.com/maps/api/js?key=AIzaSyC_wNDXNfS3wRXfrwTSIy-MbGvRhavWGcQ&libraries=drawing
 ++resource++iol.document/js/proj4js.js
 ++resource++iol.document/js/proj4js-defs.js
 ++resource++iol.document/js/iolGoogleMap.js
