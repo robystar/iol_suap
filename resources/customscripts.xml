@@ -1623,6 +1623,24 @@ for brain in brains:
 if s:
     return '<div><h3>Pratiche collegate</h3>' + s + '</div>'
 ]]></resource>
+      <resource id="getPagoPaEnabled" title="Vero se abilitato il pagamento con PagoPa" type="Script (Python)"><![CDATA[## Script (Python) "getPagoPaEnabled"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=Vero se abilitato il pagamento con PagoPa
+##
+if isinstance(doc, basestring):
+    doc = context.getDocument(doc)
+
+# Vero se abilitato il pagamento con PagoPa
+if context.getParentDatabase().resources.config_suap().get('pagopa'):
+    return doc.isDocument() and doc.getItem('pagopa_enabled')==1
+else:
+    return False
+]]></resource>
     </resource>
   </design>
 </plominodatabase>
