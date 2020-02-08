@@ -1,0 +1,57 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_commercio_dichiarazioni" title="sub_commercio_dichiarazioni" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_commercio_dichiarazioni</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<p><a name="dichiarazioni"></a></p>
+<!-- DICHIARAZIONI --><fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DICHIARAZIONI:</legend>
+<h5 class="text-center"><small> Ai sensi degli artt.46 e 47 del D.P.R. 28 dicembre 2000, n.445 e consapevole delle sanzioni penali, nel caso di dichiarazioni non veritiere, di formazione o uso di atti falsi, richiamate dall’articolo 75 e 76 del D.P.R. di cui sopra </small></h5>
+<p class="text-center "><strong>con riferimento</strong></p>
+<h5 class="text-center">ai REQUISITI SOGGETTIVI:</h5>
+<div class="dichiarazione"><span class="plominoSubformClass">base_sub_requisiti_morali</span></div>
+<h5 class="text-center">ai REQUISITI DI DISPONIBILITÀ:</h5>
+<div class="dichiarazione"><span class="plominoSubformClass">base_sub_disponibilita_immobile</span></div>
+<h5 class="text-center">ai REQUISITI DI ESERCIZIO:</h5>
+<div class="dichiarazione"><span class="plominoSubformClass">base_sub_responsabile_attivita</span></div>
+<h5 class="text-center">ai REQUISITI DI LEGITTIMITÀ E DI SICUREZZA</h5>
+<span class="plominoSubformClass">base_sub_requisiti_sicurezza</span><p><span class="plominoHidewhenClass">start:hw_no_alimentare</span></p>
+<p><span class="plominoSubformClass">base_sub_nia</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_alimentare</span></p>
+</fieldset>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">False</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="hw_no_alimentare" title="hw_no_alimentare" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_alimentare</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

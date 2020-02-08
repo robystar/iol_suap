@@ -1,0 +1,286 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_ricettivita_affittacamere" title="sub_ricettivita_affittacamere" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_ricettivita_affittacamere</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
+if context.getItem('requisiti_morali_opt','')!='':
+    return "%s/EditDocument?openwithform=00-suap-completata" %context.doc_url()
+else:
+    return "%s/EditDocument" %context.doc_url()]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">SEGNALAZIONE CERTIFICATA DI INIZIO ATTIVITÀ</legend>
+<div>
+<span class="plominoLabelClass">segnalazione_opt</span><span class="plominoFieldClass">segnalazione_opt</span>
+</div>
+<p> </p>
+<div>
+<span class="plominoLabelClass">forma_opt</span><span class="plominoFieldClass">forma_opt</span>
+</div>
+<p><span class="plominoHidewhenClass">start:hw_no_nonimprenditoriale</span></p>
+<h6>a carattere occasionale o saltuario, e gestione di un massimo di tre camere, avvalendosi della propria organizzazione familiare. Nello specifico dichiara di essere a conoscenza che:</h6>
+<ul class="unstyled">
+<li>non possono essere gestite ulteriori analoghe tipologie ricettive condotte a carattere occasionale o saltuario;</li>
+<li>gli esercizi di affittacamere condotti a carattere occasionale o saltuario possono fornire alimenti e bevande limitatamente alla prima colazione;</li>
+<li>i periodi di apertura delle strutture di affittacamere gestiti in forma non imprenditoriale con carattere occasionale o saltuario, non superiori a 210 giorni, possono essere frazionati in più periodi di cui quattro di durata non inferiore a 15 giorni e gli altri di durata non inferiore a 30 giorni;</li>
+</ul>
+<p><span class="plominoHidewhenClass">end:hw_no_nonimprenditoriale</span></p>
+<div class="row-fluid">
+<div class="span5">
+<span class="plominoLabelClass">totale_appartamenti_opt</span><span class="plominoFieldClass">totale_appartamenti_opt</span>
+</div>
+<div class="span7">
+<span class="plominoLabelClass">denominazione_struttura</span><span class="plominoFieldClass">denominazione_struttura</span>
+</div>
+</div>
+<span class="plominoSubformClass">sub_ricettivita_requisiti_capacita</span>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border"><span>NEI LOCALI DELL'IMMOBILE UBICATO IN:</span></legend>
+<p><span class="plominoSubformClass">sub_ricettivita_immobile_1</span></p>
+</fieldset>
+<p><span class="plominoHidewhenClass">start:hw_no_immobile_2</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">NONCHÈ NEI LOCALI DELL'IMMOBILE ADIACENTE A QUELLO SOPRA CITATO, UBICATO IN:</legend>
+<p><span class="plominoSubformClass">sub_ricettivita_immobile_2</span></p>
+</fieldset>
+<p><span class="plominoHidewhenClass">end:hw_no_immobile_2</span></p>
+<!--6 VARIAZIONE RICETTIVITA--><p><span class="plominoHidewhenClass">start:hw_no_variazione_ricettiva</span></p>
+<p><span class="plominoSubformClass">sub_ricettivita_variazione_capacita</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_variazione_ricettiva</span></p>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTTOM</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.min.css
+++resource++iol.document/css/iol.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="segnalazione_opt" title="RELATIVA A:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">segnalazione_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['''data-dhw=1''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['APERTURA|1','VARIAZIONE DELLA CAPACITÀ RICETTIVA|2']
+</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="forma_opt" title="PER L'ATTIVITÀ DI AFFITTACAMERE IN FORMA" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">forma_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['IMPRENDITORIALE|1','NON IMPRENDITORIALE|2']
+</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_immobile_2" title="hw_no_immobile_2" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_immobile_2</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('totale_appartamenti_opt','1')=='1']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_step1" title="hw_step1" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_step1</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return False
+not context.getItem('fisica_cognome',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_variazioni" title="hw_no_variazioni" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_variazioni</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('segnalazione_opt','1') in ['1','4','5']]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_nonimprenditoriale" title="hw_no_nonimprenditoriale" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_nonimprenditoriale</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('forma_opt','')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_variazione_sede" title="hw_no_variazione_sede" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_variazione_sede</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','1') in ['1','4','5'] or '1' not in context.getItem('variazioni_opt',[])]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_variazione_ricettiva" title="hw_no_variazione_ricettiva" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_variazione_ricettiva</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_variazione_superficie" title="hw_no_variazione_superficie" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_variazione_superficie</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','1') in ['1','4','5'] or '2' not in context.getItem('variazioni_opt',[])]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_sospensione" title="hw_no_sospensione" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_sospensione</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','') != '5']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_cessazione" title="hw_no_cessazione" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_cessazione</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','') != '4']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_apertura_nuovo" title="hw_no_apertura_nuovo" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_apertura_nuovo</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','') != '1']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_apertura_subingresso" title="hw_no_apertura_subingresso" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_apertura_subingresso</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','') != '2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_variazione_soc" title="hw_no_variazione_soc" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_variazione_soc</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','1') in ['1','4','5'] or '2' not in context.getItem('variazioni_opt',[])]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="denominazione_struttura" title="Denominazione della struttura" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">denominazione_struttura</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="totale_appartamenti_opt" title="Totale appartamenti" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">totale_appartamenti_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['''data-dhw=sub_ricettivita_affittacamere''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['n.1 appartamento|1','n.2 appartamenti entrambi ubicati nello stesso stabile|2','n.2 appartamenti ubicati in stabili adiacenti|3']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_editmode" title="hw_editmode" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_editmode</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.isEditMode() and context.REQUEST.get('openwithform','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

@@ -1,0 +1,104 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_dichiarazioni_onorabilita" title="sub_dichiarazioni_onorabilita" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_dichiarazioni_onorabilita</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<p><a name="dichiarazioni"></a> </p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DICHIARAZIONI SUL POSSESSO DEI REQUISITI DI ONORABILITA’:</legend>
+<p><span class="label">Il/la sottoscritto/a, consapevole delle sanzioni penali previste dalla legge per le false dichiarazioni e attestazioni (art. 76 del DPR 445 del 2000 e Codice Penale), sotto la propria responsabilità dichiara:<span></span></span></p>
+<p><span class="plominoFieldClass">requisiti_onorabilita_opt</span></p>
+<div class="well">
+<h6>Quali sono i requisiti di onorabilità previsti dalla legge per l’esercizio dell’attività? (art. 71, D.Lgs. n. 59/2010)</h6>
+<p align="left"><span><span><span><span><i>Non possono esercitare l'attività commerciale di vendita e di somministrazione:</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>a) coloro che sono stati dichiarati delinquenti abituali, professionali o per tendenza, salvo che abbiano ottenuto la riabilitazione;</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>b) coloro che hanno riportato una condanna, con sentenza passata in giudicato, per delitto non colposo, per il quale è prevista una pena detentiva non inferiore nel minimo a tre anni, sempre che sia stata applicata, in concreto, una pena superiore al minimo edittale;</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>c) coloro che hanno riportato, con sentenza passata in giudicato, una condanna a pena detentiva per uno dei delitti di cui al libro II, Titolo VIII, capo II del codice penale, ovvero per ricettazione, riciclaggio, insolvenza fraudolenta, bancarotta fraudolenta, usura, rapina, delitti contro la persona commessi con violenza, estorsione;</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>d) coloro che hanno riportato, con sentenza passata in giudicato, una condanna per reati contro l'igiene e la sanità pubblica, compresi i delitti di cui al libro II, Titolo VI, capo II del codice penale;</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>e) coloro che hanno riportato, con sentenza passata in giudicato, due o più condanne, nel quinquennio precedente all'inizio dell'esercizio dell'attività, per delitti di frode nella preparazione e nel commercio degli alimenti previsti da leggi speciali;</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>f) coloro che sono sottoposti a una delle misure previste dal Codice delle leggi antimafia (D.Lgs. n. 159/2011) ovvero a misure di sicurezza.</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>Il divieto di esercizio dell'attività nei casi previsti dalle lettere b), c), d), e) ed f), permane per la durata di cinque anni a decorrere dal giorno in cui la pena è stata scontata. Qualora la pena si sia estinta in altro modo, il termine di cinque anni decorre dal giorno del passaggio in giudicato della sentenza, salvo riabilitazione.</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>Il divieto di esercizio dell'attività non si applica qualora, con sentenza passata in giudicato sia stata concessa la sospensione condizionale della pena sempre che non intervengano circostanze idonee a incidere sulla revoca della sospensione.</i></span></span></span></span></p>
+<p align="left"><span><span><span><span><i>In caso di società, associazioni od organismi collettivi i requisiti morali devono essere posseduti dal legale rappresentante, da altra persona preposta all'attività commerciale e da tutti i soggetti individuati dall'articolo 2, comma 3, del decreto del Presidente della Repubblica 3 giugno 1998, n. 252. In caso di impresa individuale i requisiti devono essere posseduti dal titolare e dall'eventuale altra persona preposta all'attività commerciale.</i></span></span></span></span></p>
+<span class="plominoHidewhenClass">start:hw_no_somministrazione</span><p align="left"><i>Non possono esercitare l'attività di <strong>somministrazione di alimenti e bevande</strong> coloro che si trovano nelle condizioni sopra riportate, o hanno riportato, con sentenza passata in giudicato, una condanna per reati contro la moralità pubblica e il buon costume, per delitti commessi in stato di ubriachezza o in stato di intossicazione da stupefacenti; per reati concernenti la prevenzione dell'alcolismo, le sostanze stupefacenti o psicotrope, il gioco d'azzardo, le scommesse clandestine, nonché per reati relativi ad infrazioni alle norme sui giochi.</i></p>
+<span class="plominoHidewhenClass">end:hw_no_somministrazione</span>
+</div>
+</fieldset>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">False</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="requisiti_onorabilita_opt" title="Dichiarazioni sul responsabile" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">requisiti_onorabilita_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''di essere in possesso dei requisiti di onorabilità previsti dalla legge; |1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_somministrazione" title="hw_no_somministrazione" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_somministrazione</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc') not in ['somministrazione-pubblico']]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

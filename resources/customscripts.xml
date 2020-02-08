@@ -1,0 +1,1628 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <resource id="customscripts" title="" type="Folder">
+      <resource id="getDataGridAttachmentsValue" title="" type="Script (Python)"><![CDATA[## Script (Python) "getDataGridAttachmentsValue"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None, fieldName='vincoli_suolo_dg', formName='sub_asseverata_tutelafunzionale'
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import json_loads
+#TODO FARE UN TIPO DI CAMPO DEDICATO DATAGRIDATTACHMENTS
+#accrocco per test veloci
+#if not doc:
+#    doc=context.getParentDatabase().getDocument('scia-00114-2017')
+    
+#0 id riga
+#1 id/nome del vincolo
+#2 vuoto
+#3 nome dell'ente
+#4 modal rilascio
+#5 protocollo
+#6 data protocollo
+                
+dataR = json_loads(doc.tojson(item=fieldName,formid=formName,rendered=True))
+dataV = json_loads(doc.tojson(item=fieldName,formid=formName))
+data = []
+for i in range(0,len(dataR)):
+    dataV[i][1] = dataR[i][1] #decodifica del nome del vincolo
+    row = dataV[i]
+    #impostazione della label del campo
+    if row[4]=='1':
+        lbl = 'Autocertificazione per il vincolo %s' %row[1]
+    elif row[4]=='2':
+        lbl = '''Documentazione necessaria al rilascio dell'atto di assenso per il vincolo %s''' %row[1]
+    elif row[4]=='3':
+        lbl = 'Atto di assenso per il vincolo %s rilasciato da %s prot. %s del %s' %(row[1],row[3],row[5],row[6])
+    
+    data.append(dict(id=row[0],label=lbl))
+
+return data
+]]></resource>
+      <resource id="getElencoCivici" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoCivici"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import json_dumps
+results=[]
+comuneDefault = context.aq_parent.config_suap().get('comune_default')
+
+if doc and doc.getItem('iol_comune'):
+    comune = doc.getItem('iol_comune')
+else:
+    comune = context.REQUEST.get('comune',comuneDefault)
+    
+for res in context.aq_parent.zsql.ElencoCivici(idvia = context.REQUEST.get('idvia',0),cod_cat = comune).dictionaries():
+    results.append(res)
+     
+return json_dumps({"success":1, "results":results})
+]]></resource>
+      <resource id="getElencoComuni" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoComuni"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=
+##
+return context.aq_parent.config_praticaweb().get('elenco_comuni')
+]]></resource>
+      <resource id="getElencoFogli" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoFogli"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import json_dumps
+ret=[]
+
+if context.REQUEST.get('comune'):
+    comune = context.REQUEST.get('comune')
+else:
+    comune = context.aq_parent.config_suap().get('comune_default')
+  
+for res in context.aq_parent.zsql.ElencoFogli(sezione = context.REQUEST.get('sezione',''),cod_cat = comune).dictionaries():
+    ret.append(res)
+return json_dumps({"success":1, "results":ret})
+]]></resource>
+      <resource id="getElencoParticelle" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoParticelle"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import json_dumps
+ret=[]
+if context.REQUEST.get('comune'):
+    comune = context.REQUEST.get('comune')
+else:
+    comune = context.aq_parent.config_suap().get('comune_default')    
+for res in context.aq_parent.zsql.ElencoParticelle(sezione = context.REQUEST.get('sezione',''),foglio = context.REQUEST.get('foglio',''),cod_cat = comune).dictionaries():
+    ret.append(res)
+return json_dumps({"success":1, "results":ret})
+]]></resource>
+      <resource id="getElencoTitoli" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoTitoli"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=
+##
+#diversi se sto compilando un inizio/fine/integrazione o una pratica intera
+doc = context.REQUEST.PARENTS[0]
+if doc.isDocument():
+    tipo = doc.getItem('iol_tipo_app','')
+else:
+    tipo = doc.getId().split('_')[1]
+
+if tipo in ['iniziolavori','finelavori','integrazione']:
+    return[
+        'Committente/Titolare',
+        'Progettista',
+        'Direttore dei Lavori'          
+    ]
+else:
+    return [
+        'Proprietario',
+        'Locatario',
+        'Conduttore',
+        'Usufruttuario',
+        'Comodatario',
+        'Amministratore condominiale',
+        'Legale rappresentante',
+        'Tutore Legale',
+        'Procuratore',
+        'Curatore',
+        'Erede o avente causa',
+        'Amministratore di Sostegno'
+    ]
+]]></resource>
+      <resource id="getElencoVie" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoVie"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+result=['|']
+
+for res in context.aq_parent.zsql.ElencoVie().dictionaries():
+    result.append('%s|%s' %(res['nome'],res['id']))
+     
+return result
+]]></resource>
+      <resource id="getLayersSettings" title="" type="Script (Python)"><![CDATA[## Script (Python) "getLayersSettings"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+settings = context.aq_parent.config_suap().get('layerSettings')
+#override
+if doc and doc.getItem('iol_comune'):
+    customSettings = 'config_settings_%s' %doc.getItem('iol_comune')
+    if customSettings in context.aq_parent:
+        settings.update(context.aq_parent[customSettings]())
+return settings
+]]></resource>
+      <resource id="getMapSettings" title="" type="Script (Python)"><![CDATA[## Script (Python) "getMapSettings"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import json_dumps
+settings = context.aq_parent.config_suap().get('mapSettings')
+#override
+if doc and doc.getItem('iol_comune'):
+    customSettings = 'config_settings_%s' %doc.getItem('iol_comune')
+    if customSettings in context.aq_parent:
+        settings.update(context.aq_parent[customSettings]())
+return json_dumps(settings)
+]]></resource>
+      <resource id="getMappingItems" title="" type="Script (Python)"><![CDATA[## Script (Python) "getMappingItems"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=test=0
+##title=
+##
+diz = {
+  "richiedente": {
+    "albo": "",
+    "albonumero": "",
+    "alboprov": "",
+    "app": "fisica_app",
+    "cap": "fisica_cap",
+    "capd": "giuridica_cap",
+    "ccia": "",
+    "cciaprov": "",
+    "cedile": "",
+    "cedileprov": "",
+    "cellulare": "fisica_cellulare",
+    "cip": "",
+    "cittadinanza": "fisica_cittadinanza",
+    "civico": "fisica_civico",
+    "civicod": "giuridica_civico",
+    "codfis": "fisica_cf",
+    "codfisd": "giuridica_cf",
+    "cognome": "fisica_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "fisica_comune_nato",
+    "comune": "fisica_comune",
+    "comuned": "giuridica_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "fisica_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "fisica_email",
+    "esecutore": "",
+    "fax": "",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "fisica_indirizzo",
+    "inps": "",
+    "inpsprov": "",
+    "nome": "fisica_nome",
+    "note": "",
+    "pec": "fisica_pec",
+    "piva": "giuridica_piva",
+    "pratica": "",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "fisica_provincia",
+    "provd": "giuridica_provincia",
+    "provnato": "fisica_provincia_nato",
+    "ragsoc": "giuridica_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "giuridica_indirizzo",
+    "sesso": "fisica_sesso",
+    "sicurezza": "",
+    "telefono": "fisica_telefono",
+    "titolo": "fisica_titolo",
+    "titolo_note": "",
+    "titolod": "giuridica_qualita",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "progettista": {
+    "albo": "progettista_albo",
+    "albonumero": "progettista_albo_numero",
+    "alboprov": "progettista_albo_prov",
+    "app": "progettista_app",
+    "cap": "progettista_cap",
+    "capd": "",
+    "ccia": "",
+    "cciaprov": "",
+    "cedile": "progettista_edile_numero",
+    "cedileprov": "progettista_edile_prov",
+    "cellulare": "progettista_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "progettista_civico_residenza",
+    "civicod": "progettista_civico",
+    "codfis": "progettista_cf",
+    "codfisd": "",
+    "cognome": "progettista_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "progettista_comune_nato",
+    "comune": "progettista_comune_residenza",
+    "comuned": "progettista_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "progettista_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "progettista_email",
+    "esecutore": "",
+    "fax": "progettista_fax",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "progettista_indirizzo_residenza",
+    "inps": "progettista_inps",
+    "inpsprov": "",
+    "nome": "progettista_nome",
+    "note": "",
+    "pec": "progettista_pec",
+    "piva": "progettista_piva",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "progettista_provincia_residenza",
+    "provd": "progettista_provincia",
+    "provnato": "progettista_provincia_nato",
+    "ragsoc": "progettista_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "progettista_indirizzo",
+    "sesso": "progettista_sesso",
+    "sicurezza": "",
+    "telefono": "progettista_telefono",
+    "titolo": "progettista_ruolo",
+    "titolo_note": "",
+    "titolod": "progettista_qualita",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "direttore": {
+    "albo": "direttore_albo",
+    "albonumero": "direttore_albo_numero",
+    "alboprov": "direttore_albo_prov",
+    "app": "direttore_app",
+    "cap": "direttore_cap_residenza",
+    "capd": "direttore_cap",
+    "ccia": "",
+    "cciaprov": "",
+    "cedile": "",
+    "cedileprov": "",
+    "cellulare": "direttore_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "direttore_civico_residenza",
+    "civicod": "direttore_civico",
+    "codfis": "direttore_cf",
+    "codfisd": "",
+    "cognome": "direttore_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "direttore_comune_nato",
+    "comune": "direttore_comune_residenza",
+    "comuned": "direttore_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "direttore_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "direttore_email",
+    "esecutore": "",
+    "fax": "direttore_fax",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "direttore_indirizzo_residenza",
+    "inps": "",
+    "inpsprov": "",
+    "nome": "direttore_nome",
+    "note": "",
+    "pec": "direttore_pec",
+    "piva": "direttore_piva",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "direttore_provincia_residenza",
+    "provd": "direttore_provincia",
+    "provnato": "direttore_provincia_nato",
+    "ragsoc": "direttore_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "direttore_indirizzo",
+    "sesso": "direttore_sesso",
+    "sicurezza": "",
+    "telefono": "direttore_telefono",
+    "titolo": "",
+    "titolo_note": "",
+    "titolod": "",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "esecutore": {
+    "albo": "",
+    "albonumero": "",
+    "alboprov": "",
+    "app": "esecutore_app",
+    "cap": "esecutore_cap_residenza",
+    "capd": "esecutore_cap",
+    "ccia": "esecutore_cciaa_numero",
+    "cciaprov": "esecutore_cciaa",
+    "cedile": "esecutore_edile_numero",
+    "cedileprov": "esecutore_edile_prov",
+    "cellulare": "esecutore_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "esecutore_civico_residenza",
+    "civicod": "esecutore_civico",
+    "codfis": "esecutore_cf",
+    "codfisd": "",
+    "cognome": "esecutore_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "esecutore_comune_nato",
+    "comune": "esecutore_comune_residenza",
+    "comuned": "esecutore_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "esecutore_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "esecutore_email",
+    "esecutore": "",
+    "fax": "esecutore_fax",
+    "geologo": "",
+    "inail": "esecutore_inail",
+    "inailprov": "",
+    "indirizzo": "esecutore_indirizzo_residenza",
+    "inps": "esecutore_inps",
+    "inpsprov": "",
+    "nome": "esecutore_nome",
+    "note": "",
+    "pec": "esecutore_pec",
+    "piva": "esecutore_piva",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "esecutore_provincia_residenza",
+    "provd": "esecutore_provincia",
+    "provnato": "esecutore_provincia_nato",
+    "ragsoc": "esecutore_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "esecutore_indirizzo",
+    "sesso": "esecutore_sesso",
+    "sicurezza": "",
+    "telefono": "esecutore_telefono",
+    "titolo": "",
+    "titolo_note": "",
+    "titolod": "",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "sicurezza": {
+    "albo": "",
+    "albonumero": "",
+    "alboprov": "",
+    "app": "resp_sicurezza_app",
+    "cap": "resp_sicurezza_cap",
+    "capd": "",
+    "ccia": "",
+    "cciaprov": "",
+    "cedile": "",
+    "cedileprov": "",
+    "cellulare": "resp_sicurezza_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "resp_sicurezza_civico",
+    "civicod": "",
+    "codfis": "",
+    "codfisd": "",
+    "cognome": "resp_sicurezza_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "",
+    "comune": "resp_sicurezza_comune",
+    "comuned": "",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "resp_sicurezza_email",
+    "esecutore": "",
+    "fax": "resp_sicurezza_fax",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "resp_sicurezza_indirizzo",
+    "inps": "",
+    "inpsprov": "",
+    "nome": "resp_sicurezza_nome",
+    "note": "",
+    "pec": "resp_sicurezza_pec",
+    "piva": "",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "resp_sicurezza_provincia",
+    "provd": "",
+    "provnato": "",
+    "ragsoc": "",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "",
+    "sesso": "",
+    "sicurezza": "",
+    "telefono": "resp_sicurezza_telefono",
+    "titolo": "resp_sicurezza_titolo",
+    "titolo_note": "",
+    "titolod": "",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "progettista_strutt": {
+    "albo": "progettista_strutt_albo",
+    "albonumero": "progettista_strutt_albo_numero",
+    "alboprov": "progettista_strutt_albo_prov",
+    "app": "progettista_strutt_app",
+    "cap": "progettista_strutt_cap",
+    "capd": "",
+    "ccia": "",
+    "cciaprov": "",
+    "cedile": "progettista_strutt_edile_numero",
+    "cedileprov": "progettista_strutt_edile_prov",
+    "cellulare": "progettista_strutt_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "progettista_strutt_civico_residenza",
+    "civicod": "progettista_strutt_civico",
+    "codfis": "progettista_strutt_cf",
+    "codfisd": "",
+    "cognome": "progettista_strutt_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "progettista_strutt_comune_nato",
+    "comune": "progettista_strutt_comune_residenza",
+    "comuned": "progettista_strutt_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "progettista_strutt_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "progettista_strutt_email",
+    "esecutore": "",
+    "fax": "progettista_strutt_fax",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "progettista_strutt_indirizzo_residenza",
+    "inps": "progettista_strutt_inps",
+    "inpsprov": "",
+    "nome": "progettista_strutt_nome",
+    "note": "",
+    "pec": "progettista_strutt_pec",
+    "piva": "progettista_strutt_piva",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "progettista_strutt_provincia_residenza",
+    "provd": "progettista_strutt_provincia",
+    "provnato": "progettista_strutt_provincia_nato",
+    "ragsoc": "progettista_strutt_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "progettista_strutt_indirizzo",
+    "sesso": "progettista_strutt_sesso",
+    "sicurezza": "",
+    "telefono": "progettista_strutt_telefono",
+    "titolo": "progettista_strutt_ruolo",
+    "titolo_note": "",
+    "titolod": "progettista_strutt_qualita",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "direttore_strutt": {
+    "albo": "direttore_strutt_albo",
+    "albonumero": "direttore_strutt_albo_numero",
+    "alboprov": "direttore_strutt_albo_prov",
+    "app": "direttore_strutt_app",
+    "cap": "direttore_strutt_cap_residenza",
+    "capd": "direttore_strutt_cap",
+    "ccia": "",
+    "cciaprov": "",
+    "cedile": "",
+    "cedileprov": "",
+    "cellulare": "direttore_strutt_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "direttore_strutt_civico_residenza",
+    "civicod": "direttore_strutt_civico",
+    "codfis": "direttore_strutt_cf",
+    "codfisd": "",
+    "cognome": "direttore_strutt_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "direttore_strutt_comune_nato",
+    "comune": "direttore_strutt_comune_residenza",
+    "comuned": "direttore_strutt_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "direttore_strutt_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "direttore_strutt_email",
+    "esecutore": "",
+    "fax": "direttore_strutt_fax",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "direttore_strutt_indirizzo_residenza",
+    "inps": "",
+    "inpsprov": "",
+    "nome": "direttore_strutt_nome",
+    "note": "",
+    "pec": "direttore_strutt_pec",
+    "piva": "direttore_strutt_piva",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "direttore_strutt_provincia_residenza",
+    "provd": "direttore_strutt_provincia",
+    "provnato": "direttore_strutt_provincia_nato",
+    "ragsoc": "direttore_strutt_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "direttore_strutt_indirizzo",
+    "sesso": "direttore_strutt_sesso",
+    "sicurezza": "",
+    "telefono": "direttore_strutt_telefono",
+    "titolo": "",
+    "titolo_note": "",
+    "titolod": "",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "tecnico": {
+    "albo": "tecnico_albo",
+    "albonumero": "tecnico_albo_numero",
+    "alboprov": "tecnico_albo_prov",
+    "app": "tecnico_app",
+    "cap": "tecnico_cap_residenza",
+    "capd": "tecnico_cap",
+    "ccia": "tecnico_cciaa_numero",
+    "cciaprov": "tecnico_cciaa_prov",
+    "cedile": "",
+    "cedileprov": "",
+    "cellulare": "tecnico_cellulare",
+    "cip": "",
+    "cittadinanza": "",
+    "civico": "tecnico_civico_residenza",
+    "civicod": "",
+    "codfis": "tecnico_cf",
+    "codfisd": "",
+    "cognome": "tecnico_cognome",
+    "collaudatore": "",
+    "collaudatore_ca": "",
+    "comunato": "tecnico_comuna_nato",
+    "comune": "tecnico_comune_residenza",
+    "comuned": "tecnico_comune",
+    "comunicazioni": "",
+    "concessionario": "",
+    "data_cip": "",
+    "datanato": "tecnico_data_nato",
+    "denunciante": "",
+    "direttore": "",
+    "economia_diretta": "",
+    "email": "tecnico_email",
+    "esecutore": "",
+    "fax": "tecnico_fax",
+    "geologo": "",
+    "inail": "",
+    "inailprov": "",
+    "indirizzo": "tecnico_indirizzo_residenza",
+    "inps": "",
+    "inpsprov": "",
+    "nome": "tecnico_nome",
+    "note": "",
+    "pec": "tecnico_pec",
+    "piva": "tecnico_piva",
+    "progettista": "",
+    "progettista_ca": "",
+    "proprietario": "",
+    "prov": "tecnico_provincia_residenza",
+    "provd": "tecnico_provincia",
+    "provnato": "tecnico_prov_nato",
+    "ragsoc": "tecnico_denominazione",
+    "resp_abuso": "",
+    "richiedente": "",
+    "sede": "tecnico_indirizzo",
+    "sesso": "",
+    "sicurezza": "",
+    "telefono": "tecnico_telefono",
+    "titolo": "",
+    "titolo_note": "",
+    "titolod": "",
+    "titolod_note": "",
+    "voltura": ""
+  },
+  "indirizzo": {
+    "via": "civico_via",
+    "civico": "civico_civico",
+    "interno": "civico_interno"
+  },
+  "nct": {
+    "sezione": "nct_sezione",
+    "foglio": "nct_foglio",
+    "mappale": "nct_particella"
+  },
+  "nceu": {
+    "sezione": "nceu_sezione",
+    "foglio": "nceu_foglio",
+    "mappale": "nceu_particella",
+    "sub": "nceu_subalterno"
+  },
+  "allegato": {
+    "500": [
+      "scia_ricevuta_versamento",
+      "ricevuta_diritti_segreteria"
+    ],
+    "501": [
+      "allegato_ditta_esecutrice"
+    ],
+    "502": [
+      "allegato_art90_autocertificazione",
+      "allegato_art90_asl"
+    ],
+    "503": [
+      "allegato_relazione_tecnica_progettista"
+    ],
+    "504": [
+      "allegato_att_conform_urbanistica"
+    ],
+    "505": [
+      "allegato_atto_impegno_parcheggi",
+      "allegato_atto_asservimento_parcheggi"
+    ],
+    "506": [
+      "allegato_impianto"
+    ],
+    "507": [
+      "allegato_arpal"
+    ],
+    "508": [
+      "allegati_elab_cartografici"
+    ],
+    "509": [
+      "allegati_elab_grafici",
+      "allegato_elaborato_grafico"
+    ],
+    "510": [
+      "allegati_visura_plan_catastale"
+    ],
+    "511": [
+      "allegati_calcoli_statici"
+    ],
+    "512": [
+      "allegati_doc_foto_stato",
+      "documentazione_fotografica"
+    ],
+    "513": [
+      "allegati_doc_illustrativa",
+      "allegato_relazione_tecnico_illustrativa",
+      "relazione_illustrativa"
+    ],
+    "514": [
+      "allegati_dich_conformita"
+    ],
+    "515": [
+      "allegati_prog_imp_termici"
+    ],
+    "516": [
+      "allegati_doc_prescritta_art3"
+    ],
+    "517": [
+      "allegati_prog_illumino_tecnico"
+    ],
+    "518": [
+      "allegati_autocert_scavo_rocce"
+    ],
+    "519": [
+      "allegati_indag_geo_tecnica"
+    ],
+    "520": [
+      "allegati_atti_risp_energetico"
+    ],
+    "521": [
+      "allegati_rel_idraulica"
+    ],
+    "522": [
+      "allegati_computo_superf",
+      "versamento_contributo_allegato",
+      "versamento_contributo_elaborato",
+      "allegato_ricevuta_versamento",
+      "allegato_calcolo_preventivo",
+      "allegato_calcolo_cc",
+      "allegato_marca_bollo",
+      "allegato_versamento_cc",
+      "allegato_versamento_ds"
+    ],
+    "523": [
+      "allegati_computo_parcheggi"
+    ],
+    "524": [
+      "allegati_elab_parcheggi"
+    ],
+    "525": [
+      "allegati_standards_urbanistici"
+    ],
+    "526": [
+      "allegati_standards_pubblici"
+    ],
+    "527": [
+      "allegati_versam_parcheggi",
+      "allegato_scia_monetizzazione_posteggio"
+    ],
+    "528": [
+      "allegati_pareri_assensi",
+      "parere_allegato_01",
+      "parere_allegato_02",
+      "parere_allegato_03",
+      "parere_allegato_04",
+      "parere_allegato_05",
+      "parere_allegato_06",
+      "parere_allegato_07",
+      "parere_allegato_08",
+      "parere_allegato_09",
+      "parere_allegato_010",
+      "parere_allegato_011",
+      "parere_allegato_012",
+      "parere_allegato_013",
+      "parere_allegato_014",
+      "parere_allegato_altro_01",
+      "parere_allegato_altro_02"
+    ],
+    "529": [
+      "allegati_atti_impegno",
+      "vincolo_allegato_01",
+      "vincolo_allegato_02",
+      "vincolo_allegato_03",
+      "vincolo_allegato_04",
+      "vincolo_allegato_05",
+      "vincolo_allegato_06"
+    ],
+    "530": [
+      "allegati_ricevuta_istat",
+      "allegato_modello_istat"
+    ],
+    "531": [
+      "firma_digitale_impresa_ci",
+      "firma_digitale_impresa_procura",
+      "firma_digitale_ci",
+      "firma_digitale_procura",
+      "ci_richiedente",
+      "ci_progettista",
+      "allegato_assenso_proprietario",
+      "allegato_ci_proprietario",
+      "titolarita_firma_digitale_ci",
+      "titolarita_firma_digitale_procura",
+      "di_richiedente",
+      "procura_richiedente",
+      "di_proprietario",
+      "procura_proprietario",
+      "di_comproprietari",
+      "procura_comproprietari",
+      "di_progettista",
+      "di_esecutore",
+      "procura_esecutore",
+      "allegati_elaborati_comproprietari",
+      "di_altri_tecnici",
+      "di_direttore",
+      "di_direttore_strutt",
+      "di_progettista_strutt"
+    ],
+    "532": [
+      "comunicazione_digitale",
+      "documento_firmato",
+      "documento_firmato_integrazione",
+      "documento_firmato_fine",
+      "documento_firmato_inizio"
+    ],
+    "533": [
+      "allegato_versam_oblazione",
+      "allegato_versamento_oblazione"
+    ],
+    "534": [
+      "asseverata_digitale",
+      "rel_asseverata_digitale"
+    ],
+    "535": [
+      "allegati_altra_doc",
+      "allegati_integrativi",
+      "allegato_altro",
+      "allegato_documentazione_altro"
+    ],
+    "537": [
+      "allegato_copia_notifica_preliminare",
+      "allega_notifica_prel",
+      "allegato_notifica_preliminare"
+    ],
+    "538": [
+      "nuova_unita_elaborato_allegato",
+      "cambio_uso_elaborato_allegato"
+    ],
+    "539": [
+      "cambio_uso_versamento_allegato",
+      "nuova_unita_versamento_allegato"
+    ],
+    "542": [
+      "allegato_variazione_catastale"
+    ],
+    "543": [
+      "allegato_certificato_collaudo"
+    ],
+    "544": [
+      "allegato_dichi_conformita"
+    ],
+    "545": [
+      "allegato_autorizzazione_smaltimento"
+    ],
+    "546": [
+      "allegato_allacciamento_servizi"
+    ],
+    "547": [
+      "allegato_certificato_re_arte"
+    ],
+    "548": [
+      "allegato_dich_conf_direttore"
+    ],
+    "549": [
+      "allegato_verbale_visita"
+    ],
+    "550": [
+      "allegato_dich_rispetto_direttive"
+    ],
+    "551": [
+      "allegato_altro_integrazione"
+    ],
+    "552": [
+      "allegato_altro_inizio"
+    ],
+    "553": [
+      "allegato_altro_fine"
+    ],
+    "554": [
+      "documento_firmato_integrazione"
+    ],
+    "555": [
+      "documento_firmato_inizio"
+    ],
+    "556": [
+      "documento_firmato_fine"
+    ],
+    "557": [
+      "allegato_ditta_esecutrice"
+    ],
+    "558": [
+      "allegato_autocert_ditta",
+      "allegato_copia_asl"
+    ],
+    "559": [
+      "allegato_ricevuta_versamento_inizio"
+    ],
+    "587": [
+      "autocertificazioni_imprese_digitale",
+      "autocertificazione_sicurezza_digitale"
+    ],
+    "589": [
+      "allegati_autorizzazione_paesaggistica"
+    ],
+    "590": [
+      "allegati_autorizzazione_soprintendenza"
+    ],
+    "608": [
+      "allegati_elabor_barriere_architettoniche",
+      "allegati_deroga_barriere_architettoniche",
+      "allegati_barriere_architettoniche"
+    ],
+    "609": [
+      "allegati_richiesta_deroga_barriere_architettoniche"
+    ],
+    "610": [
+      "allegato_progetto_impianti"
+    ],
+    "611": [
+      "allegato_relaz_consumi_energetici"
+    ],
+    "612": [
+      "allegato_doc_impatto_acustico"
+    ],
+    "613": [
+      "allegato_val_clima_acustico"
+    ],
+    "614": [
+      "allegato_autocert_tecnico_acustico"
+    ],
+    "615": [
+      "allegato_inquinamento_acustico"
+    ],
+    "616": [
+      "allegato_provvedi_via"
+    ],
+    "617": [
+      "allegato_autocert_titolare_arpa"
+    ],
+    "618": [
+      "allegato_val_progetto_vigili_fuoco"
+    ],
+    "619": [
+      "allegato_doc_progetto_vigili_fuoco"
+    ],
+    "620": [
+      "allegato_deroga_prevenzione_incendi"
+    ],
+    "621": [
+      "allegato_antincendio"
+    ],
+    "622": [
+      "allegato_amianto_presentato"
+    ],
+    "623": [
+      "allegato_amianto"
+    ],
+    "624": [
+      "allegato_parere_igienico_sanitario",
+      "parere_asl"
+    ],
+    "625": [
+      "allegato_doc_igienico_sanitario"
+    ],
+    "626": [
+      "allegato_denuncia_lavori_sismica"
+    ],
+    "627": [
+      "allegato_doc_denuncia_lavori_sismica"
+    ],
+    "628": [
+      "allegato_autorizzazione_sismica"
+    ],
+    "629": [
+      "allegato_doc_autorizzazione_sismica"
+    ],
+    "630": [
+      "allegato_qualita_terreni"
+    ],
+    "631": [
+      "allegato_autori_scarichi_idrici"
+    ],
+    "632": [
+      "allegato_scarichi_idrici"
+    ],
+    "633": [
+      "allegati_indag_geologica"
+    ],
+    "634": [
+      "allegati_richiesta_autorizzazione_paesaggistica"
+    ],
+    "635": [
+      "allegati_rilascio_autorizzazione_soprintendenza"
+    ],
+    "636": [
+      "allegati_parere_area_protetta",
+      "allegati_richiesta_parere_area_protetta"
+    ],
+    "637": [
+      "allegati_rilascio_parere_area_protetta"
+    ],
+    "638": [
+      "allegati_autorizzazione_vincolo_idrogeologico"
+    ],
+    "639": [
+      "allegati_rilascio_vincolo_idrogeologico"
+    ],
+    "640": [
+      "allegati_autorizzazione_vincolo_idraulico"
+    ],
+    "641": [
+      "allegati_rilascio_vincolo_idraulico"
+    ],
+    "642": [
+      "allegati_valutazione_incidenza"
+    ],
+    "643": [
+      "allegati_approvazione_progetto_zps"
+    ],
+    "644": [
+      "allegati_deroga_cimiteriale"
+    ],
+    "645": [
+      "allegati_rilascio_deroga_cimiteriale"
+    ],
+    "646": [
+      "allegati_valutazione_ctr"
+    ],
+    "647": [
+      "allegati_doc_valutazione_ctr"
+    ],
+    "648": [
+      "allegati_nullaosta_alveo"
+    ],
+    "649": [
+      "allegati_altri_vincoli_ecologici"
+    ],
+    "650": [
+      "allegati_rilascio_altri_vincoli_ecologici"
+    ],
+    "651": [
+      "allegati_vincoli_tutela_funzionale"
+    ],
+    "652": [
+      "allegati_rilascio_vincoli_tutela_funzionale"
+    ],
+    "653": [
+      "allegati_vincoli_tutela_ecologica_dg"
+    ],
+    "654": [
+      "allegati_vincoli_suolo_dg"
+    ],
+    "655": [
+      "allegato_parere_vigili_fuoco"
+    ],
+    "656": [
+      "allegato_doc_denuncia_art65"
+    ],
+    "657": [
+      "allegato_denuncia_art65"
+    ],
+    "658": [
+      "allegato_variante_sismica"
+    ],
+    "659": [
+      "allegati_rilascio_valutazione_incidenza"
+    ],
+    "660": [
+      "allegato_collaudo_finale"
+    ],
+    "661": [
+      "allegato_atto_convenzione"
+    ],
+    "663": [
+      "allegato_certificato_statico"
+    ],
+    "664": [
+      "allegato_conformita_barriere_architettoniche"
+    ],
+    "665": [
+      "allegato_conformita_impianti"
+    ],
+    "666": [
+      "allegato_conformita_progetto"
+    ],
+    "667": [
+      "allegato_conformita_risparmio_energetico"
+    ],
+    "668": [
+      "allegato_dichiarazione_conformita_dlgs192"
+    ],
+    "669": [
+      "allegato_isolamento_acustico"
+    ],
+    "670": [
+      "allegato_no_obbligo_barriere architettoniche"
+    ],
+    "671": [
+      "allegato_no_obbligo_collaudo_statico"
+    ],
+    "672": [
+      "allegato_no_osservanza_consumi_energetici"
+    ],
+    "673": [
+      "allegato_regolare_esecuzione_lavori"
+    ],
+    "674": [
+      "allegato_sussistenza_condizioni"
+    ],
+    "675": [
+      "allegati_autorizzazione_soprintendenza"
+    ],
+    "676": [
+      "allegati_descrizione_opere"
+    ],
+    "677": [
+      "allegati_foto_esterno"
+    ],
+    "678": [
+      "allegati_progetto_pompe"
+    ],
+    "679": [
+      "allegati_vincolo_paesaggistico"
+    ],
+    "680": [
+      "autocertificazione_realizzazione_lavori"
+    ],
+    "681": [
+      "dimostrazione_accatastamento"
+    ],
+    "682": [
+      "elaborati_grafici"
+    ],
+    "683": [
+      "relazione_igienico_sanitari"
+    ],
+    "685": [
+      "ricevuta_versamento_somma"
+    ],
+    "686": [
+      "allegato_calcoli_ampliamento_superficie"
+    ],
+    "687": [
+      "altra_documentazione_regolarizzazione"
+    ],
+
+    "689": [
+      "copia_agibilita"
+    ],
+    "691": [
+      "documentazione_catastale_immobile"
+    ],
+    "693": [
+      "relazione_descrittiva_opere"
+    ],
+    "696": [
+      "ricevuta_presentazione"
+    ]
+  }
+}
+
+if test=='1':
+    from Products.CMFPlomino.PlominoUtils import json_dumps
+    return json_dumps(diz)
+else:
+    return diz
+]]></resource>
+      <resource id="getSezioneSettings" title="" type="Script (Python)"><![CDATA[## Script (Python) "getSezioneSettings"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=
+##
+return context.aq_parent.config_praticaweb().get('sezione_catasto')
+]]></resource>
+      <resource id="getDocumentId" title="" type="Script (Python)"><![CDATA[## Script (Python) "getDocumentId"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import Now, DateToString
+return "%05d-%s-suap" %(doc.getItem("progressivo_pratica",0),DateToString(Now(),'%Y'))
+]]></resource>
+      <resource id="getDocumentTitle" title="" type="Script (Python)"><![CDATA[## Script (Python) "getDocumentTitle"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import Now,DateToString
+diz=context.aq_parent.config_pratica_tipo()
+numero="%05d-%s" %(doc.getItem("progressivo_pratica",0),DateToString(Now(),'%Y'))
+return'%s %s del %s' %(diz.get(doc.getItem('iol_tipo_proc')), numero, DateToString(Now(),format="%d-%m-%Y"))
+]]></resource>
+      <resource id="getElencoSezioni" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoSezioni"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+result=['|']
+comuneDefault = context.aq_parent.config_suap().get('comune_default')
+
+if doc and doc.isDocument():
+    comune=doc.getItem('iol_comune',comuneDefault)
+else:
+    comune = context.REQUEST.get('comune',comuneDefault)
+
+for res in context.aq_parent.zsql.ElencoSezioni(cod_cat = comune).dictionaries():
+    result.append('%s|%s' %(res['nome'],res['sezione']))
+     
+return ['|'] + result
+]]></resource>
+      <resource id="getUbicazioniIndirizzo" title="" type="Script (Python)"><![CDATA[## Script (Python) "getUbicazioniIndirizzo"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from iol.document.plomino_utils import serializeGrid
+indirizzi = serializeGrid(doc,fieldName='elenco_civici',formName='sub_ubicazioni_elenco')
+if len(indirizzi)>0:
+    return "%s, %s" %(indirizzi[0]["civico_via"],indirizzi[0]["civico_civico"])
+else:
+    return ""
+]]></resource>
+      <resource id="getUbicazioniPosizione" title="" type="Script (Python)"><![CDATA[## Script (Python) "getUbicazioniPosizione"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from iol.document.plomino_utils import serializeGrid
+indirizzi = serializeGrid(doc,fieldName='elenco_civici',formName='sub_ubicazioni_elenco')
+if len(indirizzi)>0:
+    return indirizzi[0]["civico_geometry"]
+else:
+    return ""
+]]></resource>
+      <resource id="getElencoAllegati" title="Elenco dei campi tipo allegato" type="Script (Python)"><![CDATA[## Script (Python) "getElencoAllegati"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=Elenco dei campi tipo allegato
+##
+db=context.getParentDatabase()
+chkList=[]
+result = db.getCache('attachment_field_list')
+if not result:
+    result=[]
+    for frm in db.getForms():
+        for field in frm.getFormFields(includesubforms=False):
+            if field.FieldType == 'ATTACHMENT': 
+                if field.id not in chkList:
+                    #firma = 'SI' if 'digitalmente' in field.getHTMLAttributesFormula() else 'NO'
+                    #obbligatorio = 'SI' if field.getMandatory() else 'NO'
+                    chkList.append(field.id)
+                    result.append([field.title,field.id])    
+    
+    db.setCache('attachment_field_list', result)
+return result
+]]></resource>
+      <resource id="trovaDocumento" title="" type="Script (Python)"><![CDATA[## Script (Python) "trovaDocumento"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=protocollo='0',anno='2000'
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import DateToString,StringToDate, json_dumps
+db=context.getParentDatabase()
+index=db.getIndex()
+
+#data_protocollo=StringToDate(data,format="%d/%m/%Y")
+numero_protocollo_testo='Anno %s n. % 6d' %(anno,int(protocollo))
+
+
+#query = {"numero_protocollo":nprotocollo,"data_protocollo":{"query":[datamin,datamax],"range":"min:max"}}    
+query = {"numero_protocollo_testo":numero_protocollo_testo}                          
+
+
+brains = index.dbsearch(query)
+if len(brains)>0:
+    return json_dumps({"success":1, "id":brains[0].id, "numero":brains[0].numero_pratica})
+else:
+    return json_dumps({"success":0})
+]]></resource>
+      <resource id="deleteRow" title="" type="Script (Python)"><![CDATA[## Script (Python) "deleteRow"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=
+##
+context.plone_log(context.REQUEST.form)
+
+annotazioni = context.getItem('iol_annotazioni',[])
+idx=int(context.REQUEST.get("idx"))
+idx=len(annotazioni)-idx-1
+context.plone_log(idx)
+
+
+del annotazioni[idx]
+context.plone_log(annotazioni)
+context.setItem('iol_annotazioni',annotazioni)
+
+#context.removeItem('annotazioni')
+]]></resource>
+      <resource id="setAttivita" title="Aggiunge riga a registro delle attivita" type="Script (Python)"><![CDATA[## Script (Python) "setAttivita"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=text='', notifica=[],tipo=1
+##title=Aggiunge riga a registro delle attivita
+##
+from Products.CMFPlomino.PlominoUtils import DateToString,Now
+###attivita tipo 1=workflow, 2=inserimento manuale, 3=inserimento su modifica dati 
+
+context.plone_log(context.REQUEST.form)
+text = context.REQUEST.get('attivita',text)
+istruttore_notifica = context.REQUEST.get('istruttore_notifica',[]) or notifica
+parentDoc = context.REQUEST.get('parent_document')
+
+if parentDoc:
+    doc=context.getParentDatabase().getDocument(parentDoc)
+else:
+    doc=context.aq_parent.aq_parent
+
+userId=doc.getCurrentUser().getId()
+attivita = doc.getItem('iol_attivita',[])
+attivita.append([DateToString(Now(),format="%d/%m/%Y %H:%M"),text,userId,notifica,tipo])
+doc.setItem('iol_attivita',attivita)
+
+
+#Notifiche
+return 
+for istruttore in istruttore_notifica:
+    context.plone_log(istruttore)
+
+    istruttoreDoc=context.getDocument('00-notifiche-%s' %istruttore)
+    if not istruttoreDoc:
+        istruttoreDoc = db.createDocument('00-notifiche-%s' %istruttore)
+        istruttoreDoc.setItem('Form','00-notifiche')
+          
+    notifiche = istruttoreDoc.getItem('elenco_notifiche',[])
+    context.plone_log(notifiche)
+    
+    notifiche.append([DateToString(Now(),format="%d/%m/%Y %H:%M"),text,userId,0,doc.getId()])
+    istruttoreDoc.setItem('elenco_notifiche',notifiche)
+]]></resource>
+      <resource id="getDocSettings" title="" type="Script (Python)"><![CDATA[## Script (Python) "getDocSettings"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=
+##
+docId = context.aq_parent.config_suap().get('suap_settings','0-suap-settings')
+return context.getDocument(docId)
+]]></resource>
+      <resource id="getDocSettingsId" title="Da lasciare per iolSendMail" type="Script (Python)"><![CDATA[## Script (Python) "getDocSettingsId"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=Da lasciare per iolSendMail
+##
+return context.aq_parent.config_suap().get('suap_settings','0-suap-settings')
+]]></resource>
+      <resource id="protocollaDocumento" title="" type="Script (Python)"><![CDATA[## Script (Python) "protocollaDocumento"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import StringToDate,DateToString,Now
+
+if isinstance(doc, basestring):
+    doc = context.getDocument(doc)
+
+##settaggio dei tipo protocollo particolare:
+if doc.getItem('allegati_agricoli_opt'):
+    doc.setItem('protocollo_tipodocumento','COMMERCIOWEB1')
+    doc.setItem('protocollo_titolario','08-01')
+
+if doc.getItem('farmacie_opt'):
+    doc.setItem('protocollo_tipodocumento','COMMERCIOWEB9')
+    doc.setItem('protocollo_titolario','10-03')
+
+#Provo a protocollare:
+viewName = context.aq_parent.config_suap().get("wsprotocollo")
+if not viewName:
+    return
+view = doc.restrictedTraverse(viewName)
+result = view.protocollaDocumento(docField='comunicazione_digitale')
+if result['success']==1:
+    doc.doAction('protocolla') 
+    doc.setItem('data_protocollo',StringToDate(DateToString(Now())))
+    doc.setItem('data_protocollo_testo',DateToString(Now(),format="%Y/%m/%d %H:%M"))
+
+    doc.setItem('numero_protocollo',result['NumeroProtocollo'])
+    doc.setItem('numero_protocollo_testo','Anno %s n. % 6d' %(DateToString(doc.getItem('data_protocollo'),format='%Y'),int(doc.getItem('numero_protocollo'))))
+    
+    if not doc.getItem('numero_pratica'):
+        doc.setItem('numero_pratica','%s/%s' %(doc.getItem('numero_protocollo'),DateToString(doc.getItem('data_protocollo'),format='%Y')))
+
+    
+
+    doc.iolSendMail(azione='protocollazione',form='00-print')
+    docSettings = doc.resources.customscripts.getDocSettings()
+    doc.resources.customscripts.setAttivita(text="Pratica %s ricevuta e protocollata" %doc.getId(),notifica=[docSettings.getItem('grp_rup')])
+
+else:
+    context.plone_utils.addPortalMessage('protocollazione fallita %s' %result['message'],'error')
+]]></resource>
+      <resource id="protocollaParere" title="" type="Script (Python)"><![CDATA[## Script (Python) "protocollaParere"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import StringToDate,DateToString,Now
+
+#Provo a protocollare:
+viewName = context.aq_parent.config_suap().get("wsprotocollo")
+if not viewName:
+    return
+view = doc.restrictedTraverse(viewName)
+result = view.protocollaDocumento(docField='comunicazione_digitale')
+if result['success']==1:
+    doc.setItem('data_protocollo_parere',StringToDate(DateToString(Now())))
+    doc.setItem('numero_protocollo_parere',result['NumeroProtocollo'])
+    doc.iolSendMail(azione='protocollazione_parere',form='00-print')
+    docSettings = doc.resources.customscripts.getDocSettings()
+    doc.resources.customscripts.setAttivita(text="Parere inviato e protocollato")
+
+else:
+    context.plone_utils.addPortalMessage('protocollazione fallita %s' %result['message'],'error')
+]]></resource>
+      <resource id="getElencoModelli" title="" type="Script (Python)"><![CDATA[## Script (Python) "getElencoModelli"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=gruppo
+##title=
+##
+portal = context.portal_url.getPortalObject()
+filter={"portal_type" : "File"}
+printForm='00-print'
+modelli = portal.get('modelli').get('suap').get(gruppo)
+if not modelli:
+    return []
+
+contents =  modelli.listFolderContents(contentFilter=filter)
+return ["%s|%s&app=suap&grp=%s&form=%s" %(modelFile.title_or_id(),modelFile.id,gruppo,printForm) for modelFile in contents]
+]]></resource>
+      <resource id="getPraticheCollegate" title="" type="Script (Python)"><![CDATA[## Script (Python) "getPraticheCollegate"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=doc=None
+##title=
+##
+from Products.CMFPlomino.PlominoUtils import DateToString
+
+if doc==None:
+    doc=context.getDocument('00045-2018-suap')
+    
+if not doc.isDocument():
+    return    
+
+db=context.getParentDatabase()
+index=db.getIndex()
+query={'documento_esistente_id':doc.getId()}
+
+if not 'documento_esistente_id' in index.indexes():
+    return 
+
+titoli = dict(iniziolavori="Inizio lavori",finelavori="Fine lavori",integrazione="Integrazione",sca="SCA")
+
+s=''
+brains = index.dbsearch(
+        query,
+        sortindex='data_protocollo',
+        only_allowed=True)
+
+for brain in brains:
+    if brain.id != doc.getId():
+        url = brain.getObject().absolute_url()
+        s+= '<p><h3 class="plomino-accordion-header"><a href="%s"> prot. %s del. %s</a></h3><div>Content</div></p>'%(url, brain.numero_protocollo, DateToString(brain.data_protocollo,format="%d/%m/%Y"))
+
+if s:
+    return '<div><h3>Pratiche collegate</h3>' + s + '</div>'
+]]></resource>
+    </resource>
+  </design>
+</plominodatabase>

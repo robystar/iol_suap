@@ -1,0 +1,147 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="base_sub_invio" title="base_sub_invio" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">base_sub_invio</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<div class="alert alert-info">
+<h5 class="center" style="text-align: center; ">La richiesta è stata completata e può essere inviata.</h5>
+<p>Puoi tornare alla pagina iniziale o uscire dalla compilazione e tornare ad inviare la richiesta in un altro momento. Potrai trovare la richiesta compilata in <b> "Le mie pratiche" </b> e inviarla in un secondo tempo.</p>
+<p>Per abilitare l'invio della richiesta occorre caricare i files eventualmente richiesti e accettare le avvertenze e l'informativa sulla privacy.</p>
+<p><strong>Si consiglia di verificare la correttezza dei dati prima di procedere con l'invio.</strong></p>
+<p><strong>Attenzione: qualora dai controlli successivi il contenuto delle dichiarazioni risulti non corrispondente al vero, oltre alle sanzioni penali, è prevista la decadenza dai benefici ottenuti sulla base delle dichiarazioni stesse (art. 75 del d.P.R. n. 445/2000).</strong></p>
+<hr>
+</div>
+<div class="alert alert-info">
+<strong>INFORMATIVA SULLA PRIVACY AI SENSI DEL REGOLAMENTO EUROPEO PER LA PROTEZIONE DEI DATI 2016/679</strong><p>La informiamo che i dati personali e sensibili da lei forniti e quelli che eventualmente fornirà anche successivamente formeranno oggetto di trattamento nel rispetto della normativa sopra richiamata.<br> Per trattamento si intende la raccolta, registrazione, conservazione, elaborazione, modificazione, selezione, estrazione, raffronto, utilizzo, interconnessione, blocco, comunicazione, diffusione, cancellazione, distribuzione dei dati personali, ovvero la combinazione di due o più di tali operazioni.</p>
+<h4>Responsabile Protezione dei Dati</h4>
+<p><strong>Studio Cavaggioni Scarl</strong> - E-Mail: scarl@studiocavaggioni.it <strong></strong><br> Soggetto individuato quale referente per il Titolare/Responsabile<strong> Avv. Tarocco Anna</strong><br>Telefono: 045.7614844 E-mail: anna.tarocco@studiocavaggioni.it</p>
+<h4>Finalità e modalità del trattamento</h4>
+Il Comune, titolare del trattamento, tratta i dati personali liberamente conferiti, esclusivamente per finalità istituzionali. <br><h4>Consenso</h4>
+Il consenso del trattamento ai fini istituzionali è necessario ed obbligatorio per le finalità stesse. <br><h4>Periodo di conservazione</h4>
+I dati personali verranno conservati per un arco di tempo non superiore al conseguimento delle finalità per le quali i dati personali sono trattati (finalità istituzionali e non commerciali). <br><h4>Diritti del cittadino/interessato</h4>
+Il cittadino/L’interessato avrà in qualsiasi momento piena facoltà di esercitare i diritti previsti dalla normativa vigente; potrà far valere i propri diritti rivolgendosi agli uffici del Comune.<br><p>I diritti del cittadino/dell’interessato sono quelli previsti dal Regolamento UE 2016/679 (GDPR).</p>
+Il cittadino/L’interessato può:
+<ul>
+<li>ricevere conferma dell’esistenza dei dati suoi personali e richiedere l’accesso al loro contenuto;</li>
+<li>aggiornare, modificare e/o correggere i propri dati personali;</li>
+<li>chiedere la cancellazione, la trasformazione in forma anonima, il blocco dei suoi dati trattati in violazione di legge;</li>
+<li>chiedere la limitazione del trattamento;</li>
+<li>opporsi per motivi legittimi al trattamento;</li>
+</ul>
+<br><p><span class="plominoFieldClass">informativa_privacy</span></p>
+<span class="plominoActionClass">btn_send_action</span><span class="plominoActionClass">btn_annulla</span><span class="plominoActionClass">btn_edit</span><hr>
+</div>
+<hr>
+<div id="iol-sending-message" title="Invio della richiesta"><div class="row-fluid">
+<div class="span6"><img src="../../++resource++iol.document/images/send.jpg"></div>
+<div class="span6"><span class="sending-message">Invio della richiesta in corso...l'operazione potrebbe richiedere qualche minuto.</span></div>
+</div></div>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[/++resource++iol.document/js/iolSending.js]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.css
+++resource++iol.praticaweb/css/iol-sue.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="btn_send_action" title="Invia Richiesta &gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_send_action</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+        </element>
+        <element id="btn_annulla" title="Annulla" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_annulla</id>
+          <ActionType type="Products.Archetypes.Field.StringField">CLOSE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[#context.REQUEST.get('openwithform')=='segnalazione-invio' or context.getItem('iol_workflow_status')!='compilazione']]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+        </element>
+        <element id="btn_edit" title="&lt;&lt; Torna in compilazione" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_edit</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.doc_url()+"/EditDocument"]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="titolo_documento" title="titolo_documento" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">titolo_documento</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_form_title','<<titolo del documento>>')]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="informativa_privacy" title="Accettazione informativa sulla privacy" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">informativa_privacy</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''Ho Letto l'Informativa sulla Privacy ed Accetto le Condizioni|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

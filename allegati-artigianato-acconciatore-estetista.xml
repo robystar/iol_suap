@@ -1,0 +1,572 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="allegati-artigianato-acconciatore-estetista" title="allegati-artigianato-acconciatore-estetista" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">allegati-artigianato-acconciatore-estetista</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[########## IMPORTANTE SETTO UN ITEM CON IL NOME DELLA FORM PER RISETTARE LA FORM DOPO IL SALVATAGGIO 
+context.setItem('IOL_PREVIOUS_FORM',context.getItem('Form'))]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[########## IMPORTANTE SETTO LA FORM PRECEDENTE ALL'APERTURA 
+context.setItem('Form',context.getItem('IOL_PREVIOUS_FORM'))
+context.removeItem('IOL_PREVIOUS_FORM')
+return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DOCUMENTAZIONE ALLEGATA ALLA SCIA</legend>
+<p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
+<p><span class="plominoSubformClass">base_sub_allegati_soci</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_requisiti_responsabile_tecnico_acconciatore</span></p>
+<div class="row-fluid">
+<div class="span4"><a href="modelli/suap/dichiarazione-requisiti-acconciatore" target="blank_" title="Allegato B da scaricare e compilare"><span class="label"><img src="pdf.png"> Dichiarazioni sul possesso dei requisiti da parte del responsabile tecnico per l'attività di acconciatore </span></a></div>
+<div class="span8">
+<span class="plominoLabelClass">allegato_requisiti_responsabile_tecnico_acconciatore</span><span class="plominoFieldClass">allegato_requisiti_responsabile_tecnico_acconciatore</span>
+</div>
+</div>
+<p><span class="plominoHidewhenClass">start:hw_no_responsabile_tecnico_acconciatore</span></p>
+<p><span class="plominoLabelClass">allegato_documento_identita_tecnico_acconciatore</span><span class="plominoFieldClass">allegato_documento_identita_tecnico_acconciatore</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_responsabile_tecnico_acconciatore</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_requisiti_responsabile_tecnico_acconciatore</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_requisiti_responsabile_tecnico_estetista</span></p>
+<div class="row-fluid">
+<div class="span4"><a href="modelli/suap/dichiarazione-requisiti-estetista" target="blank_" title="Allegato C da scaricare e compilare"><span class="label"><img src="pdf.png"> Dichiarazioni sul possesso dei requisiti da parte del responsabile tecnico per l'attività di estetista</span></a></div>
+<div class="span8">
+<span class="plominoLabelClass">allegato_requisiti_responsabile_tecnico_estetista</span><span class="plominoFieldClass">allegato_requisiti_responsabile_tecnico_estetista</span>
+</div>
+</div>
+<p><span class="plominoHidewhenClass">start:hw_no_responsabile_tecnico_estetista</span></p>
+<p><span class="plominoLabelClass">allegato_documento_identita_tecnico_estetista</span><span class="plominoFieldClass">allegato_documento_identita_tecnico_estetista</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_responsabile_tecnico_estetista</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_requisiti_responsabile_tecnico_estetista</span></p>
+<p><span class="plominoFieldClass">allegati_affitto_poltrona_opt</span><span class="plominoLabelClass">allegati_affitto_poltrona_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_affitto_poltrona</span></p>
+<p><span class="plominoLabelClass">allegato_planimetria</span><span class="plominoFieldClass">allegato_planimetria</span></p>
+<p><span class="plominoLabelClass">allegato_relazione_descrittiva</span><span class="plominoFieldClass">allegato_relazione_descrittiva</span></p>
+<p><span class="plominoHidewhenClass">end:hw_affitto_poltrona</span></p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA</legend>
+<p><span class="plominoFieldClass">allegati_comunicazione_insegna_opt</span><span class="plominoLabelClass">allegati_comunicazione_insegna_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_scia_insegna</span></p>
+<p><span class="plominoLabelClass">allegato_scia_insegna</span><span class="plominoFieldClass">allegato_scia_insegna</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_scia_insegna</span></p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">RICHIESTA DI AUTORIZZAZIONI PRESENTATA CONTESTUALMENTE ALLA SCIA O ALLA SCIA UNICA (scia condizionata)</legend>
+<p><span class="plominoFieldClass">allegati_aua_scarichi_opt</span><span class="plominoLabelClass">allegati_aua_scarichi_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_documentazione_aua_scarichi</span></p>
+<p><span class="plominoLabelClass">allegato_documentazione_aua_scarichi</span><span class="plominoFieldClass">allegato_documentazione_aua_scarichi</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_documentazione_aua_scarichi</span></p>
+<p><span class="plominoFieldClass">allegati_autorizzazione_insegna_opt</span><span class="plominoLabelClass">allegati_autorizzazione_insegna_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_autorizzazione_insegna</span></p>
+<p><span class="plominoLabelClass">allegato_documentazione_autorizzazione_insegna</span><span class="plominoFieldClass">allegato_documentazione_autorizzazione_insegna</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_autorizzazione_insegna</span></p>
+</fieldset>
+<p><span class="plominoSubformClass">base_sub_allegati_altri</span></p>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTTOM</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/iol.css
+++resource++iol.document/css/bootstrap.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="btn_save" title="Salva e completa l'istanza &gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_save</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">SUBMIT</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_close" title="Chiudi" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_close</id>
+          <ActionType type="Products.Archetypes.Field.StringField">CLOSE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[#context.REQUEST.get('openwithform')=='segnalazione-invio' or context.getItem('iol_workflow_status')!='compilazione']]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_edit" title="&lt;&lt; Torna in compilazione" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_edit</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.doc_url()+"/EditDocument"]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="hw_no_requisiti_responsabile_tecnico_acconciatore" title="hw_no_requisiti_responsabile_tecnico_acconciatore" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_requisiti_responsabile_tecnico_acconciatore</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return '1' not in context.getItem('attivita_tipo_opt',context.getItem('attivita_tipo_trasferimento_opt',[]))]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="allegato_requisiti_responsabile_tecnico_acconciatore" title="Dichiarazioni sul possesso dei requisiti da parte del responsabile tecnico (acconciatore)" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_requisiti_responsabile_tecnico_acconciatore</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_requisiti_responsabile_tecnico_estetista" title="Dichiarazioni sul possesso dei requisiti da parte del responsabile tecnico (estetista)" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_requisiti_responsabile_tecnico_estetista</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_requisiti_responsabile_tecnico_estetista" title="hw_no_requisiti_responsabile_tecnico_estetista" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_requisiti_responsabile_tecnico_estetista</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return '2' not in context.getItem('attivita_tipo_opt',context.getItem('attivita_tipo_trasferimento_opt',[]))]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="allegato_accettazione_responsabile_tecnico" title="Dichiarazione di accettazione del Responsabile tecnico  + copia del documento di identità" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_accettazione_responsabile_tecnico</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_affitto_poltrona" title="hw_affitto_poltrona" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_affitto_poltrona</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('allegati_affitto_poltrona_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_affitto_poltrona_opt" title="Affitto di poltrona" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_affitto_poltrona_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_planimetria" title="Planimetria quotata dei locali in scala minima 1:100 con layout superfici di vendita, attrezzature, arredi" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_planimetria</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_relazione_descrittiva" title="Relazione descrittiva delle caratteristiche dei locali medesimi, della loro localizzazione e attrezzatura utilizzata per il servizio" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_relazione_descrittiva</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_documentazione_aua" title="hw_no_documentazione_aua" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_documentazione_aua</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','somministrazione-pubblico') not in ['somministrazione-pubblico','somministrazione-stazioni']]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="allegato_documentazione_aua" title="Documentazione per il rilascio dell’Autorizzazione Unica Ambientale (AUA) per scarico delle acque " type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documentazione_aua</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di attività di acconciatore con consumo idrico giornaliero superiore a 1 mc al momento di massima attività"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_scia_insegna" title="hw_no_scia_insegna" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_scia_insegna</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_comunicazione_insegna_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_comunicazione_insegna_opt" title="L'attività prevede la SCIA per insegna esterna" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_comunicazione_insegna_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_scia_insegna" title="SCIA per insegna di esercizio" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_scia_insegna</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di attività che preveda insegna esterna (dove è prevista la SCIA)."
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_autorizzazione_insegna" title="hw_no_autorizzazione_insegna" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_autorizzazione_insegna</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_autorizzazione_insegna_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_autorizzazione_insegna_opt" title="L'attività prevede l'autorizzazione per insegna esterna" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_autorizzazione_insegna_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_documentazione_autorizzazione_insegna" title="Documentazione per la richiesta dell’autorizzazione per insegna di esercizio" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documentazione_autorizzazione_insegna</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di attività che preveda insegna esterna (dove è prevista la domanda di autorizzazione)"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_documentazione_aua_scarichi" title="hw_no_documentazione_aua_scarichi" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_documentazione_aua_scarichi</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_aua_scarichi_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_aua_scarichi_opt" title="Acconciatore con consumo idrico giornaliero superiore a 1 m3 al momento di massima attività" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_aua_scarichi_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_documentazione_aua_scarichi" title="Documentazione per la richiesta di AUA per gli scarichi di acque reflue " type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documentazione_aua_scarichi</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di attività di acconciatore con consumo idrico giornaliero superiore a 1 m3 al momento di massima attività"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_documento_identita_tecnico_acconciatore" title="Copia documento identità in corso di validità del responsabile tecnico per l'attività di acconciatore" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documento_identita_tecnico_acconciatore</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_documento_identita_tecnico_estetista" title="Copia documento identità in corso di validità del responsabile tecnico per l'attività di estetista" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documento_identita_tecnico_estetista</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_responsabile_tecnico_acconciatore" title="hw_no_responsabile_tecnico_acconciatore" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_responsabile_tecnico_acconciatore</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('responsabile_tecnico_acconciatore_opt')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_responsabile_tecnico_estetista" title="hw_no_responsabile_tecnico_estetista" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_responsabile_tecnico_estetista</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('responsabile_tecnico_estetista_opt')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

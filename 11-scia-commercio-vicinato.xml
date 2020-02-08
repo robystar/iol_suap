@@ -1,0 +1,322 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="11-scia-commercio-vicinato" title="Esercizio di vicinato (esercizio commerciale fino a 150 / 250 mq)" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">11-scia-commercio-vicinato</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
+if context.getItem('requisiti_antimafia_opt'):
+        return "%s/EditDocument?openwithform=allegati-%s" %(context.doc_url(),context.getItem('iol_tipo_proc'))
+
+else:
+    return "%s/EditDocument#dichiarazioni" %context.doc_url()]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<div class="pagina-suap">
+<p><span class="plominoSubformClass">base_sub_intestazione</span></p>
+<h6 class="text-center">L.R. 2/1/2007 n. 1 e s.m.i., articoli 15 e 18, 141, 144 e 146; DCR 17/12/2012 n. 31 e s.m.i.</h6>
+<h6 class="text-center">(Sez. I, Tabella A, d.lgs. 222/2016)</h6>
+<p><span class="plominoSubformClass">base_sub_pratica</span></p>
+<p><span class="plominoSubformClass">base_sub_modpagamento</span></p>
+<!--SEZIONE ANAGRAFICA--><p><span class="plominoSubformClass">base_sub_fisica</span></p>
+<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
+<p><span class="plominoSubformClass">base_sub_delegato</span></p>
+<p><span class="plominoSubformClass">base_sub_ubicazione</span></p>
+<!--SEZIONE RICHIESTA--><p><span class="plominoHidewhenClass">start:hw_newdoc</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">SEGNALAZIONE CERTIFICATA DI INIZIO ATTIVITÀ</legend>
+<div class="alert alert-info">Il modulo può essere utilizzato anche per l’attività di vendita mediante apparecchi automatici effettuata in apposito locale a essa adibito in modo esclusivo (art. 17, c.4, D.Lgs. n. 114/1998 e disposizioni regionali di settore).</div>
+<p><span class="plominoLabelClass">segnalazione_opt</span><span class="plominoFieldClass">segnalazione_opt</span></p>
+<div class="alert alert-info">Sono <strong>esercizi di vicinato</strong>: quelli con superficie di vendita non superiore a 150 mq (nei comuni con popolazione residente inferiore a 10.000 abitanti) e a 250 mq (nei comuni con popolazione residente superiore ai 10.000 abitanti) (art. 4 del D.Lgs. n. 114/1998 e dalle disposizioni regionali di settore).</div>
+<p><span class="plominoHidewhenClass">end:hw_newdoc</span></p>
+<a name="dichiarazioni"></a><p><span class="plominoHidewhenClass">start:hw_apertura</span></p>
+<p><span class="plominoSubformClass">sub_commercio_apertura</span></p>
+<p><span class="plominoHidewhenClass">end:hw_apertura</span></p>
+<p><span class="plominoHidewhenClass">start:hw_trasferimento</span></p>
+<p><span class="plominoSubformClass">sub_commercio_trasferimento</span></p>
+<p><span class="plominoHidewhenClass">end:hw_trasferimento</span></p>
+<p><span class="plominoHidewhenClass">start:hw_ampliamento</span></p>
+<p><span class="plominoSubformClass">sub_commercio_ampliamento</span></p>
+<p><span class="plominoHidewhenClass">end:hw_ampliamento</span></p>
+</fieldset>
+<!--SEZIONE DICHIARAZIONI--><p><span class="plominoHidewhenClass">start:hw_dichiarazioni</span></p>
+<p><span class="plominoSubformClass">sub_dichiarazioni_antimafia</span></p>
+<p><span class="plominoSubformClass">sub_dichiarazioni_onorabilita</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_alimentare_dichiarazioni</span></p>
+<p><span class="plominoSubformClass">sub_dichiarazioni_requisiti_professionali</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_alimentare_dichiarazioni</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">ALTRE DICHIARAZIONI:</legend>
+<div>
+<span class="plominoLabelClass">dichiarazione_norme_opt</span><span class="plominoFieldClass">dichiarazione_norme_opt</span>
+</div>
+<div>
+<span class="plominoLabelClass">dichiarazione_variazioni_opt</span><span class="plominoFieldClass">dichiarazione_variazioni_opt</span>
+</div>
+</fieldset>
+<p><span class="plominoHidewhenClass">end:hw_dichiarazioni</span></p>
+</div>]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[context.resources.customscripts.getDocumentTitle(context)]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[context.resources.customscripts.getDocumentId(context)]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTTOM</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">False</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField">10</Position>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.min.css
+++resource++iol.document/css/bootstrap-accessibile.min.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="hw_newdoc" title="hw_newdoc" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_newdoc</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[not context.isNewDocument()]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_anagrafica" title="hw_anagrafica" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_anagrafica</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_apertura" title="hw_apertura" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_apertura</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','')!='1']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_trasferimento" title="hw_trasferimento" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_trasferimento</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_ampliamento" title="hw_ampliamento" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_ampliamento</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('segnalazione_opt','')!='3']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_dichiarazioni" title="hw_dichiarazioni" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_dichiarazioni</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('fisica_nome','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="iol_workflow" title="iol_workflow" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">iol_workflow</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['suap_comunicazione_wf']]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="iol_tipo_proc" title="iol_tipo_proc" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">iol_tipo_proc</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['commercio-vicinato']]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="btn_save" title="Salva e prosegui nella compilazione &gt;&gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_save</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">SUBMIT</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_edit" title="Torna in compilazione &gt;&gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_edit</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.absolute_url()+'/EditDocument']]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_close" title="Chiudi" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_close</id>
+          <ActionType type="Products.Archetypes.Field.StringField">CLOSE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="segnalazione_opt" title="RELATIVA A:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">segnalazione_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['APERTURA|1','TRASFERIMENTO DI SEDE|2','AMPLIAMENTO|3']
+</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_alimentare_dichiarazioni" title="hw_no_alimentare_dichiarazioni" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_alimentare_dichiarazioni</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="dichiarazione_norme_opt" title="Il/la sottoscritto/a dichiara, relativamente ai locali di esercizio:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_norme_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ["di aver rispettato i regolamenti locali di polizia urbana, annonaria e di igiene e sanità, i regolamenti edilizi e le norme urbanistiche nonché quelle relative alle destinazioni d'uso;|1"]</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_variazioni_opt" title="Il/la sottoscritto/a dichiara inoltre:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_variazioni_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ["di impegnarsi a comunicare ogni variazione relativa a stati, fatti, condizioni e titolarità rispetto a quanto dichiarato;|1"]</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="protocollo_tipodocumento" title="protocollo_tipodocumento" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">protocollo_tipodocumento</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['COMMERCIOWEB3']]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="protocollo_titolario" title="protocollo_titolario" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">protocollo_titolario</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['08-04']]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

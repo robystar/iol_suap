@@ -1,0 +1,773 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_dichiarazioni_altre" title="sub_dichiarazioni_altre" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_dichiarazioni_altre</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">ALTRE DICHIARAZIONI:</legend>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_acconciatore</span></p>
+<p><span class="plominoLabelClass">dichiarazione_acconciatore_opt</span><span class="plominoFieldClass">dichiarazione_acconciatore_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_acconciatore</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_panificazione</span></p>
+<p><span class="plominoLabelClass">dichiarazione_panificazione_farina_opt</span><span class="plominoFieldClass">dichiarazione_panificazione_farina_opt</span></p>
+<p><span class="plominoLabelClass">dichiarazione_panificazione_idrico_opt</span><span class="plominoFieldClass">dichiarazione_panificazione_idrico_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_panificazione</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_tintolavanderie</span></p>
+<p><span class="plominoLabelClass">dichiarazione_tintolavanderie_opt</span><span class="plominoFieldClass">dichiarazione_tintolavanderie_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_tintolavanderie</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_estetista</span></p>
+<p><span class="plominoLabelClass">dichiarazione_estetista_opt</span><span class="plominoFieldClass">dichiarazione_estetista_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_estetista</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_autorimesse</span></p>
+<p><span class="plominoLabelClass">dichiarazione_autorimesse_opt</span><span class="plominoFieldClass">dichiarazione_autorimesse_opt</span></p>
+<p><span class="plominoLabelClass">dichiarazione_autorimesse_annotazione_opt</span><span class="plominoFieldClass">dichiarazione_autorimesse_annotazione_opt</span></p>
+<div class="alert alert-info">
+<i class="icon-comment"></i>(Dall’annotazione dei dati sono esonerati tutti i veicoli ricoverati occasionalmente nel limite massimo di due giorni e i veicoli ricoverati con contratto di custodia)</div>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_autorimesse</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_media_grande_struttura</span></p>
+<p><span class="plominoLabelClass">dichiarazione_media_grande_opt</span><span class="plominoFieldClass">dichiarazione_media_grande_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_media_grande_struttura</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_spacci</span></p>
+<p><span class="plominoLabelClass">dichiarazione_spacci_opt</span><span class="plominoFieldClass">dichiarazione_spacci_opt</span></p>
+<p><span class="plominoLabelClass">dichiarazione_spacci_favore_opt</span><span class="plominoFieldClass">dichiarazione_spacci_favore_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_spacci</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_vendita_corrispondenza</span></p>
+<p><span class="plominoLabelClass">dichiarazione_vendita_corrispondenza_opt</span><span class="plominoFieldClass">dichiarazione_vendita_corrispondenza_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_vendita_corrispondenza</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_vendita_domicilio</span></p>
+<p><span class="plominoLabelClass">dichiarazione_incaricati_vendita_opt</span><span class="plominoFieldClass">dichiarazione_incaricati_vendita_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_vendita_domicilio</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_mezzi_trasporto</span></p>
+<p><span class="plominoLabelClass">dichiarazione_mezzi_trasporto_opt</span><span class="plominoFieldClass">dichiarazione_mezzi_trasporto_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_mezzi_trasporto</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_dichiarazione_requisiti_immobile</span></p>
+<p><span class="plominoLabelClass">dichiarazione_requisiti_immobile_opt</span><span class="plominoFieldClass">dichiarazione_requisiti_immobile_opt</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_requisiti_immobile</span></p>
+<p><span class="plominoLabelClass">dichiarazione_comunicazione_variazioni_opt</span><span class="plominoFieldClass">dichiarazione_comunicazione_variazioni_opt</span></p>
+</fieldset>]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">False</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="dichiarazione_comunicazione_variazioni_opt" title="Il/la sottoscritto/a dichiara, inoltre:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_comunicazione_variazioni_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>ll = ['''di impegnarsi a comunicare ogni variazione relativa a stati, fatti, condizioni e titolarità rispetto a quanto dichiarato;|1''']
+if context.getItem('iol_tipo_proc') in ['']:
+    ll.append('''di avere la disponibilità dei locali nei quali si svolgerà l’attività;|2''')
+return ll</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_requisiti_immobile_opt" title="Il/la sottoscritto/a dichiara, relativamente ai locali di esercizio:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_requisiti_immobile_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>if context.getItem('iol_tipo_proc') in ['somministrazione-pubblico','artigianato-autoriparatore','artigianato-acconciatore-estetista']:
+    return ['''di aver rispettato le norme urbanistiche, edilizie, igienico-sanitarie e di sicurezza nei luoghi di lavoro; |1''','''di aver rispettato le norme relative alla destinazione d'uso;|2''','''che i locali sede dell’attività di somministrazione al pubblico di alimenti e bevande possiedono i requisiti di sorvegliabilità (D.M. 17 dicembre 1992, n. 564);|3''']
+else:
+    return ['''di aver rispettato le norme urbanistiche, edilizie, igienico-sanitarie e di sicurezza nei luoghi di lavoro; |1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>separator</name>
+<value><string>&lt;br /&gt;</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_dichiarazione_requisiti_immobile" title="hw_no_dichiarazione_requisiti_immobile" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_requisiti_immobile</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc') in ['somministrazione-domicilio','commercio-domicilio','commercio-corrispondenza','commercio-apparecchi-automatici']]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="dichiarazione_mezzi_trasporto_opt" title="Nel caso di utilizzo di mezzi di trasporto:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_mezzi_trasporto_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''Il/la sottoscritto/a dichiara che il trasporto avviene con mezzi idonei, igienicamente attrezzati;|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_incaricati_vendita_opt" title="Il/la sottoscritto/a dichiara che, nel caso in cui intenderà avvalersi degli incaricati alla vendita, provvederà a:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_incaricati_vendita_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''darne comunicazione al SUAP, utilizzando l’apposito Allegato, che la trasmetterà all’autorità di pubblica sicurezza;|1''','''rilasciare loro il tesserino di riconoscimento (art. 19, commi 4, 5 e 6, del D.Lgs. n. 114/1998);|2''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_vendita_corrispondenza_opt" title="Il/la sottoscritto/a dichiara, relativamente ai locali di esercizio, di aver rispettato:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_vendita_corrispondenza_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''i regolamenti di polizia urbana e annonaria, di igiene e sanità;|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_media_grande_opt" title="Il/la sottoscritto/a dichiara, relativamente ai locali di esercizio, di aver rispettato:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_media_grande_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''i regolamenti locali di polizia urbana, annonaria e di igiene e sanità, i regolamenti edilizi e le norme urbanistiche nonché quelle relative alle destinazioni d'uso;|1''','''la normativa vigente in materia di prevenzione incendi;|2''','''la normativa relativa alle superfici da destinare a parcheggio, a sosta e a movimentazione merci;|3''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_tintolavanderie_opt" title="Il/la sottoscritto/a dichiara che l’attività impiega lavatrici ad acqua analoghe a quelle di uso domestico, che effettivamente trattino:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_tintolavanderie_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''meno di 100 kg biancheria al giorno;|1''','''più di 100 kg di biancheria al giorno, e pertanto presenta in allegato la documentazione per la richiesta di AUA per gli scarichi di acque reflue|2''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_panificazione_farina_opt" title="Il/la sottoscritto/a dichiara che il consumo giornaliero di farina:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_panificazione_farina_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''non supera i 300 kg;|1''','''è maggiore di 300 kg e non supera i 1500 kg, e pertanto presenta in allegato la documentazione per la richiesta dell’autorizzazione generale o AUA alle emissioni in atmosfera|2''','''supera i 1500 kg, e pertanto presenta in allegato la documentazione per la richiesta di AUA per l’autorizzazione ordinaria alle emissioni in atmosfera;|3''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_panificazione_idrico_opt" title="Il/la sottoscritto/a dichiara che il consumo idrico giornaliero:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_panificazione_idrico_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''non supera i 5 mc nel periodo di massima attività;|1''','''supera i 5 mc nel periodo di massima attività, e pertanto presenta in allegato la documentazione per la richiesta di AUA per gli scarichi di acque reflue;|2''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_acconciatore_opt" title="Il/la sottoscritto/a dichiara di aver rispettato:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_acconciatore_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''i regolamenti di igiene e sanità, la conformità degli arredi e delle attrezzature a quanto previsto dalle normative di riferimento in ordine ai requisiti di sicurezza;|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_spacci_favore_opt" title="Il/la sottoscritto/a dichiara che la vendita è effettuata esclusivamente a favore di:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_spacci_favore_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''dipendenti;|1''','''militari;|2''','''soci;|3''','''coloro che hanno titolo ad accedervi all'interno di scuole;|4''','''coloro che hanno titolo ad accedervi all'interno di ospedali;|5''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_spacci_opt" title="Il/la sottoscritto/a dichiara che:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_spacci_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return [''' i locali di esercizio dell’attività non sono aperti al pubblico e non hanno accesso da una pubblica via;|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_dichiarazione_acconciatore" title="hw_no_dichiarazione_acconciatore" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_acconciatore</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','artigianato-acconciatore-estetista')!='artigianato-acconciatore-estetista']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_panificazione" title="hw_no_dichiarazione_panificazione" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_panificazione</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','artigianato-panificazione')!='artigianato-panificazione']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_tintolavanderie" title="hw_no_dichiarazione_tintolavanderie" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_tintolavanderie</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','artigianato-tintolavanderia')!='artigianato-tintolavanderia']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_media_grande_struttura" title="hw_no_dichiarazione_media_grande_struttura" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_media_grande_struttura</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','commercio-media-grande-struttura')!='commercio-media-grande-struttura']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_spacci" title="hw_no_dichiarazione_spacci" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_spacci</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','commercio-spacci-interni')!='commercio-spacci-interni']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_vendita_corrispondenza" title="hw_no_dichiarazione_vendita_corrispondenza" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_vendita_corrispondenza</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','commercio-corrispondenza')!='commercio-corrispondenza']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_vendita_domicilio" title="hw_no_dichiarazione_vendita_domicilio" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_vendita_domicilio</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','commercio-domicilio')!='commercio-domicilio']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_dichiarazione_mezzi_trasporto" title="hw_no_dichiarazione_mezzi_trasporto" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_mezzi_trasporto</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','somministrazione-domicilio')!='somministrazione-domicilio']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="dichiarazione_autorimesse_opt" title="Il/la sottoscritto/a dichiara che la superficie complessiva coperta è:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_autorimesse_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''non superiore a 300 mq;|1''','''oltre 300 mq e fino a 1.000 mq;|2''','''oltre 1.000 mq e fino a 3.000 mq;|3''','''superiore a 3.000 mq|4''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_dichiarazione_autorimesse" title="hw_no_dichiarazione_autorimesse" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_autorimesse</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','artigianato-autorimessa')!='artigianato-autorimessa']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="dichiarazione_autorimesse_annotazione_opt" title="Il/la sottoscritto/a dichiara:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_autorimesse_annotazione_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''di impegnarsi a rispettare le norme sugli obblighi di annotazione su apposita ricevuta, valida anche ai fini tributari, delle date di ingresso e di uscita, marca, modello, colore e targa di ciascun veicolo;|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_dichiarazione_estetista" title="hw_no_dichiarazione_estetista" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_estetista</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','artigianato-acconciatore-estetista')!='artigianato-acconciatore-estetista']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="dichiarazione_estetista_opt" title="Il/la sottoscritto/a dichiara:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_estetista_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''di aver rispettato i regolamenti di igiene e sanità, la conformità degli arredi e delle attrezzature a quanto previsto dalle normative di riferimento in ordine ai requisiti di sicurezza OPPURE di aver rispettato il regolamento comunale per la disciplina dell'attività di acconciatore e/o estetista;|1''','''di consentire i controlli nei locali da parte delle autorità competenti nel caso in cui l'esercizio dell'attività venga svolto presso la propria abitazione;|2''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

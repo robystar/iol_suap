@@ -1,0 +1,787 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="00-verifica-richiesta" title="Verifica a Ente o Ufficio" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">00-verifica-richiesta</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[docSettings = context.resources.customscripts.getDocSettings()
+context.setItem('Plomino_Readers',[docSettings.getItem('grp_istruttori')])]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[from Products.CMFPlomino.PlominoUtils import Now
+from Products.CMFCore.utils import getToolByName
+#plominoDocument.plone_log('asdasd')
+context.setItem('Form','00-verifica')
+parentDoc = context.getParentDatabase().getDocument(context.getItem('verifica_pratica_key'))
+
+if context.REQUEST.get('btn_invia_verifica'):
+    ######AGGIUNGO GLI ITEM AL DOCUMENTO CHE SERVONO PER LA MAIL
+    items=['fisica_nome','fisica_cognome','anagrafica_search','data_protocollo','data_protocollo_testo','giuridica_denominazione','numero_protocollo','numero_protocollo_testo','iol_tipo_proc_testo']
+    for item in items:
+        context.setItem(item,parentDoc.getItem(item))
+
+    Ente=context.getUserGroupFullName(context.getItem('verifica_ente_opt'))
+    
+    #context.iolSendMail(azione='invio-verifica-ok',form='00-verifica')
+    parentDoc.doAction('26_richiedi_verifica')
+    parentDoc.setItem('Plomino_Readers',parentDoc.getItem('Plomino_Readers',[]) + [str(context.getItem('verifica_ente_opt'))])
+    
+    context.setItem('data_invio_richiesta',Now())
+    context.setItem('data_invio_richiesta_testo',DateToString(Now(),format="%Y/%m/%d"))
+
+    
+    context.setItem('Plomino_Readers',context.getItem('Plomino_Readers',[]) + [str(context.getItem('verifica_ente_opt'))])
+    context.setItem('Plomino_Authors',context.getItem('Plomino_Authors',[]) + [str(context.getItem('verifica_ente_opt'))])
+
+    context.plone_utils.addPortalMessage('Richiesta di verifica inviata','info')
+    context.resources.customscripts.setAttivita(text="Richiesta di verifica a %s" %Ente)    
+    parentDoc.iolSendMail(azione="parere_richiesta",parentDoc=context)
+
+    
+    return parentDoc.absolute_url()
+
+elif context.REQUEST.get('btn_salva_richiesta'):
+    context.setItem('Form','00-presentata')
+
+else:   
+    ######AGGIUNGO GLI ITEM AL DOCUMENTO CHE SERVONO PER LA MAIL E LA STAMPA
+    items = [
+       'fisica_nome',
+        'fisica_cognome',
+        'fisica_cf',
+        'fisica_comune_nato',
+        'fisica_data_nato',
+        'fisica_comune',
+        'fisica_indirizzo',
+        'fisica_cap',
+        'fisica_provincia',
+        'anagrafica_search',
+        'data_protocollo',
+        'data_protocollo_testo',
+        'data_presentazione',
+        'data_cessazione_dal',
+        'giuridica_denominazione_calcolato',
+        'giuridica_cciaa',
+        'giuridica_cciaa_prov',
+        'giuridica_cciaa_numero',
+        'giuridica_cf',
+        'numero_protocollo',
+        'numero_protocollo_testo',
+        'iol_tipo_proc_testo',
+        'ubicazione_attivita_calcolato',
+        'impianto_attivita_descrizione',
+        'cessazione_sospensione_attivita',
+        'iol_form_title'
+        ]
+    for item in items:
+        context.setItem(item,parentDoc.getItem(item))
+    return context.absolute_url() + '/EditDocument?openwithform=00-verifica-richiesta']]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[parentDoc = context.getParentDatabase().getDocument(context.getItem('verifica_pratica_key'))
+#context.REQUEST.RESPONSE.redirect(parentDoc.absolute_url())
+
+
+context.REQUEST.set('returnurl',parentDoc.absolute_url())]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<div class="row-fluid"><div class="span6">
+<span class="plominoLabelClass">verifica_ente_opt</span><span class="plominoFieldClass">verifica_ente_opt</span>
+</div></div>
+<p><span class="plominoHidewhenClass">start:hw_no_verifica_ente_altro</span></p>
+<div class="row-fluid">
+<div class="span6">
+<span class="plominoLabelClass">verifica_ente_altro</span><span class="plominoFieldClass">verifica_ente_altro</span>
+</div>
+<div class="span6">
+<span class="plominoLabelClass">verifica_ente_altro_email</span><span class="plominoFieldClass">verifica_ente_altro_email</span>
+</div>
+</div>
+<p><span class="plominoHidewhenClass">end:hw_no_verifica_ente_altro</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_richiesta</span></p>
+<div><span class="plominoFieldClass">invio_richiesta_verifica</span></div>
+<div class="row-fluid"><div class="span6">
+<span class="plominoFieldClass">allegato_richiesta_opt</span><span class="plominoLabelClass">allegato_richiesta_opt</span>
+</div></div>
+<p><span class="plominoHidewhenClass">start:hw_no_allegato_richiesta</span></p>
+<div class="row-fluid">
+<div class="span6">
+<span class="plominoLabelClass">modello_stampa</span><span class="plominoFieldClass">modello_stampa</span>
+</div>
+<div class="span6">
+<span class="plominoLabelClass">documenti_da_scaricare</span><span class="plominoFieldClass">documenti_da_scaricare</span>
+</div>
+</div>
+<p><span class="plominoLabelClass">allegato_richiesta</span><span class="plominoFieldClass">allegato_richiesta</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_allegato_richiesta</span></p>
+<div>
+<span class="plominoLabelClass">allegato_richiesta_altri</span><span class="plominoFieldClass">allegato_richiesta_altri</span>
+</div>
+<p><span class="plominoHidewhenClass">end:hw_no_richiesta</span></p>
+<div><span class="plominoFieldClass">display_anagrafica</span></div>
+<div>
+<span class="plominoLabelClass">osservazioni_istruttore</span><span class="plominoFieldClass">osservazioni_istruttore</span>
+</div>
+<div>
+<span class="plominoLabelClass">verifica_allegati</span><span class="plominoFieldClass">verifica_allegati</span>
+</div>
+<div class="buttons-link">
+<span class="plominoActionClass">btn_modifica_richiesta</span><span class="plominoActionClass">btn_modifica_risposta</span>
+</div>
+<!--CHIAVE ESTERNA CHE PUNTA ALLA PRATICA PARENT--><p><span class="plominoFieldClass">verifica_pratica_key</span></p>
+<p><span class="plominoFieldClass">parent_document</span></p>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA['%s Richiesta verifica' %context.getItem('verifica_pratica_key')]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">True</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA['%s-v' %context.getItem('verifica_pratica_key')]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTTOM</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/js/controller_combo_modelli.js]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.min.css
+++resource++iol.document/css/bootstrap-accessibile.min.css
+++resource++iol.document/css/bootstrap-responsive.min.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="verifica_ente_opt" title="Verifica richiesta a Ente / Ufficio" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">verifica_ente_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>from iol.document.plomino_utils import getUserGroupFullName
+settings = context.resources.customscripts.getDocSettings()
+grpPareri = settings.getItem('grp_pareri_interni',[])+settings.getItem('grp_pareri_esterni',[])
+elenco=['|']
+for grp in grpPareri:
+    elenco.append("%s|%s" %(getUserGroupFullName(context,grp),grp))
+
+return elenco + ['Altro destinatario|altro']
+</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>separator</name>
+<value><string>&lt;br&gt;</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>SELECT</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="verifica_allegati" title="Allegati da inviare per la verifica:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">verifica_allegati</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>docId = context.getItem('verifica_pratica_key',context.REQUEST.URL.split('/')[-3])
+doc=context.getDocument(docId)
+items=doc.getItems()
+elencoAllegati=context.resources.customscripts.getElencoAllegati()
+return [allegato[0]+"|"+allegato[1] for allegato in elencoAllegati if allegato[1] in items and doc.getItem(allegato[1])]</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>separator</name>
+<value><string>&lt;br&gt;</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="osservazioni_istruttore" title="Osservazioni istruttore" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">osservazioni_istruttore</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>size</name>
+<value><string>4</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>TEXTAREA</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_da_scaricare" title="Documento di richiesta" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_da_scaricare</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">iol_print_modelli</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlist</name>
+<value><array><data>
+</data></array></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return []
+grp=context.getItem('verifica_ente_opt')
+return context.resources.customscripts.getElencoModelli(grp)</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="data_invio_richiesta" title="Data della richiesta" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">data_invio_richiesta</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DATETIME</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[Now()]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-DATETIMEFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">True</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-110Y", "dateFormat": "dd/mm/yy", "yearRange": "-10:+10"}'
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>format</name>
+<value><string>%d/%m/%Y</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>JQUERY</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_richiesta_altri" title="Altri allegati alla richiesta" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_richiesta_altri</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-plugin = "iolUploadFile" data-plugin-options={"emptyMessage":"Caricare ..."}']]></HTMLAttributesFormula>
+        </element>
+        <element id="allegato_richiesta" title="Allegato richiesta firmato dig." type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_richiesta</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-plugin = "iolUploadFile" data-plugin-options={"emptyMessage":"Caricare ..."}']]></HTMLAttributesFormula>
+        </element>
+        <element id="email_istruttore" title="Testo della email" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">email_istruttore</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>size</name>
+<value><string>4</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>TEXTAREA</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_richiesta" title="hw_no_richiesta" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_richiesta</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('verifica_ente_opt','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="verifica_pratica_key" title="verifica_pratica_key" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">verifica_pratica_key</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.REQUEST.URL.split('/')[-3]]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">True</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>HIDDEN</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="btn_save" title="Salva e continua &gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_save</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isNewDocument()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_salva_richiesta" title="Salva senza inviare &gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_salva_richiesta</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">SUBMIT</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[try:
+    return context.getItem('oggetto_avvio_procedimento','')==''
+except:
+    return True]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_invia_verifica" title="Salva e invia la richiesta &gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_invia_verifica</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[context.isNewDocument() or not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_cancel" title="Annulla" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_cancel</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[if context.isNewDocument():
+    id = context.REQUEST.URL.split('/')[-3]
+    doc = context.getParentDatabase().getDocument(id)   
+else:
+    doc = context.getParentDatabase().getDocument(context.getItem('verifica_pratica_key'))
+return doc and doc.absolute_url()]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_elimina" title="Elimina" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_elimina</id>
+          <ActionType type="Products.Archetypes.Field.StringField">CLOSE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[context.isNewDocument() or context.getItem('invio_richiesta_verifica')]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_modifica_richiesta" title="Modifica/Elimina la richiesta di verifica" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_modifica_richiesta</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">LINK</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.absolute_url()+'/EditDocument?openwithform=00-verifica-richiesta']]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[return plominoDocument.isEditMode() or context.getItem('data_invio_richiesta','')!='']]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+        </element>
+        <element id="btn_modifica_risposta" title="Inserisci verifica acquisito" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_modifica_risposta</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">LINK</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.absolute_url()+'/EditDocument?openwithform=00-verifica-risposta']]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[return context.isEditMode() or context.getItem('data_invio_risposta','')!='' or not context.isCurrentUserAuthor(context)]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+        </element>
+        <element id="allegato_richiesta_opt" title="Allega documento firmato digitalmente" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_richiesta_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+        </element>
+        <element id="parent_document" title="parent_document" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">parent_document</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.REQUEST.URL.split('/')[-3]]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">True</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>HIDDEN</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_allegato_richiesta" title="hw_no_allegato_richiesta" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_allegato_richiesta</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegato_richiesta_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="pippo" title="pippo" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">pippo</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.isCurrentUserAuthor(context)]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="invio_richiesta_verifica" title="invio_richiesta_verifica" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">invio_richiesta_verifica</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[from Products.CMFPlomino.PlominoUtils import DateToString
+if context.getItem('data_invio_richiesta'):
+    return '<p class="text-error"> Richiesta di verifica inviata in data %s</p>' %DateToString(context.getItem('data_invio_richiesta'),format="%d/%m/%Y alle ore %H:%M")]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="allegati_istanza_elenco" title="Elenco degli allegati all'istanza" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_istanza_elenco</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[db=context.getParentDatabase()
+elenco_campi = context.resources.customscripts.getElencoAllegati()
+result = list()
+for row in elenco_campi:
+    fieldValue = context.getItem(row[1],{})
+    if fieldValue!={}:
+        titolo=row[0]
+        names=[]
+        for name in fieldValue.keys():
+            names.append(name)
+        result.append({"label":titolo,"files":names})
+return result]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_attachments_view</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="display_anagrafica" title="Scheda Anagrafica" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">display_anagrafica</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#come form di visualizzazione del documento uso la form di compilazione che dovrebbe essere sempre assegnata al documento
+return dict(formName='base_sub_anagrafica', docId=context.getItem('verifica_pratica_key',context.REQUEST.URL.split('/')[-3]))]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_displaydoc</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="verifica_ente_altro" title="Altro destinatario della richiesta" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">verifica_ente_altro</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="verifica_ente_altro_email" title="Indirizzo e-mail" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">verifica_ente_altro_email</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="hw_no_verifica_ente_altro" title="hw_no_verifica_ente_altro" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_verifica_ente_altro</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('verifica_ente_opt')!='altro']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="destinatario_verifica" title="destinatario_verifica" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">destinatario_verifica</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">COMPUTEDONSAVE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('verifica_ente_opt')=='altro':
+    return context.getItem('verifica_ente_altro_email')
+else:
+    return context.getItem('verifica_ente_opt')]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="modello_stampa" title="Seleziona un modello per la stampa" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">modello_stampa</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+class="iol_print_model"
+data-target="documenti_da_scaricare"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>#Elenco modelli presi dalla cartella
+from iol.document.plomino_utils import getTemplateFolderContents
+parentDoc = context.getParentDatabase().getDocument(context.getItem('parent_document'))
+baseUrl=''
+ll=["ERRORE NELLA RICERCA DEI MODELLI"]
+
+if parentDoc:
+    baseUrl="%s/@@iol-printdocument?child=%s&amp;" %(parentDoc.absolute_url(),context.getId())
+    ll = getTemplateFolderContents(context,filter={"portal_type" : "File"},baseUrl=baseUrl,printForm='00-print',app='suap',grp='parere-verifica')
+
+return ["Seleziona il modello per la stampa &gt;&gt;&gt;|"] + ll
+
+
+</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="documenti_da_scaricare" title="Comunicazione da scaricare e firmare digitalmente" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">documenti_da_scaricare</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">iol_print_modelli</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlist</name>
+<value><array><data>
+</data></array></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>ll = ['Titolo selezionato|']       
+return ll</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

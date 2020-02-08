@@ -1,0 +1,419 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="allegati-somministrazione-stazioni" title="allegati-somministrazione-stazioni" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">allegati-somministrazione-stazioni</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[########## IMPORTANTE SETTO UN ITEM CON IL NOME DELLA FORM PER RISETTARE LA FORM DOPO IL SALVATAGGIO 
+context.setItem('IOL_PREVIOUS_FORM',context.getItem('Form'))]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[########## IMPORTANTE SETTO LA FORM PRECEDENTE ALL'APERTURA 
+context.setItem('Form',context.getItem('IOL_PREVIOUS_FORM'))
+context.removeItem('IOL_PREVIOUS_FORM')
+return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
+<p>ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA</p>
+<p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
+<p><span class="plominoSubformClass">base_sub_allegati_soci</span></p>
+<p><span class="plominoSubformClass">base_sub_allegati_requisiti_professionali</span></p>
+<div class="row-fluid">
+<div class="span6"><a href="modelli/suap/notifica-sanitaria" target="blank_" title="Notifica sanitaria da scaricare e compilare"><span class="label"><img src="pdf.png"> Notifica sanitaria da scaricare e compilare</span></a></div>
+<div class="span6">
+<span class="plominoLabelClass">allegato_notifica_sanitaria</span><span class="plominoFieldClass">allegato_notifica_sanitaria</span>
+</div>
+</div>
+<p><span class="plominoFieldClass">allegati_alcolici_opt</span><span class="plominoLabelClass">allegati_alcolici_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_vendita_alcolici</span></p>
+<p><span class="plominoLabelClass">allegato_comunicazione_vendita_alcolici</span><span class="plominoFieldClass">allegato_comunicazione_vendita_alcolici</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_vendita_alcolici</span></p>
+<p><span class="plominoFieldClass">allegati_comunicazione_impatto_acustico_opt</span><span class="plominoLabelClass">allegati_comunicazione_impatto_acustico_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_comunicazione_impatto_acustico</span></p>
+<p><span class="plominoLabelClass">allegato_comunicazione_impatto_acustico</span><span class="plominoFieldClass">allegato_comunicazione_impatto_acustico</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_comunicazione_impatto_acustico</span></p>
+<p><span class="plominoFieldClass">allegati_comunicazione_insegna_opt</span><span class="plominoLabelClass">allegati_comunicazione_insegna_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_scia_insegna</span></p>
+<p><span class="plominoLabelClass">allegato_scia_insegna</span><span class="plominoFieldClass">allegato_scia_insegna</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_scia_insegna</span></p>
+<p>RICHIESTA DI AUTORIZZAZIONI PRESENTATA CONTESTUALMENTE ALLA SCIA O ALLA SCIA UNICA (scia condizionata)</p>
+<p><span class="plominoFieldClass">allegati_autorizzazione_impatto_acustico_opt</span><span class="plominoLabelClass">allegati_autorizzazione_impatto_acustico_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_autorizzazione_impatto_acustico</span></p>
+<p><span class="plominoLabelClass">allegato_documentazione_impatto_acustico</span><span class="plominoFieldClass">allegato_documentazione_impatto_acustico</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_autorizzazione_impatto_acustico</span></p>
+<p><span class="plominoFieldClass">allegati_autorizzazione_insegna_opt</span><span class="plominoLabelClass">allegati_autorizzazione_insegna_opt</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_autorizzazione_insegna</span></p>
+<p><span class="plominoLabelClass">allegato_documentazione_autorizzazione_insegna</span><span class="plominoFieldClass">allegato_documentazione_autorizzazione_insegna</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_autorizzazione_insegna</span></p>
+<p><span class="plominoSubformClass">base_sub_allegati_altri</span></p>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTTOM</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/iol.css
+++resource++iol.document/css/bootstrap.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="btn_save" title="Salva e completa l'istanza &gt;&gt;" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_save</id>
+          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">SUBMIT</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_close" title="Chiudi" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_close</id>
+          <ActionType type="Products.Archetypes.Field.StringField">CLOSE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[#context.REQUEST.get('openwithform')=='segnalazione-invio' or context.getItem('iol_workflow_status')!='compilazione']]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_edit" title="&lt;&lt; Torna in compilazione" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_edit</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.doc_url()+"/EditDocument"]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="allegato_notifica_sanitaria" title="Notifica sanitaria (art. 6, Reg.CE n. 852/2004)" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_notifica_sanitaria</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_vendita_alcolici" title="hw_no_vendita_alcolici" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_vendita_alcolici</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_alcolici_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_alcolici_opt" title="L'attività prevede la vendita di alcolici" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_alcolici_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_comunicazione_vendita_alcolici" title="Comunicazione, che vale quale denuncia per la vendita di alcolici (D.Lgs. n. 504/1995)" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_comunicazione_vendita_alcolici</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di vendita di alcolici."
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_comunicazione_impatto_acustico" title="hw_no_comunicazione_impatto_acustico" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_comunicazione_impatto_acustico</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_comunicazione_impatto_acustico_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_comunicazione_impatto_acustico_opt" title="Utilizzo di impianti di diffusione sonora o manifestazioni ed eventi con diffusione di musica o utilizzo di strumenti musicali, SE NON SI SUPERANO le soglie della zonizzazione comunale" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_comunicazione_impatto_acustico_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_comunicazione_impatto_acustico" title="Comunicazione di impatto acustico" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_comunicazione_impatto_acustico</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di utilizzo di impianti di diffusione sonora o di manifestazioni ed eventi con diffusione di musica o utilizzo di strumenti musicali, se non si superano le soglie della zonizzazione comunale"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_scia_insegna" title="hw_no_scia_insegna" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_scia_insegna</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_comunicazione_insegna_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_comunicazione_insegna_opt" title="L'attività prevede la SCIA per insegna esterna" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_comunicazione_insegna_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_scia_insegna" title="SCIA per insegna di esercizio" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_scia_insegna</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di attività che preveda insegna esterna (dove è prevista la SCIA)."
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_autorizzazione_insegna" title="hw_no_autorizzazione_insegna" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_autorizzazione_insegna</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_autorizzazione_insegna_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_autorizzazione_insegna_opt" title="L'attività prevede l'autorizzazione per insegna esterna" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_autorizzazione_insegna_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_documentazione_autorizzazione_insegna" title="Documentazione per la richiesta dell’autorizzazione per insegna di esercizio" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documentazione_autorizzazione_insegna</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di attività che preveda insegna esterna (dove è prevista la domanda di autorizzazione)"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_autorizzazione_impatto_acustico" title="hw_no_autorizzazione_impatto_acustico" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_autorizzazione_impatto_acustico</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('allegati_autorizzazione_impatto_acustico_opt',False)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="allegati_autorizzazione_impatto_acustico_opt" title="Utilizzo di impianti di diffusione sonora o manifestazioni ed eventi con diffusione di musica o utilizzo di strumenti musicali, SE SI SUPERANO le soglie della zonizzazione comunale" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_autorizzazione_impatto_acustico_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="allegato_documentazione_impatto_acustico" title="Documentazione per il rilascio del nulla osta di impatto acustico " type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_documentazione_impatto_acustico</id>
+          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
+data-plugin = "iolUploadFile" 
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
+data-description="In caso di utilizzo di impianti di diffusione sonora o di manifestazioni ed eventi con diffusione di musica o utilizzo di strumenti musicali, SE SI SUPERANO le soglie della zonizzazione comunale"
+''']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>type</name>
+<value><string>SINGLE</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

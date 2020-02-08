@@ -1,0 +1,421 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_dichiarazioni_acconciatore_estetista" title="sub_dichiarazioni_acconciatore_estetista" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_dichiarazioni_acconciatore_estetista</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DICHIARAZIONI SUL RESPONSABILE TECNICO:</legend>
+<p><span class="plominoHidewhenClass">start:hw_no_acconciatore</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">Nel caso di esercizio di attività di acconciatore (L. 174/2005 e specifiche disposizioni regionali di settore L.R. 23/2009 e ss.mm.):</legend>
+<div>
+<span class="plominoLabelClass">responsabile_tecnico_acconciatore_opt</span><span class="plominoFieldClass">responsabile_tecnico_acconciatore_opt</span>
+</div>
+<p><span class="plominoHidewhenClass">start:hw_no_responsabile_tecnico_acconciatore</span></p>
+<div>
+<span class="plominoLabelClass">responsabile_tecnico_acconciatore_dg</span><span class="plominoFieldClass">responsabile_tecnico_acconciatore_dg</span>
+</div>
+<div class="alert alert-info">che possiede/ono l’abilitazione professionale prevista, come dichiarato in Allegato B.</div>
+<p><span class="plominoHidewhenClass">end:hw_no_responsabile_tecnico_acconciatore</span></p>
+</fieldset>
+<p><span class="plominoHidewhenClass">end:hw_no_acconciatore</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_estetista</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">Nel caso di esercizio di attività di estetista (artt. 3 e 8 della L. n. 1/1990 e specifiche disposizioni regionali di settore L.R. 3/2003 e s.m.i.):</legend>
+<div>
+<span class="plominoLabelClass">responsabile_tecnico_estetista_opt</span><span class="plominoFieldClass">responsabile_tecnico_estetista_opt</span>
+</div>
+<p><span class="plominoHidewhenClass">start:hw_no_responsabile_tecnico_estetista</span></p>
+<div>
+<span class="plominoLabelClass">responsabile_tecnico_estetista_dg</span><span class="plominoFieldClass">responsabile_tecnico_estetista_dg</span>
+</div>
+<div class="alert alert-info">che possiede/ono l’abilitazione professionale prevista, come dichiarato in Allegato C.</div>
+<p><span class="plominoHidewhenClass">end:hw_no_responsabile_tecnico_estetista</span></p>
+</fieldset>
+<p><span class="plominoHidewhenClass">end:hw_no_estetista</span></p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">ALTRE DICHIARAZIONI:</legend>
+<div>
+<span class="plominoLabelClass">dichiarazione_regolamenti_opt</span><span class="plominoFieldClass">dichiarazione_regolamenti_opt</span>
+</div>
+<div>
+<span class="plominoLabelClass">dichiarazione_norme_opt</span><span class="plominoFieldClass">dichiarazione_norme_opt</span>
+</div>
+<div>
+<span class="plominoLabelClass">dichiarazione_variazioni_opt</span><span class="plominoFieldClass">dichiarazione_variazioni_opt</span>
+</div>
+</fieldset>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="responsabile_tecnico_acconciatore_opt" title="Il/la sottoscritto/a dichiara:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">responsabile_tecnico_acconciatore_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''di essere il/la responsabile tecnico/a e di essere in possesso di apposita idoneità professionale, comprovata dal possesso dei seguenti requisiti specificati in allegato;|1''','''che il/la responsabile tecnico è/sono:|2''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_responsabile_tecnico_acconciatore" title="hw_no_responsabile_tecnico_acconciatore" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_responsabile_tecnico_acconciatore</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('responsabile_tecnico_acconciatore_opt')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="responsabile_tecnico_acconciatore_dg" title="Responsabile tecnico attività di acconciatore" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">responsabile_tecnico_acconciatore_dg</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DATAGRID</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>associated_form</name>
+<value><string>dlg_responsabile_tecnico</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>field_mapping</name>
+<value><string>nome,cognome,cf,titolo</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>jssettings</name>
+<value><string>"aoColumns": [
+    { "sTitle": "Nome" },
+    { "sTitle": "Cognome"},
+    { "sTitle": "CF"},
+    { "sTitle": "In qualità di"}
+],
+"bPaginate": false,
+"bLengthChange": false,
+"bFilter": false,
+"bSort": false,
+"bInfo": false,
+"bAutoWidth": false,
+"plominoDialogOptions": {
+        "width": 800,
+        "height": 400
+    }
+</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="responsabile_tecnico_estetista_opt" title="Il/la sottoscritto/a dichiara:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">responsabile_tecnico_estetista_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''di essere il/la responsabile tecnico/a e di essere in possesso di apposita idoneità professionale, comprovata dal possesso dei seguenti requisiti specificati in allegato;|1''','''che il/la responsabile tecnico è/sono:|2''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>RADIO</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_responsabile_tecnico_estetista" title="hw_no_responsabile_tecnico_estetista" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_responsabile_tecnico_estetista</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('responsabile_tecnico_estetista_opt')!='2']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="responsabile_tecnico_estetista_dg" title="Responsabile tecnico attività di estetista" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">responsabile_tecnico_estetista_dg</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DATAGRID</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>associated_form</name>
+<value><string>dlg_responsabile_tecnico</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>field_mapping</name>
+<value><string>nome,cognome,cf,titolo</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>jssettings</name>
+<value><string>"aoColumns": [
+    { "sTitle": "Nome" },
+    { "sTitle": "Cognome"},
+    { "sTitle": "CF"},
+    { "sTitle": "In qualità di"}
+],
+"bPaginate": false,
+"bLengthChange": false,
+"bFilter": false,
+"bSort": false,
+"bInfo": false,
+"bAutoWidth": false,
+"plominoDialogOptions": {
+        "width": 800,
+        "height": 400
+    }
+</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_acconciatore" title="hw_no_acconciatore" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_acconciatore</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('attivita_tipo_opt') or context.getItem('attivita_tipo_trasferimento_opt'):
+    return not ('1' in context.getItem('attivita_tipo_opt',[]) or '1' in context.getItem('attivita_tipo_trasferimento_opt',[]))
+else:
+    return True]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_estetista" title="hw_no_estetista" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_estetista</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('attivita_tipo_opt') or context.getItem('attivita_tipo_trasferimento_opt'):
+    return not ('2' in context.getItem('attivita_tipo_opt',[]) or '2' in context.getItem('attivita_tipo_trasferimento_opt',[]))
+else:
+    return True]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="dichiarazione_regolamenti_opt" title="Il/la sottoscritto/a dichiara di aver rispettato:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_regolamenti_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ['''i regolamenti di igiene e sanità, la conformità degli arredi e delle attrezzature a quanto previsto dalle normative di riferimento in ordine ai requisiti di sicurezza;|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_norme_opt" title="Il/la sottoscritto/a dichiara inoltre di aver rispettato:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_norme_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ["le norme sulla sicurezza sui luoghi di lavoro;|1","le norme edilizie, urbanistiche e quelle relative alla destinazione d’uso;|2","la normativa vigente in materia ambientale|3"]</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="dichiarazione_variazioni_opt" title="Il/la sottoscritto/a dichiara inoltre:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">dichiarazione_variazioni_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>return ["di impegnarsi a comunicare ogni variazione relativa a stati, fatti, condizioni e titolarità rispetto a quanto dichiarato;|1","di consentire i controlli nei locali da parte delle autorità competenti nel caso in cui l’esercizio dell’attività venga svolto presso la propria abitazione;|2"]</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

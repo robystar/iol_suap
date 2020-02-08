@@ -1,0 +1,46 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_agenziaaffari_impegni" title="sub_agenziaaffari_impegni" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_agenziaaffari_impegni</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">SI IMPEGNA A:</legend>
+<ol>
+<li>Tenere esposta la dichiarazione d'inizio attività;</li>
+<li>Tenere esposta la tabella delle prestazioni con le relative tariffe;</li>
+<li>Astenersi dal compiere operazioni diverse da quelle indicate nella tabella delle tariffe;</li>
+<li>Astenersi dall'esercitare mansioni o compiti riservati dalla legge a determinati professionisti (notai, avvocati, commercialis ti, ecc.);</li>
+<li>Tenere, conservare ed esibire il Registro giornale degli affari, come previsto dall'art. 120 del R.D. 773/1931 e dagli artt. 219 e 220 del R.D. 6/5/1940 n. 635. Il Registro deve essere compilato senza spazi in bianco con nome, cognome e domicilio del committente, la data e la natura della commissione, il premio pattuito, esatto o dovuto e l'esito dell'operazione. I Registri devono essere tenuti a disposizione dell'autorità di pubblica sicurezza e conservati dall'esercente per un quinquennio dall'ultima registrazione.</li>
+<li>Effettuare operazioni soltanto con persone che esibiscono un documento di riconoscimento (art. 119 del R.D. 773/1931 e 219 del R.D. 6/5/1940 n. 635 i cui dati devono essere annotati sul Registro di cui al punto 5);</li>
+<li>Osservare le disposizioni del D.lgs. 25/9/1999 n. 374 in materia di riciclaggio di capitali, qualora l'attività di agenzia riguardi la compravendita a mezzo mandato o procura a vendere di articoli di antiquariato o preziosi;</li>
+<li>Osservare le prescrizioni dell’art. 221 del R.D. 635/1940 per le agenzie di raccolta informazioni a scopo di divulgazione;</li>
+<li>Osservare l'orario di apertura prescritto dal Sindaco del Comune per il commercio dei rispettivi prodotti qualora l'attività di agenzia riguardi la compravendita di beni a mezzo mandato o procura a vendere;</li>
+<li>Rispettare le norme del Piano Urbanistico Comunale previste per il commercio qualora l'attività di agenzia riguardi la compravendita di beni a mezzo mandato o procura a vendere e si utilizzino locali aperti al pubblico;</li>
+</ol>
+</fieldset>]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">False</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/iol.css
+++resource++iol.document/css/bootstrap.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+    </element>
+  </design>
+</plominodatabase>

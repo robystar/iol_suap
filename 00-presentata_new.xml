@@ -1,0 +1,366 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="00-presentata_new" title="00-presentata" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">00-presentata_new</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<div class="iol-control-buttons"><span class="plominoActionClass">btn_chiudi</span></div>
+<p><span class="plominoSubformClass">sub_pagopa</span></p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DATI IDENTIFICATIVI DELLA PRATICA</legend>
+<p><span class="plominoSubformClass">00-protocollo</span></p>
+</fieldset>
+<!--RESPONSABILE DEL PROCEDIMENTO ASSEGNATO --><p><span class="plominoHidewhenClass">start:hw_no_assegnata</span></p>
+<p><span class="plominoSubformClass">00-assegnazione</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_assegnata</span></p>
+<p><span class="plominoHidewhenClass">start:hw_no_avvio_procedimento</span></p>
+<p><span class="plominoSubformClass">00-avvio-procedimento</span></p>
+<p><span class="plominoHidewhenClass">end:hw_no_avvio_procedimento</span></p>
+<fieldset class="scheduler-border">
+<legend class="scheduler-border">RICHIESTE DI DOCUMENTAZIONE INTEGRATIVA:</legend>
+<div><span class="plominoFieldClass">elenco_integrazioni</span></div>
+</fieldset>
+<p><span class="plominoActionClass">btn_edit</span></p>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTH</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/js/iolHistory.js]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.min.css
+++resource++iol.document/css/bootstrap-accessibile.min.css
+++resource++iol.document/css/bootstrap-responsive.min.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="hw_no_istruttore" title="hw_no_istruttore" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_istruttore</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.isDocument() and not context.isCurrentUserAuthor(context)]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_assegnata" title="hw_no_assegnata" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_assegnata</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_assegnazione','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_avvio_procedimento" title="hw_no_avvio_procedimento" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_avvio_procedimento</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_avvio_procedimento','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_conclusa" title="hw_no_conclusa" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_conclusa</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_conclusa','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_prerigetto" title="hw_no_prerigetto" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_prerigetto</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_prerigetto','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="hw_no_autorizzazione" title="hw_no_autorizzazione" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_autorizzazione</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_autorizzazione','')=='']]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="display_document" title="Pratica presentata" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">display_document</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#come form di visualizzazione del documento uso la form di compilazione che dovrebbe essere sempre assegnata al documento
+return dict(formName=context.getItem('iol_start_form'), docId=context.getId())]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_displaydoc</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="elenco_integrazioni" title="Elenco integrazioni" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">elenco_integrazioni</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DOCLINK</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#NB il documento viene renderizzato usando la form specificata in settings/labelcolumn
+db=context.getParentDatabase()
+idx = db.getIndex()
+if not 'integrazione_pratica_key' in idx.indexes():
+    return []
+brains = idx.dbsearch(dict(integrazione_pratica_key="00063-2018-suap"))  
+if len(brains)==0:
+    return []
+else:
+    return ['%s'%brain.id for brain in brains]]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">DOCLINKRenderWithForm</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="elenco_pareri" title="Elenco pareri" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">elenco_pareri</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DOCLINK</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#NB il documento viene renderizzato usando la form specificata in settings/labelcolumn
+db=context.getParentDatabase()
+idx = db.getIndex()
+if not 'parere_pratica_key' in idx.indexes():
+    return []
+#la ricerca deve restituire i documenti dei queli l'utente corrente è author
+brains = idx.dbsearch(dict(parere_pratica_key=context.getId()))  
+if len(brains)==0:
+    return []
+else:
+    return ['%s'%brain.id for brain in brains]]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">DOCLINKRenderWithForm</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="iol_info_richieste" title="iol_info_richieste" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">iol_info_richieste</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['TODO.... Richieste di integrazione:xx Richieste pareri:xx da fare in iol suap come report ... pareri espressi... in attesa....']]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">TEXTFieldCell</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="btn_edit" title="Modifica" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_edit</id>
+          <ActionType type="Products.Archetypes.Field.StringField">REDIRECT</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.absolute_url()+'/EditDocument']]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[return True
+context.isEditMode() or not context.isCurrentUserAuthor(context)]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
+        </element>
+        <element id="btn_chiudi" title="Chiudi" type="PlominoAction">
+          <id type="Products.Archetypes.Field.StringField">btn_chiudi</id>
+          <ActionType type="Products.Archetypes.Field.StringField">CLOSE</ActionType>
+          <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
+          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
+          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[]]></Hidewhen>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+        </element>
+        <element id="display_allegati" title="Allegati alla pratica" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">display_allegati</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#come form di visualizzazione del documento uso la form di compilazione che dovrebbe essere sempre assegnata al documento
+return dict(formName="allegati-%s" %context.getItem('iol_tipo_proc'), docId=context.getId())]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_displaydoc</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="allegati_istanza_elenco" title="Elenco degli allegati all'istanza" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_istanza_elenco</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[db=context.getParentDatabase()
+elenco_campi = context.resources.customscripts.getElencoAllegati()
+result = list()
+for row in elenco_campi:
+    fieldName = row[1]
+    if 'allegato_richiesta' not in fieldName:
+        fieldValue = context.getItem(fieldName,{})
+        if fieldValue!={}:
+            titolo=row[0]
+            names=[]
+            for name in fieldValue.keys():
+                names.append(name)
+            result.append({"label":titolo,"files":names})
+        
+return result]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_attachments_view</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="iol_annotazioni" title="iol_annotazioni" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">iol_annotazioni</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DATAGRID</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>associated_form</name>
+<value><string>dlg_annotazione</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>associated_form_rendering</name>
+<value><string>INLINE</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>field_mapping</name>
+<value><string>data_ora,annotazione,utente</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>jssettings</name>
+<value><string>"aoColumns": [
+    { "sTitle": "Data ora" },
+    { "sTitle": "Annotazione"},
+    { "sTitle": "Utente"}
+],
+"bPaginate": false,
+"bLengthChange": false,
+"bFilter": false,
+"bSort": false,
+"bInfo": false,
+"bAutoWidth": false,
+"plominoDialogOptions": {
+        "width": 400,
+        "height": 300
+    }
+</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="pratiche_collegate" title="Pratiche collegate" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">pratiche_collegate</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('iol_tipo_app') not in ['iniziolavori','finelavori','integrazione','sca']:
+    return context.resources.customscripts.getPraticheCollegate(context)]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="hw_no_commissioni" title="hw_no_commissioni" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_commissioni</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('pareri_commissione',[])==[]]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="elenco_verifiche" title="Elenco verifiche" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">elenco_verifiche</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DOCLINK</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#NB il documento viene renderizzato usando la form specificata in settings/labelcolumn
+db=context.getParentDatabase()
+idx = db.getIndex()
+if not 'verifica_key' in idx.indexes():
+    return []
+#la ricerca deve restituire i documenti dei queli l'utente corrente è author
+brains = idx.dbsearch(dict(verifica_key=context.getId()))
+if len(brains)==0:
+    return []
+else:
+    return ['%s'%brain.id for brain in brains]]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">DOCLINKRenderWithForm</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

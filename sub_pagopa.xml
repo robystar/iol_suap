@@ -1,0 +1,169 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_pagopa" title="Sub Form con informazioni sui pagamenti tramite PagoPA" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_pagopa</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<p><span class="plominoHidewhenClass">start:hw_pagamento_bollettino</span></p>
+<fieldset class="scheduler-border" title="PagoPA">
+<legend class="scheduler-border">Riepilogo dei pagamenti effettuati tramite PagoPA</legend>
+<p><span class="plominoFieldClass">pagopa_info</span></p>
+<p><span class="plominoFieldClass">elenco_pagamenti</span></p>
+</fieldset>
+<p><span class="plominoHidewhenClass">end:hw_pagamento_bollettino</span></p>
+<p><!--
+</p><p>Pagamento Online disattivato o Modalità di pagamento non online</p>
+--></p>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">False</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">False</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.css
+++resource++iol.praticaweb/css/iol-sue.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="elenco_pagamenti" title="elenco_pagamenti" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">elenco_pagamenti</id>
+          <FieldType type="Products.Archetypes.Field.StringField">DATAGRID</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>associated_form</name>
+<value><string>sub_pagopa</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>field_mapping</name>
+<value><string>iuv,esito,data,importo,tipo_pagamento,causale,identificativofiscale,anagrafica</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>jssettings</name>
+<value><string>"aoColumns": [
+    { "sTitle": "IUV" },
+    { "sTitle": "Esito"},
+    { "sTitle": "Data/Ora"},
+    { "sTitle": "Importo"},
+    { "sTitle": "Tipo Pagamento"},
+    { "sTitle": "Causale"},
+    { "sTitle": "C.F./P.IVA"},
+    { "sTitle": "Anagrafica"},
+],
+"bPaginate": false,
+"bLengthChange": false,
+"bFilter": false,
+"bSort": false,
+"bInfo": false,
+"bAutoWidth": false,
+"plominoDialogOptions": {
+        "width": 400,
+        "height": 300
+    }
+</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_pagamento_bollettino" title="Nascondi se i pagamenti avvengono tramite bollettino" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_pagamento_bollettino</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if 'config_pagopa' in context.getParentDatabase().resources.keys():
+    diz = context.getParentDatabase().resources.config_pagopa()
+    pagopa_enabled = bool(diz.get('pagopa_enabled',0))
+    if pagopa_enabled:
+        pagamento_online = (context.getItem('modalita_pagamento','')=='pagopa')
+        return not pagamento_online
+    else:
+        return True
+    
+    
+else:
+    return True]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
+        </element>
+        <element id="pagopa_info" title="Informazioni riguardo Pagopa" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">pagopa_info</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[esito = context.getItem('pagopa_esito','')
+url = '%s/inviaPagoPA' %(context.absolute_url())
+frm = context.getItem('Form','')
+istruzioni = '''
+<div class="row-fluid">
+    <div class="span12 alert alert-info">
+         <h4>Istruzioni per il pagamento online</h4>
+         <h6>Per completare la procedura di pagamento online bisogna completare i dati della form con i relativi importi e salvare la stessa.<br>Una volta salvata bisogna inviarla al servizio regionale dei pagamenti e seguire le istruzioni (se si vuole terminare la procedura si prega di utilizzare gli appositi pulsanti di annullamento e non chiudere la pagina)</h6>
+    </div></div>
+'''
+html = ''
+if esito == 'OK':
+    html = '''
+<div class="row-fluid"><div class="span12 alert alert-info">
+    <h5>Pagamento effettuato. E' possibile effettuare un ulteriore pagamento.</h5>
+    <a style="width:200px" class="btn pull-right wf-actions" id="" href="%s"><i class='icon-hand-right'></i><span>Effettua pagamento online</span></a></div></div>
+''' %url
+elif esito == '':
+    html = '''
+<div class="row-fluid"><div class="span12 alert alert-danger">
+    <h4>Non risultano pagamenti registrati.<br>Per proseguire è necessario effettuare il pagamento.</h4>
+    <a style="width:200px" class="btn pull-right wf-actions" id="" href="%s"><i class='icon-hand-right'></i><span>Effettua pagamento online</span></a></div></div>
+''' %url
+elif esito == 'ANNULLATA':
+    html = '''
+<div class="row-fluid"><div class="span12 alert alert-danger">
+    <h4>Il pagamento è stato annullato.<br>Per proseguire è necessario effettuare il pagamento.</h4>
+    <a style="width:200px" class="btn pull-right wf-actions" id="" href="%s"><i class='icon-hand-right'></i><span>Effettua pagamento online</span></a></div></div>
+''' %url
+elif esito == 'ERRORE':
+    html = '''
+<div class="row-fluid"><div class="span12 alert alert-danger">
+    <h4>Si sono verificati errori durante la procedura di pagamento.<br>Per proseguire è necessario effettuare il pagamento.</h4>
+    <a style="width:200px" class="btn pull-right wf-actions" id="" href="%s"><i class='icon-hand-right'></i><span>Effettua pagamento online</span></a></div></div>
+''' %url
+    
+if frm == '00-presentata':
+    return ''
+return (istruzioni + html)]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

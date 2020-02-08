@@ -1,0 +1,340 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_ricettivita_impegno_beb" title="sub_ricettivita_impegno_beb" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_ricettivita_impegno_beb</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<div class="dichiarazione">
+<p><span class="plominoFieldClass">ricettive_beb_obblighi_1</span></p>
+<ul>
+<li>garantire la reperibilità telefonica 24 ore su 24;</li>
+<li>consentire agli ospiti l’accesso e la permanenza nella propria abitazione anche in caso di loro assenza;</li>
+<li>concordare con gli ospiti, nel rispetto dei requisiti di cui alle tabelle “B&amp;B”, le modalità di arrivo e partenza;</li>
+<li>garantire la presenza nella propria unità abitativa nelle fasce serali e mattutine secondo quanto concordato con gli ospiti.</li>
+</ul>
+</div>
+<div class="dichiarazione">
+<p><span class="plominoFieldClass">ricettive_beb_obblighi_2</span></p>
+<ul>
+<li>comunicare alla Provincia, entro il 1° ottobre i prezzi che si intendono applicare a valere dal 1° gennaio dell’anno successivo, utilizzando l’apposita modulistica. Nel caso in cui vengano comunicati solo i prezzi minimi o solo i prezzi massimi, gli stessi sono considerati come prezzi unici. La mancata o incompleta comunicazione entro i termini previsti, comporta l’applicazione dei prezzi indicati nell’ultima regolare comunicazione.</li>
+<li>comunicare entro il 1° marzo alla Provincia la tabella dei prezzi con l’indicazione delle variazioni, se si intendono variare i prezzi dal 1° giugno al 31 dicembre dell’anno in corso.</li>
+<li>comunicare entro il 1° ottobre di ogni anno, il periodo o i periodi di apertura relativi all’anno successivo. I periodi possono essere variati previa comunicazione alla Provincia e al Comune territorialmente competente.</li>
+</ul>
+</div>
+<div class="dichiarazione">
+<p><span class="plominoFieldClass">ricettive_beb_obblighi_3</span></p>
+<ul>
+<li>non possono essere applicati prezzi superiori ai massimi regolarmente comunicati. Possono essere applicati prezzi inferiori ai minimi solo nei seguenti casi:<ol>
+<li>gruppi organizzati composti da almeno dieci persone;</li>
+<li>ospiti per periodi di soggiorno continuativo pari o superiori a quindici giorni;</li>
+<li>ragazzi al disotto dei diciotto anni;</li>
+<li>guide, accompagnatori, interpreti al seguito dei gruppi organizzati;</li>
+<li>convenzioni con soggetti pubblici, società, enti o associazioni;</li>
+<li>utilizzo di sistemi di intermediazione telematica GDS o similari.</li>
+</ol>
+</li>
+<li>la tariffa del pernottamento è comprensiva della prima colazione;</li>
+<li>i prezzi sono comprensivi di riscaldamento, condizionamento ove presente, degli accessori delle camere, nonché dell’uso dei servizi comuni;</li>
+<li>devono essere definiti e comunicati i costi dei servizi straordinari o comunque non ricompresi nelle tariffe di cui ai punti precedenti;</li>
+<li>l’apertura delle strutture ricettive di tipo B&amp;B può essere frazionata in più periodi di durata non inferiore a 3 giorni.</li>
+</ul>
+</div>
+<div class="dichiarazione">
+<p><span class="plominoFieldClass">ricettive_beb_obblighi_4</span></p>
+<ul>
+<li>copia protocollata della segnalazione certificata di inizio attività presentata al Comune;</li>
+<li>la dichiarazione dei requisiti e l’elenco delle caratteristiche di qualità possedute dalla struttura ricettiva vidimate dalla Provincia all’atto della classificazione;</li>
+<li>la tabella dei prezzi vidimata dalla Provincia;</li>
+<li>i costi dei servizi straordinari di cui all’art.40, comma 12.</li>
+</ul>
+</div>
+<div class="dichiarazione">
+<p><span class="plominoFieldClass">ricettive_beb_obblighi_5</span></p>
+<ul>
+<li>la denominazione della struttura ricettiva e la sua classificazione;</li>
+<li>il numero dell’unità abitativa;</li>
+<li>il numero dei letti autorizzati.</li>
+</ul>
+</div>
+<div class="dichiarazione"><p><span class="plominoFieldClass">ricettive_beb_obblighi_6</span></p></div>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">False</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/iol.css
+++resource++iol.document/css/bootstrap.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="ricettive_beb_obblighi_1" title="Dichiarazione di reperibilità" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">ricettive_beb_obblighi_1</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''di essere a conoscenza che i titolari dei bed &amp; breakfast, in considerazione della specificità della tipologia di ospitalità che viene esercitata nella propria abitazione, sono tenuti a:|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="ricettive_beb_obblighi_2" title="Comunicazione alla Provincia" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">ricettive_beb_obblighi_2</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''di essere a conoscenza che i titolari dei bed &amp; breakfast hanno altresì i seguenti obblighi:|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="ricettive_beb_obblighi_3" title="Tariffe e prezzi" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">ricettive_beb_obblighi_3</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''di essere inoltre a conoscenza che:|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="ricettive_beb_obblighi_4" title="Documenti esposti" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">ricettive_beb_obblighi_4</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''Di essere a conoscenza che nella zona di ricevimento degli ospiti o nelle camere devono essere esposti in modo ben visibile i seguenti documenti:|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="ricettive_beb_obblighi_5" title="Esposizione cartellino" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">ricettive_beb_obblighi_5</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''Di essere a conoscenza che nelle unità abitative è fatto obbligo di esporre un cartellino contenente i dati desunti dal modello di classificazione relativi a:|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="ricettive_beb_obblighi_6" title="Dichiarazione inizio entro 180 gg" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">ricettive_beb_obblighi_6</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''Il sottoscritto si impegna a iniziare l’attività entro 180 giorni dalla presentazione della SCIA.|1''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

@@ -1,0 +1,162 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="sub_agenzia_affari_apertura" title="sub_agenzia_affari_apertura" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">sub_agenzia_affari_apertura</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">&gt;SEGNALAZIONE CERTIFICATA DI INIZIO ATTIVITÀ: APERTURA</legend>
+<p> </p>
+<p><span class="label">Il/la sottoscritto/a, ai sensi e per gli effetti dell’art.19 Legge 241/90 e successive modificazioni e integrazioni, SEGNALA l’inizio dell’attività di agenzia d’affari, di cui all'art. 115 del R.D. 773/1931 recante il T.U. delle leggi di P.S.</span></p>
+<div>
+<span class="plominoLabelClass">agenzia_attivita_opt</span><span class="plominoFieldClass">agenzia_attivita_opt</span>
+</div>
+<p><span class="plominoHidewhenClass">start:hw_no_attivita_altro</span></p>
+<div>
+<span class="plominoLabelClass">attivita_altro</span><span class="plominoFieldClass">attivita_altro</span>
+</div>
+<p><span class="plominoHidewhenClass">end:hw_no_attivita_altro</span></p>
+<div class="row-fluid">
+<div class="span4">
+<span class="plominoLabelClass">attivita_insegna</span><span class="plominoFieldClass">attivita_insegna</span>
+</div>
+<div class="span4">
+<span class="plominoLabelClass">attivita_destuso</span><span class="plominoFieldClass">attivita_destuso</span>
+</div>
+<div class="span4">
+<span class="plominoLabelClass">attivita_estremi_progetti</span><span class="plominoFieldClass">attivita_estremi_progetti</span>
+</div>
+</div>
+</fieldset>]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">TOP</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/iol.css
+++resource++iol.document/css/bootstrap.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="agenzia_attivita_opt" title="Nel settore:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">agenzia_attivita_opt</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=sub_agenzia_affari_apertura']]></HTMLAttributesFormula>
+          <params>
+<param>
+<value><array><data>
+<value><struct>
+<member>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>['''Abbonamenti a giornali e riviste|1''','''Allestimento ed organizzazione di spettacoli|2''','''Collocamento complessi di musica leggera|3''','''Compravendita di autoveicoli e motoveicoli usati a mezzo mandato o procura a vendere|4''','''Compravendita - esposizione di cose usate od oggetti d'arte o di antiquariato su mandato di terzi|5''','''Disbrigo pratiche amministrative inerenti il rilascio di documenti o certificazioni|6''','''Disbrigo pratiche infortunistiche e assicurative|7''','''Spedizioni|8''','''Informazioni commerciali|9''','''Organizzazione di mostre ed esposizioni di prodotti, mercati e vendite televisive|10''','''Organizzazione di congressi, riunioni, feste|11''','''Organizzazione di servizi per la comunità, ovvero ricerca di affari o clienti per conto di artigiani, professionisti e prestatori di mano d'opera|12''','''Prenotazione e vendita di biglietti per spettacoli e manifestazioni|13''','''Pubblicità|14''','''Raccolta di informazioni a scopo di divulgazione mediante bollettini o simili mezzi|15''','''Gestione e servizi immobiliari|16''','''Altro|20''']</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>separator</name>
+<value><string>&lt;br&gt;</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>widget</name>
+<value><string>CHECKBOX</string></value>
+</member>
+</struct></value>
+</data></array></value>
+</param>
+</params>
+        </element>
+        <element id="hw_no_attivita_altro" title="hw_no_attivita_altro" type="PlominoHidewhen">
+          <id type="Products.Archetypes.Field.StringField">hw_no_attivita_altro</id>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return '20' not in context.getItem('agenzia_attivita_opt',[])]]></Formula>
+          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
+        </element>
+        <element id="attivita_altro" title="Specificare altro" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">attivita_altro</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="attivita_insegna" title="L’attività ha insegna:" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">attivita_insegna</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="attivita_destuso" title="Destinazione d’uso dei locali" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">attivita_destuso</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="attivita_estremi_progetti" title="Estremi dei progetti approvati sui locali" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">attivita_estremi_progetti</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>

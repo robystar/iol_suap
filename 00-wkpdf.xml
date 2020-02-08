@@ -1,0 +1,112 @@
+<plominodatabase id="iol_suap">
+  <design>
+    <element id="00-wkpdf" title="00-wkpdf" type="PlominoForm">
+      <id type="Products.Archetypes.Field.StringField">00-wkpdf</id>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
+      <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
+      <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[#Provo ad inviare, in caso di fallimento resto sulla form completata:
+newState = context.doAction('10_invia_domanda')
+if newState:
+    context.setItem('data_presentazione',StringToDate(DateToString(Now())))
+elif context.getItem('data_presentazione','')=='':
+    return context.absolute_url() + '/EditDocument?openwithform=00-completata'
+
+#se si vuole che l'istruttore visualizzi in scrivania il documento in fase di compilazione aggiungiamo il ruolo sulla creazione del documento altrimento lo aggiungiamo qui 
+context.setItem('Plomino_Readers',context.getItem('Plomino_Readers',[])+['[Istruttore]','[Istruttore pareri]'])
+context.setItem('Form','00-presentata')
+
+#Provo a protocollare:
+#view = context.restrictedTraverse('@@test-protocollo')
+view = context.restrictedTraverse('@@protocolla_documento')
+result = view.protocollaDocumento(docField='comunicazione_digitale')
+if result['success']==1:
+    context.doAction('protocolla')    
+    context.setItem('numero_protocollo',result['NumeroProtocollo'])
+    context.setItem('data_protocollo',StringToDate(DateToString(Now())))
+    context.iolSendMail(azione='protocollazione',form='00-print')
+else:
+    context.plone_utils.addPortalMessage('protocollazione fallita %s' %result['message'],'error')]]></onSaveDocument>
+      <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
+      <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
+      <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<div><span class="plominoFieldClass">display_document</span></div>
+<div class="pagina-suap"><div><span class="plominoFieldClass">allegati_istanza_elenco</span></div></div>
+]]></FormLayout>
+      <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
+      <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
+      <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
+      <StoreDynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</StoreDynamicDocumentTitle>
+      <DocumentId type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentId>
+      <ActionBarPosition type="Products.Archetypes.Field.StringField">BOTTOM</ActionBarPosition>
+      <HideDefaultActions type="Products.Archetypes.Field.BooleanField">True</HideDefaultActions>
+      <HideInMenu type="Products.Archetypes.Field.BooleanField">True</HideInMenu>
+      <isSearchForm type="Products.Archetypes.Field.BooleanField">False</isSearchForm>
+      <isPage type="Products.Archetypes.Field.BooleanField">False</isPage>
+      <SearchView type="Products.Archetypes.Field.StringField"/>
+      <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
+      <Position type="Products.Archetypes.Field.IntegerField"/>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
+      <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.min.css
+++resource++iol.document/css/bootstrap-accessibile.min.css
+++resource++iol.document/css/iol.css
+resources/iol-custom.css]]></ResourcesCSS>
+      <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
+      <elements>
+        <element id="display_document" title="Pratica presentata" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">display_document</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#come form di visualizzazione del documento uso la form di compilazione che dovrebbe essere sempre assegnata al documento
+return dict(formName=context.getItem('iol_start_form'), docId=context.getId())]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_displaydoc</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="display_allegati" title="Documenti allegati" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">display_allegati</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[#come form di visualizzazione del documento uso la form di compilazione che dovrebbe essere sempre assegnata al documento
+return dict(formName=context.getItem('iol_form_allegati'), docId=context.getId())]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_displaydoc</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+        <element id="allegati_istanza_elenco" title="Elenco degli allegati all'istanza" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegati_istanza_elenco</id>
+          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[db=context.getParentDatabase()
+elenco_campi = context.resources.customscripts.getElencoAllegati()
+result = list()
+for row in elenco_campi:
+    fieldValue = context.getItem(row[1],{})
+    if fieldValue!={}:
+        titolo=row[0]
+        names=[]
+        for name in fieldValue.keys():
+            names.append(name)
+        result.append({"label":titolo,"files":names})
+return result]]></Formula>
+          <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_attachments_view</FieldReadTemplate>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
+          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
+          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
+        </element>
+      </elements>
+    </element>
+  </design>
+</plominodatabase>
