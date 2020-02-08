@@ -20,9 +20,6 @@
 </div>
 <p><span class="plominoHidewhenClass">end:hw_no_attivita_altro</span></p>
 <p><span class="plominoSubformClass">base_sub_protocollo_esistente</span></p>
-<div>
-<span class="plominoLabelClass">alimentare_opt</span><span class="plominoFieldClass">alimentare_opt</span>
-</div>
 <div class="row-fluid">
 <div class="span6">
 <span class="plominoLabelClass">avvio_opt</span><span class="plominoFieldClass">avvio_opt</span>
@@ -54,6 +51,9 @@
 </div>
 <div class="span3">
 <span class="plominoLabelClass">data_subingresso_notaio</span><span class="plominoFieldClass">data_subingresso_notaio</span>
+</div>
+<div class="span3">
+<span class="plominoLabelClass">allegato_subingresso_notaio</span><span class="plominoFieldClass">allegato_subingresso_notaio</span>
 </div>
 </div>
 <div class="row-fluid">
@@ -718,7 +718,7 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['''data-dhw=1''']]></HTMLAttributesFormula>
           <params>
 <param>
 <value><array><data>
@@ -845,48 +845,6 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="alimentare_opt" title="L'attività prevede la vendita e/o somministrazione di prodotti alimentari" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">alimentare_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>['SI','NO']</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>RADIO</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
         </element>
       </elements>
     </element>

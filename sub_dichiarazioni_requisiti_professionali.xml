@@ -9,9 +9,7 @@
       <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
-      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoHidewhenClass">start:hw_no_dichiarazioni_requisiti_professionali</span></p>
-<fieldset class="scheduler-border" title="Richiedente">
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">DICHIARAZIONI SUL POSSESSO DEI REQUISITI PROFESSIONALI:</legend>
 <div>
 <span class="plominoLabelClass">dichiarazione_requisiti_professionali_opt</span><span class="plominoFieldClass">dichiarazione_requisiti_professionali_opt</span>
@@ -30,9 +28,7 @@
 </div>
 <div><a href="modelli/suap/dichiarazione-requisiti-preposto" target="blank_" title="Dichiarazione di possesso dei requisiti da parte del preposto"><span class="label"><img src="pdf.png"> Dichiarazione di possesso dei requisiti da parte del preposto <span style="text-decoration: underline; ">da scaricare e ricaricare firmato nella sezione allegati</span></span></a></div>
 <p><span class="plominoHidewhenClass">end:hw_no_dichiarazione_preposto</span></p>
-</fieldset>
-<p><span class="plominoHidewhenClass">end:hw_no_dichiarazioni_requisiti_professionali</span></p>
-]]></FormLayout>
+</fieldset>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
       <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
@@ -129,11 +125,6 @@ resources/iol-custom.css]]></ResourcesCSS>
           <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazione_dichiarante</id>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('dichiarazione_requisiti_professionali_opt')!='1']]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
-        </element>
-        <element id="hw_no_dichiarazioni_requisiti_professionali" title="hw_no_dichiarazioni_requisiti_professionali" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_dichiarazioni_requisiti_professionali</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('alimentare_opt')=='NO']]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
       </elements>
     </element>

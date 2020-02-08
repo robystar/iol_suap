@@ -232,14 +232,7 @@ resources/iol-custom.css]]></ResourcesCSS>
           <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
           <FieldMode type="Products.Archetypes.Field.StringField">COMPUTEDONSAVE</FieldMode>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[diz=context.resources.config_pratica_tipo()
-tipo = diz.get(context.getItem('iol_tipo_proc'))
-if context.getItem('iol_tipo_proc') in ['cessazione-sospensione']:
-    tipo = tipo + ' ' + context.getItem('cessazione_sospensione_attivita')
-    
-if context.getItem('iol_tipo_proc') in ['subingresso']:
-    tipo = tipo+ ' ' + context.getItem('subingresso_attivita_opt').replace('-',' ')
-        
-return tipo]]></Formula>
+return diz.get(context.getItem('iol_tipo_proc'))]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
           <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
@@ -322,37 +315,6 @@ else:
           <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
           <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getForm().Title()]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="identificativo" title="identificativo" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">identificativo</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">COMPUTEDONSAVE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getId()]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">True</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="richiedente_email" title="richiedente_email" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">richiedente_email</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">COMPUTEDONSAVE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('delegato_pec'):
-    return context.getItem('delegato_pec')
-elif context.getItem('fisica_pec'):
-    return context.getItem('fisica_pec')
-else: 
-    return context.getItem('fisica_email')]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
           <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>

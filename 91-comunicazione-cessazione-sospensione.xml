@@ -2,7 +2,7 @@
   <design>
     <element id="91-comunicazione-cessazione-sospensione" title="Comunicazione di cessazione o sospensione temporanea di attività" type="PlominoForm">
       <id type="Products.Archetypes.Field.StringField">91-comunicazione-cessazione-sospensione</id>
-      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
       <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
@@ -18,11 +18,13 @@ else:
 <p><span class="plominoSubformClass">base_sub_intestazione</span></p>
 <h6 class="text-center">L.R. 2/1/2007 n. 1 e s.m.i., articoli 126 – 129 e 137</h6>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<!--SEZIONE ANAGRAFICA--><p><span class="plominoSubformClass">base_sub_fisica</span></p>
+<!--SEZIONE ANAGRAFICA-->
+<p><span class="plominoSubformClass">base_sub_fisica</span></p>
 <p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 <p><span class="plominoSubformClass">base_sub_delegato</span></p>
 <p><span class="plominoSubformClass">base_sub_ubicazione</span></p>
-<!--SEZIONE RICHIESTA--><p><span class="plominoSubformClass">sub_cessazione_sospensione</span></p>
+<!--SEZIONE RICHIESTA-->
+<p><span class="plominoSubformClass">sub_cessazione_sospensione</span></p>
 </div>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[context.resources.customscripts.getDocumentTitle(context)]]></DocumentTitle>
@@ -97,32 +99,6 @@ resources/iol-custom.css]]></ResourcesCSS>
           <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
           <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA['cessazione-sospensione']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="protocollo_tipodocumento" title="protocollo_tipodocumento" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_tipodocumento</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['COMMERCIOWEB3']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="protocollo_titolario" title="protocollo_titolario" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_titolario</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['08-04']]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
           <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>

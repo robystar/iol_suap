@@ -2,7 +2,7 @@
   <design>
     <element id="511-scia-ricettivita-affittacamere" title="Attività di struttura ricettiva denominata &quot;AFFITTACAMERE&quot; (*)" type="PlominoForm">
       <id type="Products.Archetypes.Field.StringField">511-scia-ricettivita-affittacamere</id>
-      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
       <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
@@ -18,7 +18,6 @@ else:
 <p><span class="plominoSubformClass">base_sub_intestazione</span></p>
 <h6 class="text-center">Ai sensi del D.Lgs. 59/2010 (art. 65), del D.Lgs. 114/1998 (art. 7) e del D.L. 78/2010 (L. 122/2010)</h6>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<p><span class="plominoSubformClass">base_sub_modpagamento</span></p>
 <p><span class="plominoSubformClass">base_sub_fisica</span></p>
 <p><span class="plominoSubformClass">base_sub_giuridica</span></p>
 <p><span class="plominoSubformClass">base_sub_delegato</span></p>

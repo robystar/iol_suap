@@ -494,7 +494,7 @@ else:
 <value><struct>
 <member>
 <name>selectionlistformula</name>
-<value><string>return ['''i regolamenti di igiene e sanità, la conformità degli arredi e delle attrezzature a quanto previsto dalle normative di riferimento in ordine ai requisiti di sicurezza;|1''']</string></value>
+<value><string>return ['''i regolamenti di igiene e sanità, la conformità degli arredi e delle attrezzature a quanto previsto dalle normative di riferimento in ordine ai requisiti di sicurezza OPPURE il regolamento comunale per la disciplina dell’attività di acconciatore e/o estetista;|1''']</string></value>
 </member>
 </struct></value>
 <value><struct>

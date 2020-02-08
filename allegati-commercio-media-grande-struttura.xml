@@ -15,13 +15,16 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
 <p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
-<p>DOCUMENTAZIONE ALLEGATA</p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DOCUMENTAZIONE ALLEGATA</legend>
 <p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_soci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_requisiti_professionali</span></p>
 <p><span class="plominoLabelClass">allegato_planimetria_locali</span><span class="plominoFieldClass">allegato_planimetria_locali</span></p>
 <p><span class="plominoLabelClass">allegato_altra_documentazione</span><span class="plominoFieldClass">allegato_altra_documentazione</span></p>
-<p>SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA DOMANDA DI AUTORIZZAZIONE</p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA DOMANDA DI AUTORIZZAZIONE</legend>
 <p><span class="plominoHidewhenClass">start:hw_no_notifica_sanitaria</span></p>
 <div class="row-fluid">
 <div class="span6"><a href="modelli/suap/notifica-sanitaria" target="blank_" title="Notifica sanitaria da scaricare e compilare"><span class="label"><img src="pdf.png"> Notifica sanitaria da scaricare e compilare</span></a></div>
@@ -34,10 +37,6 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_vendita_ingrosso</span></p>
 <p><span class="plominoLabelClass">allegato_comunicazione_vendita_ingrosso</span><span class="plominoFieldClass">allegato_comunicazione_vendita_ingrosso</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_vendita_ingrosso</span></p>
-<p><span class="plominoFieldClass">allegati_alcolici_opt</span><span class="plominoLabelClass">allegati_alcolici_opt</span></p>
-<p><span class="plominoHidewhenClass">start:hw_no_vendita_alcolici</span></p>
-<p><span class="plominoLabelClass">allegato_comunicazione_vendita_alcolici</span><span class="plominoFieldClass">allegato_comunicazione_vendita_alcolici</span></p>
-<p><span class="plominoHidewhenClass">end:hw_no_vendita_alcolici</span></p>
 <p><span class="plominoFieldClass">allegati_agricoli_opt</span><span class="plominoLabelClass">allegati_agricoli_opt</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_agricoli</span></p>
 <p><span class="plominoLabelClass">allegato_scia_alimentazione_animale</span><span class="plominoFieldClass">allegato_scia_alimentazione_animale</span></p>
@@ -63,7 +62,9 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_scia_insegna</span></p>
 <p><span class="plominoLabelClass">allegato_scia_insegna</span><span class="plominoFieldClass">allegato_scia_insegna</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_scia_insegna</span></p>
-<p>RICHIESTA DI ACQUISIZIONE DI ALTRE AUTORIZZAZIONI PRESENTATA CONTESTUALMENTE ALLA DOMANDA DI AUTORIZZAZIONE</p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">RICHIESTA DI ACQUISIZIONE DI ALTRE AUTORIZZAZIONI PRESENTATA CONTESTUALMENTE ALLA DOMANDA DI AUTORIZZAZIONE </legend>
 <p> </p>
 <p><span class="plominoFieldClass">allegati_fitosanitari_opt</span><span class="plominoLabelClass">allegati_fitosanitari_opt</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_fitosanitari</span></p>
@@ -81,6 +82,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_autorizzazione_insegna</span></p>
 <p><span class="plominoLabelClass">allegato_documentazione_autorizzazione_insegna</span><span class="plominoFieldClass">allegato_documentazione_autorizzazione_insegna</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_autorizzazione_insegna</span></p>
+</fieldset>
 <p><span class="plominoSubformClass">base_sub_allegati_altri</span></p>
 ]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>

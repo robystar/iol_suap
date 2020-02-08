@@ -14,8 +14,8 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
-<p>ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA</p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA</legend>
 <p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_soci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_requisiti_professionali</span></p>
@@ -25,10 +25,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <span class="plominoLabelClass">allegato_notifica_sanitaria</span><span class="plominoFieldClass">allegato_notifica_sanitaria</span>
 </div>
 </div>
-<p><span class="plominoFieldClass">allegati_alcolici_opt</span><span class="plominoLabelClass">allegati_alcolici_opt</span></p>
-<p><span class="plominoHidewhenClass">start:hw_no_vendita_alcolici</span></p>
-<p><span class="plominoLabelClass">allegato_comunicazione_vendita_alcolici</span><span class="plominoFieldClass">allegato_comunicazione_vendita_alcolici</span></p>
-<p><span class="plominoHidewhenClass">end:hw_no_vendita_alcolici</span></p>
+</fieldset>
 <p><span class="plominoSubformClass">base_sub_allegati_altri</span></p>
 ]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
@@ -75,7 +72,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
         </element>
         <element id="hw_no_notifica_sanitaria" title="hw_no_notifica_sanitaria" type="PlominoHidewhen">
           <id type="Products.Archetypes.Field.StringField">hw_no_notifica_sanitaria</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',False)]]></Formula>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',True)]]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
         <element id="allegato_notifica_sanitaria" title="Notifica sanitaria (art. 6, Reg.CE n. 852/2004)" type="PlominoField">

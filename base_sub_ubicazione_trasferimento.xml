@@ -11,7 +11,8 @@
 ondelete_parent(plominoDocument)]]></onDeleteDocument>
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
-      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<div class="row-fluid">
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
+<div class="row-fluid">
 <div class="span2">
 <span class="plominoLabelClass">ubicazione_trasferimento_comune</span><span class="plominoFieldClass">ubicazione_trasferimento_comune</span>
 </div>
@@ -27,7 +28,22 @@ ondelete_parent(plominoDocument)]]></onDeleteDocument>
 <div class="span1">
 <span class="plominoLabelClass">ubicazione_trasferimento_scala</span><span class="plominoFieldClass">ubicazione_trasferimento_scala</span>
 </div>
-</div>]]></FormLayout>
+</div>
+<div class="row-fluid">
+<div class="span3">
+<span class="plominoLabelClass">ubicazione_trasferimento_sezione</span><span class="plominoFieldClass">ubicazione_trasferimento_sezione</span>
+</div>
+<div class="span3">
+<span class="plominoLabelClass">ubicazione_trasferimento_foglio</span><span class="plominoFieldClass">ubicazione_trasferimento_foglio</span>
+</div>
+<div class="span3">
+<span class="plominoLabelClass">ubicazione_trasferimento_mappale</span><span class="plominoFieldClass">ubicazione_trasferimento_mappale</span>
+</div>
+<div class="span1">
+<span class="plominoLabelClass">ubicazione_trasferimento_subalterno</span><span class="plominoFieldClass">ubicazione_trasferimento_subalterno</span>
+</div>
+</div>
+]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
       <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>

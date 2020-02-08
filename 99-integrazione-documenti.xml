@@ -12,7 +12,6 @@
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<div class="pagina-suap">
 <p><span class="plominoSubformClass">base_sub_intestazione</span></p>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<p><span class="plominoSubformClass">base_sub_modpagamento</span></p>
 <fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">INVIO DI DOCUMENTAZIONE INTEGRATIVA PER IL DOCUMENTO:</legend>
 <div class="row-fluid">
@@ -22,11 +21,8 @@
 <div class="span2">
 <span class="plominoLabelClass">documento_esistente_anno</span> <span class="plominoFieldClass">documento_esistente_anno</span>
 </div>
-<div class="span3">
+<div class="span5">
 <span class="plominoLabelClass">documento_esistente_id</span> <span class="plominoFieldClass">documento_esistente_id</span>
-</div>
-<div class="span3">
-<span class="plominoLabelClass">numero_pratica</span> <span class="plominoFieldClass">numero_pratica</span>
 </div>
 </div>
 <div>
@@ -37,8 +33,8 @@
 </div>
 </fieldset>
 <!--SEZIONE ANAGRAFICA--><p><span class="plominoSubformClass">base_sub_fisica</span></p>
-<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 <p><span class="plominoSubformClass">base_sub_delegato</span></p>
+<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 </div>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[context.resources.customscripts.getDocumentTitle(context)]]></DocumentTitle>
@@ -82,7 +78,7 @@ resources/iol-custom.css]]></ResourcesCSS>
           <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[]]></Hidewhen>
           <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
         </element>
-        <element id="documento_esistente_id" title="Identificativo trovato" type="PlominoField">
+        <element id="documento_esistente_id" title="Identificativo del documento trovato" type="PlominoField">
           <id type="Products.Archetypes.Field.StringField">documento_esistente_id</id>
           <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
           <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
@@ -179,19 +175,6 @@ data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
 </data></array></value>
 </param>
 </params>
-        </element>
-        <element id="numero_pratica" title="Numero pratica" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">numero_pratica</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('numero_pratica')]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
         </element>
       </elements>
     </element>

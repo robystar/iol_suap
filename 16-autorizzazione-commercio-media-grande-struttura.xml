@@ -2,11 +2,11 @@
   <design>
     <element id="16-autorizzazione-commercio-media-grande-struttura" title="Domanda di autorizzazione per l'esercizio di media o grande struttura di vendita" type="PlominoForm">
       <id type="Products.Archetypes.Field.StringField">16-autorizzazione-commercio-media-grande-struttura</id>
-      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
       <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
-if context.getItem('requisiti_antimafia_opt'):
+if context.getItem('requisiti_onorabilita_opt'):
         return "%s/EditDocument?openwithform=allegati-%s" %(context.doc_url(),context.getItem('iol_tipo_proc'))
 
 else:
@@ -19,10 +19,9 @@ else:
 <h6 class="text-center">L.R. 2/1/2007 n. 1 e s.m.i., articoli 15, 19, 19 bis, 20, 21, 22 e 23 bis, 141, 144 e 145; DCR 17/12/2012 n. 31 e s.m.i.</h6>
 <h6 class="text-center">(Sez. I, Tabella A, d.lgs. 222/2016)</h6>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<p><span class="plominoSubformClass">base_sub_modpagamento</span></p>
 <!--SEZIONE ANAGRAFICA--><p><span class="plominoSubformClass">base_sub_fisica</span></p>
-<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 <p><span class="plominoSubformClass">base_sub_delegato</span></p>
+<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 <p><span class="plominoSubformClass">base_sub_ubicazione</span></p>
 <!--SEZIONE RICHIESTA--><p><span class="plominoHidewhenClass">start:hw_newdoc</span></p>
 <fieldset class="scheduler-border" title="Richiedente">
@@ -42,20 +41,11 @@ else:
 <p><span class="plominoHidewhenClass">end:hw_ampliamento</span></p>
 </fieldset>
 <!--SEZIONE DICHIARAZIONI--><p><span class="plominoHidewhenClass">start:hw_dichiarazioni</span></p>
-<p><span class="plominoSubformClass">sub_dichiarazioni_antimafia</span></p>
 <p><span class="plominoSubformClass">sub_dichiarazioni_onorabilita</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_alimentare_dichiarazioni</span></p>
 <p><span class="plominoSubformClass">sub_dichiarazioni_requisiti_professionali</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_alimentare_dichiarazioni</span></p>
-<fieldset class="scheduler-border" title="Richiedente">
-<legend class="scheduler-border">ALTRE DICHIARAZIONI:</legend>
-<div>
-<span class="plominoLabelClass">dichiarazione_norme_opt</span><span class="plominoFieldClass">dichiarazione_norme_opt</span>
-</div>
-<div>
-<span class="plominoLabelClass">dichiarazione_variazioni_opt</span><span class="plominoFieldClass">dichiarazione_variazioni_opt</span>
-</div>
-</fieldset>
+<p><span class="plominoSubformClass">sub_dichiarazioni_altre</span></p>
 <p><span class="plominoHidewhenClass">end:hw_dichiarazioni</span></p>
 </div>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
@@ -216,116 +206,6 @@ resources/iol-custom.css]]></ResourcesCSS>
           <id type="Products.Archetypes.Field.StringField">hw_no_alimentare_dichiarazioni</id>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',False)]]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
-        </element>
-        <element id="dichiarazione_norme_opt" title="Il/la sottoscritto/a dichiara, relativamente ai locali di esercizio, di aver rispettato: " type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">dichiarazione_norme_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>return ["i regolamenti locali di polizia urbana, annonaria e di igiene e sanità, i regolamenti edilizi e le norme urbanistiche nonché quelle relative alle destinazioni d'uso;|1","la normativa vigente in materia di prevenzione incendi;|2","la normativa relativa alle superfici da destinare a parcheggio, a sosta e a movimentazione merci;|3"]</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="dichiarazione_variazioni_opt" title="Il/la sottoscritto/a dichiara inoltre:" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">dichiarazione_variazioni_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>return ["di impegnarsi a comunicare ogni variazione relativa a stati, fatti, condizioni e titolarità rispetto a quanto dichiarato;|1"]</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="protocollo_tipodocumento" title="protocollo_tipodocumento" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_tipodocumento</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['COMMERCIOWEB3']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="protocollo_titolario" title="protocollo_titolario" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_titolario</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['08-04']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
         </element>
       </elements>
     </element>

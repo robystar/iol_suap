@@ -14,7 +14,6 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
 <fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA</legend>
 <p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>

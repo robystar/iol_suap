@@ -2,11 +2,11 @@
   <design>
     <element id="40-scia-agenzia-affari" title="Agenzia d'affari" type="PlominoForm">
       <id type="Products.Archetypes.Field.StringField">40-scia-agenzia-affari</id>
-      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
       <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
-if context.getItem('requisiti_antimafia_opt'):
+if context.getItem('requisiti_onorabilita_opt'):
         return "%s/EditDocument?openwithform=allegati-%s" %(context.doc_url(),context.getItem('iol_tipo_proc'))
 
 else:
@@ -19,10 +19,9 @@ else:
 <h6 class="text-center">Artt.115 e seguenti T.U.L.P.S. e 204 e seguenti Regolamento di esecuzione</h6>
 <h6 class="text-center">Art. 19 legge 07/08/1991 n.241/90 e ss.mm.ii.</h6>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<p><span class="plominoSubformClass">base_sub_modpagamento</span></p>
 <!--SEZIONE ANAGRAFICA--><p><span class="plominoSubformClass">base_sub_fisica</span></p>
-<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 <p><span class="plominoSubformClass">base_sub_delegato</span></p>
+<p><span class="plominoSubformClass">base_sub_giuridica_mappa</span></p>
 <p><span class="plominoSubformClass">base_sub_ubicazione</span></p>
 <!--SEZIONE RICHIESTA--><p><span class="plominoHidewhenClass">start:hw_newdoc</span></p>
 <fieldset class="scheduler-border" title="Richiedente">
@@ -39,7 +38,6 @@ else:
 <p><span class="plominoHidewhenClass">end:hw_trasferimento</span></p>
 </fieldset>
 <!--SEZIONE DICHIARAZIONI--><p><span class="plominoHidewhenClass">start:hw_dichiarazioni</span></p>
-<p><span class="plominoSubformClass">sub_dichiarazioni_antimafia</span></p>
 <p><span class="plominoSubformClass">sub_dichiarazioni_onorabilita</span></p>
 <p><span class="plominoSubformClass">sub_dichiarazioni_tulsp</span></p>
 <p><span class="plominoSubformClass">sub_dichiarazioni_altre</span></p>
@@ -176,32 +174,6 @@ resources/iol-custom.css]]></ResourcesCSS>
           <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
           <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA['agenzia-affari']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="protocollo_tipodocumento" title="protocollo_tipodocumento" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_tipodocumento</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['COMMERCIOWEB3']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="protocollo_titolario" title="protocollo_titolario" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_titolario</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['08-04']]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
           <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>

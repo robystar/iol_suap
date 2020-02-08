@@ -28,9 +28,6 @@ context.setItem('IOL_PREVIOUS_FORM',context.getItem('Form'))]]></beforeSaveDocum
 </div>
 <div class="span4"><span class="plominoActionClass">btn_modifica_protocollo</span></div>
 </div>
-<p><span class="plominoHidewhenClass">start:hw_no_ricevuta</span></p>
-<div class="alert alert-success"><p><span class="plominoLabelClass">scarica_ricevuta_presentazione</span><span class="plominoFieldClass">scarica_ricevuta_presentazione</span></p></div>
-<p><span class="plominoHidewhenClass">end:hw_no_ricevuta</span></p>
 ]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
@@ -53,16 +50,16 @@ context.setItem('IOL_PREVIOUS_FORM',context.getItem('Form'))]]></beforeSaveDocum
 resources/iol-custom.css]]></ResourcesCSS>
       <excludeFromNav type="Products.Archetypes.Field.BooleanField">False</excludeFromNav>
       <elements>
-        <element id="numero_pratica" title="Numero pratica" type="PlominoField">
+        <element id="numero_pratica" title="Identificativo" type="PlominoField">
           <id type="Products.Archetypes.Field.StringField">numero_pratica</id>
           <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getId()]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
           <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">True</ToBeIndexed>
+          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
         </element>
@@ -174,40 +171,6 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <Content type="Products.Archetypes.Field.TextField"><![CDATA[return context.absolute_url()]]></Content>
           <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[]]></Hidewhen>
           <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
-        </element>
-        <element id="hw_no_ricevuta" title="hw_no_ricevuta" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_ricevuta</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[ricevuta = context.getParentDatabase().resources.config_suap().get('ricevuta_presentazione',False)
-return context.isEditMode() or context.getItem('data_protocollo','')=='' or context.getItem('numero_pratica','')=='' or not ricevuta]]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
-        </element>
-        <element id="scarica_ricevuta_presentazione" title="Ricevuta di presentazione" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">scarica_ricevuta_presentazione</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">DISPLAY</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('iol_tipo_proc')=='autorizzazione-aua':
-    return '''<ul class="attachments"><li><a target="new" href="@@iol-printdocument?model=ricevuta-aua&app=suap&grp=ricevute-presentazione&pdf=1&form=00-print">Scarica la ricevuta di presentazione</a></li></ul>'''   
-else:
-    return '''<ul class="attachments"><li><a target="new" href="@@iol-printdocument?model=ricevuta-attivita-produttive&app=suap&grp=ricevute-presentazione&pdf=1&form=00-print">Scarica la ricevuta di presentazione</a></li></ul>''']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
         </element>
       </elements>
     </element>

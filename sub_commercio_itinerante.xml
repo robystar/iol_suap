@@ -162,7 +162,7 @@
 <value><struct>
 <member>
 <name>selectionlistformula</name>
-<value><string>['''nel mercato settimanale del lunedì;|1''','''nella Fiera|2''']</string></value>
+<value><string>['''nel mercato settimanale del lunedì di Piazza del Popolo;|1''','''nella Fiera|2''']</string></value>
 </member>
 </struct></value>
 </data></array></value>

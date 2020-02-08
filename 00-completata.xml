@@ -28,7 +28,6 @@ context.resources.customscripts.protocollaDocumento(context)]]></onSaveDocument>
 <div class="pagina-suap">
 <div><span class="plominoFieldClass">display_allegati</span></div>
 <div class="dichiarazione">
-<p><span class="plominoSubformClass">sub_pagopa</span></p>
 <h6>SCARICARE E FIRMARE DIGITALMENTE QUESTI DOCUMENTI</h6>
 <div><span class="plominoFieldClass">documenti_da_scaricare</span></div>
 </div>

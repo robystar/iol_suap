@@ -14,16 +14,12 @@
 <fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">DATI IDENTIFICATIVI DELLA PRATICA</legend>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<p><span class="plominoSubformClass">sub_pagopa</span></p>
 <p><span class="plominoSubformClass">00-protocollo</span></p>
 <p><span class="plominoFieldClass">iol_workflow_status</span></p>
 </fieldset>
 <!--RESPONSABILE DEL PROCEDIMENTO ASSEGNATO --><p><span class="plominoHidewhenClass">start:hw_no_assegnata</span></p>
 <p><span class="plominoSubformClass">00-assegnazione</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_assegnata</span></p>
-<p><span class="plominoHidewhenClass">start:hw_no_avvio_procedimento</span></p>
-<p><span class="plominoSubformClass">00-avvio-procedimento</span></p>
-<p><span class="plominoHidewhenClass">end:hw_no_avvio_procedimento</span></p>
 <div><span class="plominoFieldClass">display_document</span></div>
 <p><span class="plominoFieldClass">allegati_istanza_elenco</span></p>
 <!--EVENTUALI RICHIESTA DI INTEGRAZIONE --><p><span class="plominoHidewhenClass">start:hw_no_richiesta_integrazione_01</span></p>
@@ -92,11 +88,6 @@ if wfInfo and wfInfo.get("state_title"):
         <element id="hw_no_assegnata" title="hw_no_assegnata" type="PlominoHidewhen">
           <id type="Products.Archetypes.Field.StringField">hw_no_assegnata</id>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_assegnazione','')=='']]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
-        </element>
-        <element id="hw_no_avvio_procedimento" title="hw_no_avvio_procedimento" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_avvio_procedimento</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('data_avvio_procedimento','')=='']]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
         <element id="hw_no_conclusa" title="hw_no_conclusa" type="PlominoHidewhen">
@@ -314,16 +305,13 @@ return dict(formName="allegati-%s" %context.getItem('iol_tipo_proc'), docId=cont
 elenco_campi = context.resources.customscripts.getElencoAllegati()
 result = list()
 for row in elenco_campi:
-    fieldName = row[1]
-    if 'allegato_richiesta' not in fieldName:
-        fieldValue = context.getItem(fieldName,{})
-        if fieldValue!={}:
-            titolo=row[0]
-            names=[]
-            for name in fieldValue.keys():
-                names.append(name)
-            result.append({"label":titolo,"files":names})
-        
+    fieldValue = context.getItem(row[1],{})
+    if fieldValue!={}:
+        titolo=row[0]
+        names=[]
+        for name in fieldValue.keys():
+            names.append(name)
+        result.append({"label":titolo,"files":names})
 return result]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField">iol_attachments_view</FieldReadTemplate>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>

@@ -14,7 +14,6 @@ return "%s/EditDocument?openwithform=00-suap-completata" %context.absolute_url()
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoHidewhenClass">start:hw_no_allegati_requisiti_professionali</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_requisiti_titolare</span></p>
 <div>
 <span class="plominoLabelClass">allegato_requisiti_titolare</span><span class="plominoFieldClass">allegato_requisiti_titolare</span>
@@ -25,7 +24,6 @@ return "%s/EditDocument?openwithform=00-suap-completata" %context.absolute_url()
 <span class="plominoLabelClass">allegato_requisiti_preposto</span><span class="plominoFieldClass">allegato_requisiti_preposto</span>
 </div>
 <p><span class="plominoHidewhenClass">end:hw_no_requisiti_preposto</span></p>
-<p><span class="plominoHidewhenClass">end:hw_no_allegati_requisiti_professionali</span></p>
 ]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
@@ -57,7 +55,7 @@ return "%s/EditDocument?openwithform=00-suap-completata" %context.absolute_url()
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
@@ -90,7 +88,7 @@ data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
@@ -111,11 +109,6 @@ data-description = "Sempre, in presenza di un preposto"
 </data></array></value>
 </param>
 </params>
-        </element>
-        <element id="hw_no_allegati_requisiti_professionali" title="hw_no_allegati_requisiti_professionali" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_allegati_requisiti_professionali</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('alimentare_opt')=='NO']]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
       </elements>
     </element>

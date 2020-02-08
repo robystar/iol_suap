@@ -10,8 +10,6 @@
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<fieldset class="scheduler-border" title="Richiedente">
-<legend class="scheduler-border">DICHIARAZIONI SUL RESPONSABILE TECNICO:</legend>
 <p><span class="plominoHidewhenClass">start:hw_no_acconciatore</span></p>
 <fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">Nel caso di esercizio di attività di acconciatore (L. 174/2005 e specifiche disposizioni regionali di settore L.R. 23/2009 e ss.mm.):</legend>
@@ -40,19 +38,6 @@
 <p><span class="plominoHidewhenClass">end:hw_no_responsabile_tecnico_estetista</span></p>
 </fieldset>
 <p><span class="plominoHidewhenClass">end:hw_no_estetista</span></p>
-</fieldset>
-<fieldset class="scheduler-border" title="Richiedente">
-<legend class="scheduler-border">ALTRE DICHIARAZIONI:</legend>
-<div>
-<span class="plominoLabelClass">dichiarazione_regolamenti_opt</span><span class="plominoFieldClass">dichiarazione_regolamenti_opt</span>
-</div>
-<div>
-<span class="plominoLabelClass">dichiarazione_norme_opt</span><span class="plominoFieldClass">dichiarazione_norme_opt</span>
-</div>
-<div>
-<span class="plominoLabelClass">dichiarazione_variazioni_opt</span><span class="plominoFieldClass">dichiarazione_variazioni_opt</span>
-</div>
-</fieldset>
 ]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
@@ -163,8 +148,8 @@ resources/iol-custom.css]]></ResourcesCSS>
 "bInfo": false,
 "bAutoWidth": false,
 "plominoDialogOptions": {
-        "width": 800,
-        "height": 400
+        "width": 400,
+        "height": 300
     }
 </string></value>
 </member>
@@ -263,8 +248,8 @@ resources/iol-custom.css]]></ResourcesCSS>
 "bInfo": false,
 "bAutoWidth": false,
 "plominoDialogOptions": {
-        "width": 800,
-        "height": 400
+        "width": 400,
+        "height": 300
     }
 </string></value>
 </member>
@@ -288,132 +273,6 @@ else:
 else:
     return True]]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
-        </element>
-        <element id="dichiarazione_regolamenti_opt" title="Il/la sottoscritto/a dichiara di aver rispettato:" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">dichiarazione_regolamenti_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>return ['''i regolamenti di igiene e sanità, la conformità degli arredi e delle attrezzature a quanto previsto dalle normative di riferimento in ordine ai requisiti di sicurezza;|1''']</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="dichiarazione_norme_opt" title="Il/la sottoscritto/a dichiara inoltre di aver rispettato:" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">dichiarazione_norme_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>return ["le norme sulla sicurezza sui luoghi di lavoro;|1","le norme edilizie, urbanistiche e quelle relative alla destinazione d’uso;|2","la normativa vigente in materia ambientale|3"]</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="dichiarazione_variazioni_opt" title="Il/la sottoscritto/a dichiara inoltre:" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">dichiarazione_variazioni_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldEditCheck</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>return ["di impegnarsi a comunicare ogni variazione relativa a stati, fatti, condizioni e titolarità rispetto a quanto dichiarato;|1","di consentire i controlli nei locali da parte delle autorità competenti nel caso in cui l’esercizio dell’attività venga svolto presso la propria abitazione;|2"]</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
         </element>
       </elements>
     </element>

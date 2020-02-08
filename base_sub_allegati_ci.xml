@@ -19,7 +19,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">end:hw_no_ci_titolare</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_allegato_delega</span></p>
 <div class="row-fluid">
-<div class="span4"><a href="../../modelli/documenti/modello-di-procura-suap" target="blank_" title="Procura/Delega da scaricare e compilare"><span class="label"><img src="pdf.png"> Procura/Delega da scaricare e compilare</span></a></div>
+<div class="span4"><a href="modelli/suap/procura-delega" target="blank_" title="Procura/Delega da scaricare e compilare"><span class="label"><img src="pdf.png"> Procura/Delega da scaricare e compilare</span></a></div>
 <div class="span8">
 <span class="plominoLabelClass">allegato_delega</span><span class="plominoFieldClass">allegato_delega</span>
 </div>
@@ -70,7 +70,7 @@ data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
 <value><struct>
 <member>
 <name>type</name>
-<value><string>MULTI</string></value>
+<value><string>SINGLE</string></value>
 </member>
 </struct></value>
 </data></array></value>
@@ -95,7 +95,7 @@ data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
 data-plugin = "iolUploadFile" 
-data-plugin-options={"maxsize":"30","filetype":["jpg","png","pdf","p7m"]}
+data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
 data-description="Nel caso in cui la segnalazione non sia sottoscritta in forma digitale e in assenza di procura"
 ''']]></HTMLAttributesFormula>
           <params>
@@ -104,7 +104,7 @@ data-description="Nel caso in cui la segnalazione non sia sottoscritta in forma 
 <value><struct>
 <member>
 <name>type</name>
-<value><string>MULTI</string></value>
+<value><string>SINGLE</string></value>
 </member>
 </struct></value>
 </data></array></value>

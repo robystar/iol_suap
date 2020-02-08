@@ -19,28 +19,18 @@
 <hr>
 </div>
 <div class="alert alert-info">
-<strong>INFORMATIVA SULLA PRIVACY AI SENSI DEL REGOLAMENTO EUROPEO PER LA PROTEZIONE DEI DATI 2016/679</strong><p>La informiamo che i dati personali e sensibili da lei forniti e quelli che eventualmente fornirà anche successivamente formeranno oggetto di trattamento nel rispetto della normativa sopra richiamata.<br> Per trattamento si intende la raccolta, registrazione, conservazione, elaborazione, modificazione, selezione, estrazione, raffronto, utilizzo, interconnessione, blocco, comunicazione, diffusione, cancellazione, distribuzione dei dati personali, ovvero la combinazione di due o più di tali operazioni.</p>
-<h4>Responsabile Protezione dei Dati</h4>
-<p><strong>Studio Cavaggioni Scarl</strong> - E-Mail: scarl@studiocavaggioni.it <strong></strong><br> Soggetto individuato quale referente per il Titolare/Responsabile<strong> Avv. Tarocco Anna</strong><br>Telefono: 045.7614844 E-mail: anna.tarocco@studiocavaggioni.it</p>
-<h4>Finalità e modalità del trattamento</h4>
-Il Comune, titolare del trattamento, tratta i dati personali liberamente conferiti, esclusivamente per finalità istituzionali. <br><h4>Consenso</h4>
-Il consenso del trattamento ai fini istituzionali è necessario ed obbligatorio per le finalità stesse. <br><h4>Periodo di conservazione</h4>
-I dati personali verranno conservati per un arco di tempo non superiore al conseguimento delle finalità per le quali i dati personali sono trattati (finalità istituzionali e non commerciali). <br><h4>Diritti del cittadino/interessato</h4>
-Il cittadino/L’interessato avrà in qualsiasi momento piena facoltà di esercitare i diritti previsti dalla normativa vigente; potrà far valere i propri diritti rivolgendosi agli uffici del Comune.<br><p>I diritti del cittadino/dell’interessato sono quelli previsti dal Regolamento UE 2016/679 (GDPR).</p>
-Il cittadino/L’interessato può:
-<ul>
-<li>ricevere conferma dell’esistenza dei dati suoi personali e richiedere l’accesso al loro contenuto;</li>
-<li>aggiornare, modificare e/o correggere i propri dati personali;</li>
-<li>chiedere la cancellazione, la trasformazione in forma anonima, il blocco dei suoi dati trattati in violazione di legge;</li>
-<li>chiedere la limitazione del trattamento;</li>
-<li>opporsi per motivi legittimi al trattamento;</li>
-</ul>
-<br><p><span class="plominoFieldClass">informativa_privacy</span></p>
+<p><strong>INFORMATIVA ai sensi dell'art. 13 del Codice della Privacy (D.Lgs. 30/06/2003 n. 196)</strong></p>
+<p>Il d.lgs. n. 196 del 30 giugno 2003 ("<em>Codice in materia di protezione dei dati personali</em>") tutela le persone e gli altri soggetti rispetto al trattamento dei dati personali. Pertanto, come previsto dall'art. 13 del Codice, si forniscono le seguenti informazioni.</p>
+<p><strong>Finalità del trattamento</strong>. I dati personali saranno utilizzati dagli uffici nell'ambito del procedimento per il quale la dichiarazione viene resa.</p>
+<p><strong>Modalità del trattamento</strong>. I dati saranno trattati dagli incaricati sia con strumenti cartacei sia con strumenti informatici a disposizione degli uffici.</p>
+<p><strong>Ambito di comunicazione</strong>. I dati potranno essere comunicati a terzi nei casi previsti della Legge 7 agosto 1990, n. 241 ("<em>Nuove norme in materia di procedimento amministrativo e di diritto di accesso ai documenti amministrativi</em>") ove applicabile, e in caso di controlli sulla veridicità delle dichiarazioni (art. 71 del d.P.R. 28 dicembre 2000 n. 445 ("<em>Testo unico delle disposizioni legislative e regolamentari in materia di documentazione amministrativa</em>").</p>
+<p><strong>Diritti dell'interessato</strong>. L'interessato può in ogni momento esercitare i diritti di accesso, di rettifica, di aggiornamento e di integrazione dei dati come previsto dall'art. 7 del d.lgs. n. 196/2003. Per esercitare tali diritti tutte le richieste devono essere rivolte al SUAP/SUE.</p>
+<p><span class="plominoFieldClass">informativa_privacy</span></p>
 <span class="plominoActionClass">btn_send_action</span><span class="plominoActionClass">btn_annulla</span><span class="plominoActionClass">btn_edit</span><hr>
 </div>
 <hr>
 <div id="iol-sending-message" title="Invio della richiesta"><div class="row-fluid">
-<div class="span6"><img src="../../++resource++iol.document/images/send.jpg"></div>
+<div class="span6"><img src="../../../++resource++iol.document/images/send.jpg"></div>
 <div class="span6"><span class="sending-message">Invio della richiesta in corso...l'operazione potrebbe richiedere qualche minuto.</span></div>
 </div></div>
 ]]></FormLayout>

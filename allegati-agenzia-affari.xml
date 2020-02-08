@@ -13,9 +13,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
-      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
-<fieldset class="scheduler-border" title="Richiedente">
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA</legend>
 <p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_soci</span></p>
@@ -25,8 +23,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_spedizioni</span></p>
 <p><span class="plominoLabelClass">allegato_dichiarazione_spedizioni</span><span class="plominoFieldClass">allegato_dichiarazione_spedizioni</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_spedizioni</span></p>
-</fieldset>
-]]></FormLayout>
+</fieldset>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
       <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>

@@ -13,25 +13,11 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
-      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
-<fieldset class="scheduler-border" title="Richiedente">
+      <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
 <legend class="scheduler-border">DOCUMENTAZIONE ALLEGATA ALLA SCIA</legend>
 <p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_requisiti_professionali</span></p>
-<div>
-<span class="plominoLabelClass">allegato_atto_notaio</span><span class="plominoFieldClass">allegato_atto_notaio</span>
-</div>
-<span class="plominoHidewhenClass">start:hw_no_notifica_sanitaria</span><div class="row-fluid">
-<div class="span6"><a href="modelli/suap/notifica-sanitaria" target="blank_" title="Notifica sanitaria da scaricare e compilare"><span class="label"><img src="pdf.png"> Notifica sanitaria da scaricare e compilare</span></a></div>
-<div class="span6">
-<span class="plominoLabelClass">allegato_notifica_sanitaria</span><span class="plominoFieldClass">allegato_notifica_sanitaria</span>
-</div>
-</div>
-<span class="plominoHidewhenClass">end:hw_no_notifica_sanitaria</span>
-</fieldset>
-<p><span class="plominoSubformClass">base_sub_allegati_altri</span></p>
-]]></FormLayout>
+</fieldset>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
       <DynamicDocumentTitle type="Products.Archetypes.Field.BooleanField">False</DynamicDocumentTitle>
@@ -73,67 +59,6 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
           <Content type="Products.Archetypes.Field.TextField"><![CDATA[context.doc_url()+"/EditDocument"]]></Content>
           <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isEditMode()]]></Hidewhen>
           <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
-        </element>
-        <element id="allegato_atto_notaio" title="Atto notarile (ove indicato)" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">allegato_atto_notaio</id>
-          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
-data-plugin = "iolUploadFile" 
-data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
-''']]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>type</name>
-<value><string>SINGLE</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="allegato_notifica_sanitaria" title="Notifica sanitaria (art. 6, Reg.CE n. 852/2004)" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">allegato_notifica_sanitaria</id>
-          <FieldType type="Products.Archetypes.Field.StringField">ATTACHMENT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
-data-plugin = "iolUploadFile" 
-data-plugin-options={"maxsize":"3","filetype":["jpg","png","pdf","p7m"]}
-''']]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>type</name>
-<value><string>SINGLE</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="hw_no_notifica_sanitaria" title="hw_no_notifica_sanitaria" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_notifica_sanitaria</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('alimentare_opt')!='SI']]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
       </elements>
     </element>

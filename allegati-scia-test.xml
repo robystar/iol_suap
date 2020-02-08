@@ -14,7 +14,6 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<div class="pagina-suap">
-<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
 <p><a name="allegati"></a><span class="label"> Quadro riepilogativo della documentazione allegata </span></p>
 <div class="riquadro"><div class="titolo"><span>DOCUMENTAZIONE ALLEGATA ALLA SCIA</span></div></div>
 <div class="riquadro"><div class="titolo"><span>ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA (scia unica)</span></div></div>

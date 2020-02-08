@@ -17,14 +17,12 @@
 <span class="plominoHidewhenClass">start:hw_no_ragionesociale</span> <span class="plominoLabelClass">giuridica_denominazione</span><span class="plominoFieldClass">giuridica_denominazione</span> <span class="plominoHidewhenClass">end:hw_no_ragionesociale</span>
 </div>
 <div class="row-fluid">
-<div class="span4">
+<div class="span2">
 <span class="plominoLabelClass">giuridica_piva</span><span class="plominoFieldClass">giuridica_piva</span>
 </div>
-<div class="span4">
+<div class="span2">
 <span class="plominoLabelClass">giuridica_cf</span><span class="plominoFieldClass">giuridica_cf</span>
 </div>
-</div>
-<div class="row-fluid">
 <div class="span3">
 <span class="plominoLabelClass">giuridica_pec</span><span class="plominoFieldClass">giuridica_pec</span>
 </div>

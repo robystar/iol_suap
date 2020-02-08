@@ -14,12 +14,14 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[
-<p><span class="plominoSubformClass">base_sub_info_allegati</span></p>
-<p>DOCUMENTAZIONE ALLEGATA ALLA SCIA</p>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">DOCUMENTAZIONE ALLEGATA ALLA SCIA</legend>
 <p><span class="plominoSubformClass">base_sub_allegati_ci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_soci</span></p>
 <p><span class="plominoSubformClass">base_sub_allegati_requisiti_professionali</span></p>
-<p>ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA (scia unica)</p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">ALTRE SEGNALAZIONI O COMUNICAZIONI PRESENTATE IN ALLEGATO ALLA SCIA (scia unica)</legend>
 <p><span class="plominoHidewhenClass">start:hw_no_notifica_sanitaria</span></p>
 <div class="row-fluid">
 <div class="span6"><a href="modelli/suap/notifica-sanitaria" target="blank_" title="Notifica sanitaria da scaricare e compilare"><span class="label"><img src="pdf.png"> Notifica sanitaria da scaricare e compilare</span></a></div>
@@ -32,10 +34,6 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_vendita_ingrosso</span></p>
 <p><span class="plominoLabelClass">allegato_comunicazione_vendita_ingrosso</span><span class="plominoFieldClass">allegato_comunicazione_vendita_ingrosso</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_vendita_ingrosso</span></p>
-<p><span class="plominoFieldClass">allegati_alcolici_opt</span><span class="plominoLabelClass">allegati_alcolici_opt</span></p>
-<p><span class="plominoHidewhenClass">start:hw_no_vendita_alcolici</span></p>
-<p><span class="plominoLabelClass">allegato_comunicazione_vendita_alcolici</span><span class="plominoFieldClass">allegato_comunicazione_vendita_alcolici</span></p>
-<p><span class="plominoHidewhenClass">end:hw_no_vendita_alcolici</span></p>
 <p><span class="plominoFieldClass">allegati_agricoli_opt</span><span class="plominoLabelClass">allegati_agricoli_opt</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_agricoli</span></p>
 <p><span class="plominoLabelClass">allegato_scia_alimentazione_animale</span><span class="plominoFieldClass">allegato_scia_alimentazione_animale</span></p>
@@ -61,7 +59,9 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_scia_insegna</span></p>
 <p><span class="plominoLabelClass">allegato_scia_insegna</span><span class="plominoFieldClass">allegato_scia_insegna</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_scia_insegna</span></p>
-<p>RICHIESTA DI AUTORIZZAZIONI PRESENTATA CONTESTUALMENTE ALLA SCIA O ALLA SCIA UNICA (scia condizionata)</p>
+</fieldset>
+<fieldset class="scheduler-border" title="Richiedente">
+<legend class="scheduler-border">RICHIESTA DI AUTORIZZAZIONI PRESENTATA CONTESTUALMENTE ALLA SCIA O ALLA SCIA UNICA (scia condizionata)</legend>
 <p><span class="plominoFieldClass">allegati_fitosanitari_opt</span><span class="plominoLabelClass">allegati_fitosanitari_opt</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_fitosanitari</span></p>
 <p><span class="plominoLabelClass">allegato_documentazione_prodotti_fitosanitari</span><span class="plominoFieldClass">allegato_documentazione_prodotti_fitosanitari</span></p>
@@ -78,6 +78,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
 <p><span class="plominoHidewhenClass">start:hw_no_autorizzazione_insegna</span></p>
 <p><span class="plominoLabelClass">allegato_documentazione_autorizzazione_insegna</span><span class="plominoFieldClass">allegato_documentazione_autorizzazione_insegna</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_autorizzazione_insegna</span></p>
+</fieldset>
 <p><span class="plominoSubformClass">base_sub_allegati_altri</span></p>
 ]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
@@ -124,7 +125,7 @@ return "%s/EditDocument?openwithform=00-completata" %context.absolute_url()]]></
         </element>
         <element id="hw_no_notifica_sanitaria" title="hw_no_notifica_sanitaria" type="PlominoHidewhen">
           <id type="Products.Archetypes.Field.StringField">hw_no_notifica_sanitaria</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',False)]]></Formula>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return not context.getItem('alimentare_opt',True)]]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
         <element id="allegato_notifica_sanitaria" title="Notifica sanitaria (art. 6, Reg.CE n. 852/2004)" type="PlominoField">

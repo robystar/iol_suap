@@ -33,14 +33,9 @@ if context.REQUEST.get('btn_invia_verifica'):
 
     context.plone_utils.addPortalMessage('Richiesta di verifica inviata','info')
     context.resources.customscripts.setAttivita(text="Richiesta di verifica a %s" %Ente)    
-    parentDoc.iolSendMail(azione="parere_richiesta",parentDoc=context)
 
     
     return parentDoc.absolute_url()
-
-elif context.REQUEST.get('btn_salva_richiesta'):
-    context.setItem('Form','00-presentata')
-
 else:   
     ######AGGIUNGO GLI ITEM AL DOCUMENTO CHE SERVONO PER LA MAIL E LA STAMPA
     items = [
@@ -85,32 +80,19 @@ context.REQUEST.set('returnurl',parentDoc.absolute_url())]]></onDeleteDocument>
 <div class="row-fluid"><div class="span6">
 <span class="plominoLabelClass">verifica_ente_opt</span><span class="plominoFieldClass">verifica_ente_opt</span>
 </div></div>
-<p><span class="plominoHidewhenClass">start:hw_no_verifica_ente_altro</span></p>
-<div class="row-fluid">
-<div class="span6">
-<span class="plominoLabelClass">verifica_ente_altro</span><span class="plominoFieldClass">verifica_ente_altro</span>
-</div>
-<div class="span6">
-<span class="plominoLabelClass">verifica_ente_altro_email</span><span class="plominoFieldClass">verifica_ente_altro_email</span>
-</div>
-</div>
-<p><span class="plominoHidewhenClass">end:hw_no_verifica_ente_altro</span></p>
 <p><span class="plominoHidewhenClass">start:hw_no_richiesta</span></p>
 <div><span class="plominoFieldClass">invio_richiesta_verifica</span></div>
-<div class="row-fluid"><div class="span6">
-<span class="plominoFieldClass">allegato_richiesta_opt</span><span class="plominoLabelClass">allegato_richiesta_opt</span>
-</div></div>
-<p><span class="plominoHidewhenClass">start:hw_no_allegato_richiesta</span></p>
 <div class="row-fluid">
-<div class="span6">
-<span class="plominoLabelClass">modello_stampa</span><span class="plominoFieldClass">modello_stampa</span>
+<div class="span4">
+<span class="plominoFieldClass">allegato_richiesta_opt</span><span class="plominoLabelClass">allegato_richiesta_opt</span>
 </div>
-<div class="span6">
-<span class="plominoLabelClass">documenti_da_scaricare</span><span class="plominoFieldClass">documenti_da_scaricare</span>
+<p><span class="plominoHidewhenClass">start:hw_no_allegato_richiesta</span></p>
+<div class="span4"><span class="plominoFieldClass">allegato_da_scaricare</span></div>
+<div class="span4">
+<span class="plominoLabelClass">allegato_richiesta</span><span class="plominoFieldClass">allegato_richiesta</span>
 </div>
-</div>
-<p><span class="plominoLabelClass">allegato_richiesta</span><span class="plominoFieldClass">allegato_richiesta</span></p>
 <p><span class="plominoHidewhenClass">end:hw_no_allegato_richiesta</span></p>
+</div>
 <div>
 <span class="plominoLabelClass">allegato_richiesta_altri</span><span class="plominoFieldClass">allegato_richiesta_altri</span>
 </div>
@@ -141,7 +123,7 @@ context.REQUEST.set('returnurl',parentDoc.absolute_url())]]></onDeleteDocument>
       <SearchView type="Products.Archetypes.Field.StringField"/>
       <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
       <Position type="Products.Archetypes.Field.IntegerField"/>
-      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/js/controller_combo_modelli.js]]></ResourcesJS>
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[]]></ResourcesJS>
       <ResourcesCSS type="Products.Archetypes.Field.TextField"><![CDATA[++resource++iol.document/css/bootstrap.min.css
 ++resource++iol.document/css/bootstrap-accessibile.min.css
 ++resource++iol.document/css/bootstrap-responsive.min.css
@@ -160,7 +142,7 @@ resources/iol-custom.css]]></ResourcesCSS>
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-dhw=1']]></HTMLAttributesFormula>
+          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
           <params>
 <param>
 <value><array><data>
@@ -185,8 +167,12 @@ elenco=['|']
 for grp in grpPareri:
     elenco.append("%s|%s" %(getUserGroupFullName(context,grp),grp))
 
-return elenco + ['Altro destinatario|altro']
-</string></value>
+return elenco
+
+context.plone_log(grpPareri)
+
+
+return elencoUtentiGruppi(context,groups=grpPareri)</string></value>
 </member>
 </struct></value>
 <value><struct>
@@ -275,64 +261,13 @@ return [allegato[0]+"|"+allegato[1] for allegato in elencoAllegati if allegato[1
 <value><struct>
 <member>
 <name>size</name>
-<value><string>4</string></value>
+<value><string>8</string></value>
 </member>
 </struct></value>
 <value><struct>
 <member>
 <name>widget</name>
 <value><string>TEXTAREA</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="allegato_da_scaricare" title="Documento di richiesta" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">allegato_da_scaricare</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">iol_print_modelli</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlist</name>
-<value><array><data>
-</data></array></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>return []
-grp=context.getItem('verifica_ente_opt')
-return context.resources.customscripts.getElencoModelli(grp)</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
 </member>
 </struct></value>
 </data></array></value>
@@ -398,13 +333,13 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA['data-plugin = "iolUploadFile" data-plugin-options={"emptyMessage":"Caricare ..."}']]></HTMLAttributesFormula>
         </element>
-        <element id="email_istruttore" title="Testo della email" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">email_istruttore</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
+        <element id="allegato_da_scaricare" title="Documento di richiesta" type="PlominoField">
+          <id type="Products.Archetypes.Field.StringField">allegato_da_scaricare</id>
+          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
           <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
+          <FieldEditTemplate type="Products.Archetypes.Field.StringField">iol_print_modelli</FieldEditTemplate>
           <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
@@ -415,14 +350,33 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
 <value><array><data>
 <value><struct>
 <member>
-<name>size</name>
-<value><string>4</string></value>
+<name>dynamictableparam</name>
+<value><string>'bPaginate': true,
+'bLengthChange': true,
+'bFilter': true,
+'bSort': true,
+'bInfo': true,
+'bAutoWidth': false</string></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlist</name>
+<value><array><data>
+</data></array></value>
+</member>
+</struct></value>
+<value><struct>
+<member>
+<name>selectionlistformula</name>
+<value><string>grp=context.getItem('verifica_ente_opt')
+return context.resources.customscripts.getElencoModelli(grp)</string></value>
 </member>
 </struct></value>
 <value><struct>
 <member>
 <name>widget</name>
-<value><string>TEXTAREA</string></value>
+<value><string>CHECKBOX</string></value>
 </member>
 </struct></value>
 </data></array></value>
@@ -465,17 +419,6 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
           <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
           <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[not context.isNewDocument()]]></Hidewhen>
-          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
-        </element>
-        <element id="btn_salva_richiesta" title="Salva senza inviare &gt;&gt;" type="PlominoAction">
-          <id type="Products.Archetypes.Field.StringField">btn_salva_richiesta</id>
-          <ActionType type="Products.Archetypes.Field.StringField">SAVE</ActionType>
-          <ActionDisplay type="Products.Archetypes.Field.StringField">SUBMIT</ActionDisplay>
-          <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
-          <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[try:
-    return context.getItem('oggetto_avvio_procedimento','')==''
-except:
-    return True]]></Hidewhen>
           <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
         </element>
         <element id="btn_invia_verifica" title="Salva e invia la richiesta &gt;&gt;" type="PlominoAction">
@@ -631,155 +574,6 @@ return dict(formName='base_sub_anagrafica', docId=context.getItem('verifica_prat
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
           <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="verifica_ente_altro" title="Altro destinatario della richiesta" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">verifica_ente_altro</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="verifica_ente_altro_email" title="Indirizzo e-mail" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">verifica_ente_altro_email</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="hw_no_verifica_ente_altro" title="hw_no_verifica_ente_altro" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_verifica_ente_altro</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('verifica_ente_opt')!='altro']]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">True</isDynamicHidewhen>
-        </element>
-        <element id="destinatario_verifica" title="destinatario_verifica" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">destinatario_verifica</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">COMPUTEDONSAVE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if context.getItem('verifica_ente_opt')=='altro':
-    return context.getItem('verifica_ente_altro_email')
-else:
-    return context.getItem('verifica_ente_opt')]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="modello_stampa" title="Seleziona un modello per la stampa" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">modello_stampa</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField">SELECTIONFieldReadCheck</FieldReadTemplate>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[return '''
-class="iol_print_model"
-data-target="documenti_da_scaricare"
-''']]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>#Elenco modelli presi dalla cartella
-from iol.document.plomino_utils import getTemplateFolderContents
-parentDoc = context.getParentDatabase().getDocument(context.getItem('parent_document'))
-baseUrl=''
-ll=["ERRORE NELLA RICERCA DEI MODELLI"]
-
-if parentDoc:
-    baseUrl="%s/@@iol-printdocument?child=%s&amp;" %(parentDoc.absolute_url(),context.getId())
-    ll = getTemplateFolderContents(context,filter={"portal_type" : "File"},baseUrl=baseUrl,printForm='00-print',app='suap',grp='parere-verifica')
-
-return ["Seleziona il modello per la stampa &gt;&gt;&gt;|"] + ll
-
-
-</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
-        </element>
-        <element id="documenti_da_scaricare" title="Comunicazione da scaricare e firmare digitalmente" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">documenti_da_scaricare</id>
-          <FieldType type="Products.Archetypes.Field.StringField">SELECTION</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField">iol_print_modelli</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-          <params>
-<param>
-<value><array><data>
-<value><struct>
-<member>
-<name>dynamictableparam</name>
-<value><string>'bPaginate': true,
-'bLengthChange': true,
-'bFilter': true,
-'bSort': true,
-'bInfo': true,
-'bAutoWidth': false</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlist</name>
-<value><array><data>
-</data></array></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>selectionlistformula</name>
-<value><string>ll = ['Titolo selezionato|']       
-return ll</string></value>
-</member>
-</struct></value>
-<value><struct>
-<member>
-<name>widget</name>
-<value><string>CHECKBOX</string></value>
-</member>
-</struct></value>
-</data></array></value>
-</param>
-</params>
         </element>
       </elements>
     </element>

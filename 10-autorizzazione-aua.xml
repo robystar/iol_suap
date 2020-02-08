@@ -2,11 +2,11 @@
   <design>
     <element id="10-autorizzazione-aua" title="Istanza di Autorizzazione Unica Ambientale - AUA" type="PlominoForm">
       <id type="Products.Archetypes.Field.StringField">10-autorizzazione-aua</id>
-      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
       <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
-if context.getItem('verifica_opt'):
+if context.getItem('requisiti_onorabilita_opt'):
         return "%s/EditDocument?openwithform=allegati-%s" %(context.doc_url(),context.getItem('iol_tipo_proc'))
 else:
     return "%s/EditDocument#dichiarazioni" %context.doc_url()]]></onSaveDocument>
@@ -17,7 +17,6 @@ else:
 <p><span class="plominoSubformClass">base_sub_intestazione</span></p>
 <h6 class="text-center">Ai sensi del D.P.R. 13 marzo 2013, n. 59</h6>
 <p><span class="plominoSubformClass">base_sub_pratica</span></p>
-<p><span class="plominoSubformClass">base_sub_modpagamento</span></p>
 <p><span class="plominoSubformClass">base_sub_fisica</span></p>
 <p><span class="plominoSubformClass">sub_aua_referente</span></p>
 <p><span class="plominoSubformClass">base_sub_giuridica</span></p>
@@ -25,10 +24,10 @@ else:
 <p><span class="plominoSubformClass">sub_aua_dichiarazioni</span></p>
 <p><span class="plominoSubformClass">sub_aua_istanza</span></p>
 <p><a name="dichiarazioni"></a></p>
-<div>
-<span class="plominoFieldClass">verifica_opt</span><span class="plominoLabelClass">verifica_opt</span>
-</div>
 <!--SEZIONE DICHIARAZIONI-->
+<p><span class="plominoHidewhenClass">start:hw_dichiarazioni</span></p>
+<p><span class="plominoSubformClass">sub_dichiarazioni_onorabilita</span></p>
+<p><span class="plominoHidewhenClass">end:hw_dichiarazioni</span></p>
 </div>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[context.resources.customscripts.getDocumentTitle(context)]]></DocumentTitle>
@@ -43,7 +42,7 @@ else:
       <SearchView type="Products.Archetypes.Field.StringField"/>
       <SearchFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></SearchFormula>
       <Position type="Products.Archetypes.Field.IntegerField"/>
-      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[https://maps.google.com/maps/api/js?key=AIzaSyDCV1Q_j22PJjxqlnswzZ6i95mnwRFlqVg&libraries=drawing
+      <ResourcesJS type="Products.Archetypes.Field.TextField"><![CDATA[https://maps.googleapis.com/maps/api/js?key=AIzaSyC_wNDXNfS3wRXfrwTSIy-MbGvRhavWGcQ&libraries=places,drawing
 ++resource++iol.document/js/proj4js.js
 ++resource++iol.document/js/proj4js-defs.js
 ++resource++iol.document/js/iolGoogleMap.js
@@ -112,45 +111,6 @@ resources/map_controller.js]]></ResourcesJS>
           <id type="Products.Archetypes.Field.StringField">hw_dichiarazioni</id>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[return context.getItem('fisica_nome','')=='']]></Formula>
           <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
-        </element>
-        <element id="protocollo_tipodocumento" title="protocollo_tipodocumento" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_tipodocumento</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['PRATICAWEBSUAP']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="protocollo_titolario" title="protocollo_titolario" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">protocollo_titolario</id>
-          <FieldType type="Products.Archetypes.Field.StringField">TEXT</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">CREATION</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['06-09']]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
-        </element>
-        <element id="verifica_opt" title="Ho verificato le informazioni inserite" type="PlominoField">
-          <id type="Products.Archetypes.Field.StringField">verifica_opt</id>
-          <FieldType type="Products.Archetypes.Field.StringField">BOOLEAN</FieldType>
-          <FieldMode type="Products.Archetypes.Field.StringField">EDITABLE</FieldMode>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <FieldReadTemplate type="Products.Archetypes.Field.StringField"/>
-          <FieldEditTemplate type="Products.Archetypes.Field.StringField"/>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
-          <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
-          <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
-          <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
-          <HTMLAttributesFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></HTMLAttributesFormula>
         </element>
       </elements>
     </element>

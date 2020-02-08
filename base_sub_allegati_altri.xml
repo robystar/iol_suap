@@ -5,18 +5,18 @@
       <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
-      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Form','00-presentata')]]></onSaveDocument>
+      <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSaveDocument>
       <onDeleteDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onDeleteDocument>
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
-<legend class="scheduler-border">ALTRI ALLEGATI</legend> <span class="plominoHidewhenClass">start:hw_pagamenti_online</span><div>
+<legend class="scheduler-border">ALTRI ALLEGATI</legend>
+<div>
 <span class="plominoLabelClass">allegato_oneri</span><span class="plominoFieldClass">allegato_oneri</span>
 </div>
 <div>
-<span class="plominoHidewhenClass">start:hw_no_allegato_bollo</span><span class="plominoLabelClass">allegato_bollo</span><span class="plominoFieldClass">allegato_bollo</span><span class="plominoHidewhenClass">end:hw_no_allegato_bollo</span>
+<span class="plominoLabelClass">allegato_bollo</span><span class="plominoFieldClass">allegato_bollo</span>
 </div>
-<span class="plominoHidewhenClass">end:hw_pagamenti_online</span>
 </fieldset>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
@@ -43,7 +43,7 @@
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
           <FieldReadTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldRead</FieldReadTemplate>
           <FieldEditTemplate type="Products.Archetypes.Field.StringField">IOL-ATTACHMENTFieldEdit</FieldEditTemplate>
-          <Mandatory type="Products.Archetypes.Field.BooleanField">True</Mandatory>
+          <Mandatory type="Products.Archetypes.Field.BooleanField">False</Mandatory>
           <ValidationFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></ValidationFormula>
           <ToBeIndexed type="Products.Archetypes.Field.BooleanField">False</ToBeIndexed>
           <IndexType type="Products.Archetypes.Field.StringField">DEFAULT</IndexType>
@@ -58,7 +58,7 @@ data-description="Nella misura e con le modalità indicate sul sito dell’ammin
 <value><struct>
 <member>
 <name>type</name>
-<value><string>MULTI</string></value>
+<value><string>SINGLE</string></value>
 </member>
 </struct></value>
 </data></array></value>
@@ -87,28 +87,12 @@ data-description="Estremi del codice identificativo della marca da bollo, che de
 <value><struct>
 <member>
 <name>type</name>
-<value><string>MULTI</string></value>
+<value><string>SINGLE</string></value>
 </member>
 </struct></value>
 </data></array></value>
 </param>
 </params>
-        </element>
-        <element id="hw_no_allegato_bollo" title="hw_no_allegato_bollo" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_no_allegato_bollo</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA['autorizzazione' not in context.getItem('iol_tipo_proc')]]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
-        </element>
-        <element id="hw_pagamenti_online" title="hw_pagamenti_online" type="PlominoHidewhen">
-          <id type="Products.Archetypes.Field.StringField">hw_pagamenti_online</id>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[if 'config_pagopa' in context.getParentDatabase().resources.keys():
-    diz = context.getParentDatabase().resources.config_pagopa()
-    pagopa_enabled = bool(diz.get('pagopa_enabled',0))
-    pagamento_online = (context.getItem('modalita_pagamento','')=='pagopa')
-    return (pagopa_enabled and pagamento_online)
-else:
-    return False]]></Formula>
-          <isDynamicHidewhen type="Products.Archetypes.Field.BooleanField">False</isDynamicHidewhen>
         </element>
       </elements>
     </element>

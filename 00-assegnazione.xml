@@ -30,7 +30,7 @@ else:
       <onSearch type="Products.Archetypes.Field.TextField"><![CDATA[]]></onSearch>
       <beforeCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeCreateDocument>
       <FormLayout type="Products.Archetypes.Field.TextField"><![CDATA[<fieldset class="scheduler-border" title="Richiedente">
-<legend class="scheduler-border">ASSEGNAZIONE RESPONSABILE</legend>
+<legend class="scheduler-border">AVVIO DEL PROCEDIMENTO - ASSEGNAZIONE RESPONSABILE</legend>
 <div class="row-fluid">
 <div class="span6">
 <span class="plominoLabelClass">istruttore</span><span class="plominoFieldClass">istruttore</span>
@@ -39,7 +39,6 @@ else:
 <span class="plominoLabelClass">data_assegnazione</span><span class="plominoFieldClass">data_assegnazione</span>
 </div>
 </div>
-<span class="plominoActionClass">btn_save</span> <span class="plominoActionClass">btn_cancel</span>
 </fieldset>]]></FormLayout>
       <FormMethod type="Products.Archetypes.Field.TextField"><![CDATA[Auto]]></FormMethod>
       <DocumentTitle type="Products.Archetypes.Field.TextField"><![CDATA[]]></DocumentTitle>
@@ -126,7 +125,7 @@ resources/iol-custom.css]]></ResourcesCSS>
 db = context.getParentDatabase()
 settings = db.getDocument('0-suap-settings')
 grpIstruttori = settings.getItem('grp_istruttori')
-return ["|"] + elencoUtentiGruppi(context,groups=[grpIstruttori])
+return elencoUtentiGruppi(context,groups=[grpIstruttori])
 </string></value>
 </member>
 </struct></value>
@@ -174,7 +173,7 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
           <Content type="Products.Archetypes.Field.TextField"><![CDATA[]]></Content>
           <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[return not context.isEditMode()]]></Hidewhen>
-          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
         </element>
         <element id="btn_cancel" title="Annulla" type="PlominoAction">
           <id type="Products.Archetypes.Field.StringField">btn_cancel</id>
@@ -182,7 +181,7 @@ data-datepicker-options='{"changeMonth": true, "changeYear": true, "minDate":"-1
           <ActionDisplay type="Products.Archetypes.Field.StringField">BUTTON</ActionDisplay>
           <Content type="Products.Archetypes.Field.TextField"><![CDATA[return context.absolute_url()]]></Content>
           <Hidewhen type="Products.Archetypes.Field.TextField"><![CDATA[return not context.isEditMode()]]></Hidewhen>
-          <InActionBar type="Products.Archetypes.Field.BooleanField">False</InActionBar>
+          <InActionBar type="Products.Archetypes.Field.BooleanField">True</InActionBar>
         </element>
         <element id="istruttore_nominativo" title="istruttore_nominativo" type="PlominoField">
           <id type="Products.Archetypes.Field.StringField">istruttore_nominativo</id>

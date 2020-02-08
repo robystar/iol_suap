@@ -2,9 +2,9 @@
   <design>
     <element id="vista-istanze-protocollate" title="vista istanze protocollate" type="PlominoView">
       <id type="Products.Archetypes.Field.StringField">vista-istanze-protocollate</id>
-      <SelectionFormula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_proc','')!='integrazione' and context.getItem('data_protocollo','')!='']]></SelectionFormula>
-      <SortColumn type="Products.Archetypes.Field.StringField">identificativo</SortColumn>
-      <KeyColumn type="Products.Archetypes.Field.StringField">richiedente</KeyColumn>
+      <SelectionFormula type="Products.Archetypes.Field.TextField"><![CDATA[context.getItem('iol_tipo_app','')!='' and context.getItem('data_protocollo','')!='']]></SelectionFormula>
+      <SortColumn type="Products.Archetypes.Field.StringField">data-protocollo</SortColumn>
+      <KeyColumn type="Products.Archetypes.Field.StringField"/>
       <Categorized type="Products.Archetypes.Field.BooleanField">False</Categorized>
       <FormFormula type="Products.Archetypes.Field.TextField"><![CDATA[]]></FormFormula>
       <ReverseSorting type="Products.Archetypes.Field.BooleanField">True</ReverseSorting>
@@ -39,18 +39,10 @@
       <Position type="Products.Archetypes.Field.IntegerField"/>
       <excludeFromNav type="Products.Archetypes.Field.BooleanField">True</excludeFromNav>
       <elements>
-        <element id="identificativo" title="Identificativo" type="PlominoColumn">
+        <element id="identificativo" title="Pratica" type="PlominoColumn">
           <id type="Products.Archetypes.Field.StringField">identificativo</id>
-          <SelectedField type="Products.Archetypes.Field.StringField">base_sub_pratica/identificativo</SelectedField>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
-          <HiddenColumn type="Products.Archetypes.Field.BooleanField">False</HiddenColumn>
-          <RenderField type="Products.Archetypes.Field.BooleanField">False</RenderField>
-          <DisplaySum type="Products.Archetypes.Field.BooleanField">False</DisplaySum>
-        </element>
-        <element id="numero-pratica" title="Pratica" type="PlominoColumn">
-          <id type="Products.Archetypes.Field.StringField">numero-pratica</id>
-          <SelectedField type="Products.Archetypes.Field.StringField">00-protocollo/numero_pratica</SelectedField>
-          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <SelectedField type="Products.Archetypes.Field.StringField">PlominoPlaceholder1</SelectedField>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[context.getId()]]></Formula>
           <HiddenColumn type="Products.Archetypes.Field.BooleanField">False</HiddenColumn>
           <RenderField type="Products.Archetypes.Field.BooleanField">False</RenderField>
           <DisplaySum type="Products.Archetypes.Field.BooleanField">False</DisplaySum>
@@ -82,6 +74,14 @@
         <element id="data-protocollo" title="Data ora protocollo (A/mm/gg h:m)" type="PlominoColumn">
           <id type="Products.Archetypes.Field.StringField">data-protocollo</id>
           <SelectedField type="Products.Archetypes.Field.StringField">base_sub_pratica/data_protocollo_testo</SelectedField>
+          <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
+          <HiddenColumn type="Products.Archetypes.Field.BooleanField">False</HiddenColumn>
+          <RenderField type="Products.Archetypes.Field.BooleanField">False</RenderField>
+          <DisplaySum type="Products.Archetypes.Field.BooleanField">False</DisplaySum>
+        </element>
+        <element id="stato" title="Stato" type="PlominoColumn">
+          <id type="Products.Archetypes.Field.StringField">stato</id>
+          <SelectedField type="Products.Archetypes.Field.StringField">base_sub_ricerca_istruttore/iol_workflow_status</SelectedField>
           <Formula type="Products.Archetypes.Field.TextField"><![CDATA[]]></Formula>
           <HiddenColumn type="Products.Archetypes.Field.BooleanField">False</HiddenColumn>
           <RenderField type="Products.Archetypes.Field.BooleanField">False</RenderField>

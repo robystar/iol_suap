@@ -1377,24 +1377,22 @@ return result
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=protocollo='0',anno='2000'
+##parameters=protocollo='0',data='2000'
 ##title=
 ##
-from Products.CMFPlomino.PlominoUtils import DateToString,StringToDate, json_dumps
+from Products.CMFPlomino.PlominoUtils import StringToDate, json_dumps
 db=context.getParentDatabase()
 index=db.getIndex()
 
-#data_protocollo=StringToDate(data,format="%d/%m/%Y")
-numero_protocollo_testo='Anno %s n. % 6d' %(anno,int(protocollo))
+nprotocollo=int(protocollo)
+datamin=data+"/01/01"
+datamax=data+"/12/31"
 
-
-#query = {"numero_protocollo":nprotocollo,"data_protocollo":{"query":[datamin,datamax],"range":"min:max"}}    
-query = {"numero_protocollo_testo":numero_protocollo_testo}                          
-
+query = {"numero_protocollo":nprotocollo,"data_protocollo":{"query":[datamin,datamax],"range":"min:max"}}                          
 
 brains = index.dbsearch(query)
 if len(brains)>0:
-    return json_dumps({"success":1, "id":brains[0].id, "numero":brains[0].numero_pratica})
+    return json_dumps({"success":1, "id":brains[0].id})
 else:
     return json_dumps({"success":0})
 ]]></resource>
@@ -1494,22 +1492,10 @@ return context.aq_parent.config_suap().get('suap_settings','0-suap-settings')
 ##bind namespace=
 ##bind script=script
 ##bind subpath=traverse_subpath
-##parameters=doc=None
+##parameters=doc
 ##title=
 ##
 from Products.CMFPlomino.PlominoUtils import StringToDate,DateToString,Now
-
-if isinstance(doc, basestring):
-    doc = context.getDocument(doc)
-
-##settaggio dei tipo protocollo particolare:
-if doc.getItem('allegati_agricoli_opt'):
-    doc.setItem('protocollo_tipodocumento','COMMERCIOWEB1')
-    doc.setItem('protocollo_titolario','08-01')
-
-if doc.getItem('farmacie_opt'):
-    doc.setItem('protocollo_tipodocumento','COMMERCIOWEB9')
-    doc.setItem('protocollo_titolario','10-03')
 
 #Provo a protocollare:
 viewName = context.aq_parent.config_suap().get("wsprotocollo")
@@ -1524,11 +1510,6 @@ if result['success']==1:
 
     doc.setItem('numero_protocollo',result['NumeroProtocollo'])
     doc.setItem('numero_protocollo_testo','Anno %s n. % 6d' %(DateToString(doc.getItem('data_protocollo'),format='%Y'),int(doc.getItem('numero_protocollo'))))
-    
-    if not doc.getItem('numero_pratica'):
-        doc.setItem('numero_pratica','%s/%s' %(doc.getItem('numero_protocollo'),DateToString(doc.getItem('data_protocollo'),format='%Y')))
-
-    
 
     doc.iolSendMail(azione='protocollazione',form='00-print')
     docSettings = doc.resources.customscripts.getDocSettings()

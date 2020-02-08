@@ -2,7 +2,7 @@
   <design>
     <element id="07-scia-somministrazione-scuole" title="Somministrazione di alimenti e bevande nelle scuole, negli ospedali, nelle comunita religiose, in stabilimenti militari o nei mezzi di trasporto pubblico" type="PlominoForm">
       <id type="Products.Archetypes.Field.StringField">07-scia-somministrazione-scuole</id>
-      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),context.getCurrentUserId(),'suap-readers'])]]></onCreateDocument>
+      <onCreateDocument type="Products.Archetypes.Field.TextField"><![CDATA[context.setItem('Plomino_Readers',[context.getCurrentUser().getId(),'suap-readers'])]]></onCreateDocument>
       <onOpenDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></onOpenDocument>
       <beforeSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[]]></beforeSaveDocument>
       <onSaveDocument type="Products.Archetypes.Field.TextField"><![CDATA[newState = context.doAction('init')
